@@ -1,0 +1,38 @@
+
+
+<div style="padding: 20px">
+    <h4 style="padding: 0px;font-size: 28px;letter-spacing: -1px;display: block;color: #666;margin: 0px 0px 15px 0px;font-weight: 300;">Demo页</h4>
+
+    <form class="form-horizontal">
+
+        <div class="form-group">
+            <label class="col-md-3 control-label">附件:</label>
+            <div class="col-md-9">
+                <div hm-upload-file data-list="fileInfos" data-size="3" data-filesize="10 MB" data-accept="image,document">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">附件json:</label>
+            <div class="col-md-9" style="word-break:break-all;">
+                {{fileInfos | json}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">图片:</label>
+            <div class="col-md-9">
+                <div hm-upload-file class="btn btn-primary btn-upload" >上传文件</div>
+                <img src="http://localhost:8080/rest/v1/file/cf31ccf4-d65c-458d-8686-c981bd7917e7.png">
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+<!--<div ng-class="{progress: true, 'progress-striped': vm.striped}">-->
+    <!--<div ng-class="['progress-bar', vm.style]" ng-style="{width: vm.value + '%'}">-->
+        <!--<div ng-if="vm.showLabel">{{vm.value}}%</div>-->
+    <!--</div>-->
+<!--</div>-->
