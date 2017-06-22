@@ -53,10 +53,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="demo.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="demo.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/demo/view/demo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.50962627">
+            <state vertical-scroll-proportion="-18.75">
               <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
@@ -88,17 +88,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fileupload.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="fileupload.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/compnents/fileupload/fileupload.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-45.0">
-              <caret line="208" column="64" selection-start-line="208" selection-start-column="64" selection-end-line="208" selection-end-column="64" />
+            <state vertical-scroll-proportion="2.1306818">
+              <caret line="181" column="0" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
               <folding>
-                <marker date="1498112526000" expanded="true" signature="2645:2661" placeholder="..." />
-                <marker date="1498112526000" expanded="true" signature="2876:2900" placeholder="..." />
-                <marker date="1498112526000" expanded="true" signature="3107:3146" placeholder="..." />
-                <marker date="1498112526000" expanded="true" signature="3107:3158" placeholder="..." />
-                <marker date="1498112526000" expanded="true" signature="3107:3215" placeholder="..." />
+                <marker date="1498114094000" expanded="true" signature="2840:2856" placeholder="..." />
+                <marker date="1498114094000" expanded="true" signature="3071:3095" placeholder="..." />
+                <marker date="1498114094000" expanded="true" signature="3302:3341" placeholder="..." />
+                <marker date="1498114094000" expanded="true" signature="3302:3353" placeholder="..." />
+                <marker date="1498114094000" expanded="true" signature="3302:3410" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -169,8 +169,8 @@
         <option value="$PROJECT_DIR$/src/constant.js" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/demo/js/demo.controller.js" />
-        <option value="$PROJECT_DIR$/src/compnents/fileupload/fileupload.js" />
         <option value="$PROJECT_DIR$/demo/view/demo.html" />
+        <option value="$PROJECT_DIR$/src/compnents/fileupload/fileupload.js" />
       </list>
     </option>
   </component>
@@ -583,7 +583,7 @@
       <created>1497854916491</created>
       <option name="number" value="Default" />
       <updated>1497854916491</updated>
-      <workItem from="1497854917714" duration="60807000" />
+      <workItem from="1497854917714" duration="62057000" />
     </task>
     <task id="LOCAL-00001" summary="0.0.1">
       <created>1497883159744</created>
@@ -601,7 +601,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60807000" />
+    <option name="totallyTimeSpent" value="62057000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="41" y="23" width="1639" height="1027" extended-state="6" />
@@ -801,20 +801,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/compnents/fileupload/fileupload.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-45.0">
-          <caret line="208" column="64" selection-start-line="208" selection-start-column="64" selection-end-line="208" selection-end-column="64" />
-          <folding>
-            <marker date="1498112526000" expanded="true" signature="2645:2661" placeholder="..." />
-            <marker date="1498112526000" expanded="true" signature="2876:2900" placeholder="..." />
-            <marker date="1498112526000" expanded="true" signature="3107:3146" placeholder="..." />
-            <marker date="1498112526000" expanded="true" signature="3107:3158" placeholder="..." />
-            <marker date="1498112526000" expanded="true" signature="3107:3215" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/demo/js/demo.controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -833,13 +819,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/demo/view/demo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50962627">
+        <state vertical-scroll-proportion="-18.75">
           <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h4#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#form#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#3;n#form#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/compnents/fileupload/fileupload.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.1306818">
+          <caret line="181" column="0" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
+          <folding>
+            <marker date="1498114094000" expanded="true" signature="2840:2856" placeholder="..." />
+            <marker date="1498114094000" expanded="true" signature="3071:3095" placeholder="..." />
+            <marker date="1498114094000" expanded="true" signature="3302:3341" placeholder="..." />
+            <marker date="1498114094000" expanded="true" signature="3302:3353" placeholder="..." />
+            <marker date="1498114094000" expanded="true" signature="3302:3410" placeholder="..." />
           </folding>
         </state>
       </provider>

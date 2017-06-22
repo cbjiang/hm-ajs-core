@@ -73,9 +73,13 @@ HMApp.directive( "hmUploadFile", function( $compile,$http,$window,fileUploadServ
             var typeList=FileUploadUtil().getTypeList(attrs['accept']);
             var fileSizeStr=attrs['filesize'];
             var fileSize=FileUploadUtil().fileSizeToBytes(fileSizeStr);
+            var editFuncName="fileupload_edit_"+fileListName;
+            var downloadFuncName="fileupload_download_"+fileListName;
+            var delFuncName="fileupload_delete_"+fileListName;
             if(fileListName!=null && fileListName!=''){
-                var tmp='<div class="file-upload-bar"><div ng-repeat="file in {fileList}" class="file-upload-info"><div ng-if="file.saveName==null" class="file-upload-ing"><div class="file-progress"><div style="margin-top: 30px"><span>{{file.progress}}</span></div><div class="progress progress-striped active "><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress}}"></div></div></div></div><div ng-if="file.saveName!=null"><div ng-if="file.fileType==\'.png\' || file.fileType==\'.jpg\' || file.fileType==\'.jpeg\' || file.fileType==\'.bmp\'" class="file-type-img" style="background: url(\'{{file.fileurl==null?\'{fileHost}\'+file.saveName:file.fileurl}}\') #000 center no-repeat;"><span class="ng-binding">&nbsp;</span><div class="file-upload-menu file"><div class="menu-btn edit" ng-click="fileupload_edit(file)"></div><div class="menu-btn download" ng-click="fileupload_download(file)"></div><div class="menu-btn del" ng-click="fileupload_delete(file)"></div></div></div><div ng-if="file.fileType!=\'.png\' && file.fileType!=\'.jpg\' && file.fileType!=\'.jpeg\' && file.fileType!=\'.bmp\'" class="file-type-file"><span class="ng-binding">{{file.fileType | uppercase}}</span><div class="file-upload-menu file"><div class="menu-btn edit" ng-click="fileupload_edit(file)"></div><div class="menu-btn download" ng-click="fileupload_download(file)"></div><div class="menu-btn del" ng-click="fileupload_delete(file)"></div></div><div class="file-name">{{file.fileName | uriDecode}}</div></div></div></div><div class="file-upload-add"></div></div>';
-                tmp=tmp.replace('{fileList}',fileListName).replace('{fileHost}',fileHost);
+                var tmp='<div class="file-upload-bar"><div ng-repeat="file in {fileList}" class="file-upload-info"><div ng-if="file.saveName==null" class="file-upload-ing"><div class="file-progress"><div style="margin-top: 30px"><span>{{file.progress}}</span></div><div class="progress progress-striped active "><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress}}"></div></div></div></div><div ng-if="file.saveName!=null"><div ng-if="file.fileType==\'.png\' || file.fileType==\'.jpg\' || file.fileType==\'.jpeg\' || file.fileType==\'.bmp\'" class="file-type-img" style="background: url(\'{{file.fileurl==null?\'{fileHost}\'+file.saveName:file.fileurl}}\') #000 center no-repeat;"><span class="ng-binding">&nbsp;</span><div class="file-upload-menu file"><div class="menu-btn edit" ng-click="{editFuncName}(file)"></div><div class="menu-btn download" ng-click="{downloadFuncName}(file)"></div><div class="menu-btn del" ng-click="{delFuncName}(file)"></div></div></div><div ng-if="file.fileType!=\'.png\' && file.fileType!=\'.jpg\' && file.fileType!=\'.jpeg\' && file.fileType!=\'.bmp\'" class="file-type-file"><span class="ng-binding">{{file.fileType | uppercase}}</span><div class="file-upload-menu file"><div class="menu-btn edit" ng-click="{editFuncName}(file)"></div><div class="menu-btn download" ng-click="{downloadFuncName}(file)"></div><div class="menu-btn del" ng-click="{delFuncName}(file)"></div></div><div class="file-name">{{file.fileName | uriDecode}}</div></div></div></div><div class="file-upload-add"></div></div>';
+                tmp=tmp.replace(/\{fileList}/g,fileListName).replace('{fileHost}',fileHost)
+                    .replace(/\{editFuncName}/g,editFuncName).replace(/\{downloadFuncName}/g,downloadFuncName).replace(/\{delFuncName}/g,delFuncName);
 
                 if(scope[fileListName]!=null && scope[fileListName].length>0){
 
@@ -128,8 +132,8 @@ HMApp.directive( "hmUploadFile", function( $compile,$http,$window,fileUploadServ
                     inputObj.click();
                 })
 
-                if(typeof scope['fileupload_delete'] == 'undefined'){
-                    scope.fileupload_delete=function(file){
+                if(typeof scope[delFuncName] == 'undefined'){
+                    scope[delFuncName]=function(file){
                         for(var i=0;i<scope[fileListName].length;i++){
                             if(file.saveName==scope[fileListName][i].saveName){
                                 if(file.fileurl!=null){
@@ -148,8 +152,8 @@ HMApp.directive( "hmUploadFile", function( $compile,$http,$window,fileUploadServ
                     }
                 }
 
-                if(typeof scope['fileupload_download'] == 'undefined'){
-                    scope.fileupload_download=function(file){
+                if(typeof scope[downloadFuncName] == 'undefined'){
+                    scope[downloadFuncName]=function(file){
                         for(var i=0;i<scope[fileListName].length;i++){
                             if(file.saveName==scope[fileListName][i].saveName){
                                 if(file.fileurl!=null){
@@ -163,8 +167,8 @@ HMApp.directive( "hmUploadFile", function( $compile,$http,$window,fileUploadServ
                     }
                 }
 
-                if(typeof scope['fileupload_edit'] == 'undefined'){
-                    scope.fileupload_edit=function(file){
+                if(typeof scope[editFuncName] == 'undefined'){
+                    scope[editFuncName]=function(file){
                         for(var i=0;i<scope[fileListName].length;i++){
                             if(file.saveName==scope[fileListName][i].saveName){
                                 changeIndex=i;
@@ -176,34 +180,6 @@ HMApp.directive( "hmUploadFile", function( $compile,$http,$window,fileUploadServ
                     }
                 }
 
-                if(typeof scope['fileupload_cover'] == 'undefined'){
-                    scope.fileupload_cover=function(file){
-                        //for(var i=0;i<scope[fileListName].length;i++){
-                        //    if(file.saveName==scope[fileListName][i].saveName){
-                        //        if(file.fileurl!=null){
-                        //            $http({
-                        //                method:'POST',
-                        //                url:fileHost+'temp/delete',
-                        //                params:{},
-                        //                data:{
-                        //                    dir: file.dir,
-                        //                    saveNames: file.saveName,
-                        //                    systemName: file.systemName
-                        //                }
-                        //            }).success(function(data,status,headers,config){
-                        //                scope[fileListName].splice(i,1);
-                        //                console.log('临时文件 删除成功');
-                        //            }).error(function(data,status,headers,config){
-                        //                console.log('临时文件 删除失败');
-                        //            })
-                        //        }else{
-                        //            scope[fileListName].splice(i,1);
-                        //        }
-                        //        break;
-                        //    }
-                        //}
-                    }
-                }
             }
 
             function doUpload(fileObj,_changeIndex,_changeFile){
