@@ -89,10 +89,12 @@ bower install cbjiang/hm-ajs-core
 
 * data-list 结果数据对象名
 * data-size 允许上传的最大文件数
-* data-filesize 文件大小限制 格式 '数字[空格]'
+* data-filesize 文件大小限制 格式 '数字[空格]单位'
 * data-accept 允许上传的文件类型 image、video、document、package
 
 ```
+filesize 单位: 'B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'
+
 image: .png .jpg .jpeg .bmp
 video: .mp4 .rmvb .avi .flv
 document: .doc .docx .pdf .xls .xlsx .ppt .pptx

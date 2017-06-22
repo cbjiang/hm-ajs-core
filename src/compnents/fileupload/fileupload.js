@@ -7,9 +7,9 @@ HMApp.filter('uriDecode',function(){
     }
 });
 HMApp.service('fileUploadService', fileUploadService);
-fileUploadService.$inject = ['$http','$q','Upload'];
-function fileUploadService ($http,$q,Upload) {
-    var fileHost='http://localhost:8080/rest/v1/file/';
+fileUploadService.$inject = ['$http','$q','Upload','FILESERVICE'];
+function fileUploadService ($http,$q,Upload,FILESERVICE) {
+    var fileHost=FILESERVICE;
 
     var service= {
         uploadFile:uploadFile,
@@ -62,10 +62,10 @@ function fileUploadService ($http,$q,Upload) {
         return deferred.promise;
     }
 }
-HMApp.directive( "hmUploadFile", function( $compile,$http,$window,fileUploadService ) {
+HMApp.directive( "hmUploadFile", function( $compile,$http,$window,fileUploadService,FILESERVICE ) {
     return {
         link:function( scope, element, attrs ){
-            var fileHost='http://localhost:8080/rest/v1/file/';
+            var fileHost=FILESERVICE;
             var changeIndex=null;
             var changeFile=null;
             var fileListName=attrs['list'];

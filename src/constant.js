@@ -11,5 +11,6 @@ if(typeof HMApp=="object"){
 	HMApp.constant('SYSNAME', "hm-ajs-core");
 	HMApp.constant('GATEWAYURL', "http://118.178.59.136:8888/");
 	HMApp.constant('LOGINURL', "demo/login.html");
+	HMApp.constant('FILESERVICE',"http://localhost:8080/rest/v1/file/");
 }
 
