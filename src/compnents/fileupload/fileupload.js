@@ -101,7 +101,7 @@ HMApp.directive( "hmUploadFile", function( $compile,$http,$window,fileUploadServ
                     changeIndex=null;
                     changeFile=null;
 
-                    if(_changeIndex==null && _changeFile==null && scope['fileInfos'].length>=fileListSize){
+                    if(_changeIndex==null && _changeFile==null && scope[fileListName].length>=fileListSize){
                         toastr.error('最多上传'+fileListSize+'个附件!', '添加附件-失败');
                         return;
                     }
@@ -130,17 +130,17 @@ HMApp.directive( "hmUploadFile", function( $compile,$http,$window,fileUploadServ
 
                 if(typeof scope['fileupload_delete'] == 'undefined'){
                     scope.fileupload_delete=function(file){
-                        for(var i=0;i<scope['fileInfos'].length;i++){
-                            if(file.saveName==scope['fileInfos'][i].saveName){
+                        for(var i=0;i<scope[fileListName].length;i++){
+                            if(file.saveName==scope[fileListName][i].saveName){
                                 if(file.fileurl!=null){
                                     fileUploadService.deleteFile(file).then(function(){
-                                        scope['fileInfos'].splice(i,1);
+                                        scope[fileListName].splice(i,1);
                                         console.log('临时文件 删除成功');
                                     },function(){
                                         console.log('临时文件 删除失败');
                                     })
                                 }else{
-                                    scope['fileInfos'].splice(i,1);
+                                    scope[fileListName].splice(i,1);
                                 }
                                 break;
                             }
@@ -150,8 +150,8 @@ HMApp.directive( "hmUploadFile", function( $compile,$http,$window,fileUploadServ
 
                 if(typeof scope['fileupload_download'] == 'undefined'){
                     scope.fileupload_download=function(file){
-                        for(var i=0;i<scope['fileInfos'].length;i++){
-                            if(file.saveName==scope['fileInfos'][i].saveName){
+                        for(var i=0;i<scope[fileListName].length;i++){
+                            if(file.saveName==scope[fileListName][i].saveName){
                                 if(file.fileurl!=null){
                                     $window.location.href = file.fileurl;
                                 }else{
@@ -165,8 +165,8 @@ HMApp.directive( "hmUploadFile", function( $compile,$http,$window,fileUploadServ
 
                 if(typeof scope['fileupload_edit'] == 'undefined'){
                     scope.fileupload_edit=function(file){
-                        for(var i=0;i<scope['fileInfos'].length;i++){
-                            if(file.saveName==scope['fileInfos'][i].saveName){
+                        for(var i=0;i<scope[fileListName].length;i++){
+                            if(file.saveName==scope[fileListName][i].saveName){
                                 changeIndex=i;
                                 changeFile=file;
                                 inputObj.click();
@@ -178,8 +178,8 @@ HMApp.directive( "hmUploadFile", function( $compile,$http,$window,fileUploadServ
 
                 if(typeof scope['fileupload_cover'] == 'undefined'){
                     scope.fileupload_cover=function(file){
-                        //for(var i=0;i<scope['fileInfos'].length;i++){
-                        //    if(file.saveName==scope['fileInfos'][i].saveName){
+                        //for(var i=0;i<scope[fileListName].length;i++){
+                        //    if(file.saveName==scope[fileListName][i].saveName){
                         //        if(file.fileurl!=null){
                         //            $http({
                         //                method:'POST',
@@ -191,13 +191,13 @@ HMApp.directive( "hmUploadFile", function( $compile,$http,$window,fileUploadServ
                         //                    systemName: file.systemName
                         //                }
                         //            }).success(function(data,status,headers,config){
-                        //                scope['fileInfos'].splice(i,1);
+                        //                scope[fileListName].splice(i,1);
                         //                console.log('临时文件 删除成功');
                         //            }).error(function(data,status,headers,config){
                         //                console.log('临时文件 删除失败');
                         //            })
                         //        }else{
-                        //            scope['fileInfos'].splice(i,1);
+                        //            scope[fileListName].splice(i,1);
                         //        }
                         //        break;
                         //    }
@@ -210,9 +210,9 @@ HMApp.directive( "hmUploadFile", function( $compile,$http,$window,fileUploadServ
                 var fileInfo={};
                 fileInfo.fileName=fileObj.name;
                 if(_changeIndex!=null && _changeFile!=null){
-                    scope['fileInfos'].splice(_changeIndex,1,fileInfo);
+                    scope[fileListName].splice(_changeIndex,1,fileInfo);
                 }else{
-                    scope['fileInfos'].push(fileInfo);
+                    scope[fileListName].push(fileInfo);
                 }
                 fileUploadService.uploadFile(
                     fileObj,
