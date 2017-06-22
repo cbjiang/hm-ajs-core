@@ -1,8 +1,12 @@
 .file-upload-add{
+    cursor:pointer;
     float: left;
     width: 80px;
     height: 80px;
     background-image: url('../img/fileupload-file-btn-add.png');
+}
+.file-upload-add.image{
+    background-image: url('../img/fileupload-img-btn-add.png');
 }
 
 .file-upload-info{
@@ -27,7 +31,7 @@
     width: auto;
     margin-top: -127px;
     margin-left: -40px;
-    box-shadow: 0 0 5px #367aa8;
+    box-shadow: 0 0 3px #367aa8;
     border: 1px solid #367aa8;
     background-color: white;
 }
@@ -69,6 +73,7 @@
     margin-left: -63px;
 }
 .file-upload-menu .menu-btn{
+    cursor:pointer;
     float: left;
     margin: 5.5px 6.5px;
     width: 26px;
@@ -76,6 +81,9 @@
 }
 .file-upload-menu .menu-btn.cover{
     background-image: url('../img/fileupload-btn-cover.png');
+}
+.file-upload-menu .menu-btn.cover.active{
+    background-image: url('../img/fileupload-btn-cover-s.png');
 }
 .file-upload-menu .menu-btn:hover.cover{
     background-image: url('../img/fileupload-btn-cover-s.png');
@@ -120,6 +128,15 @@
     background-size: 100% !important;
     text-align: center;
 }
+.file-upload-info .file-type-img .cover-tab{
+    position: absolute;
+    margin-left: 49px;
+    margin-top: -30px;
+    width: 26px;
+    height: 26px;
+    background-image: url('../img/fileupload-img-mark.png');
+}
+
 
 .file-upload-bar{
     min-height: 110px;
