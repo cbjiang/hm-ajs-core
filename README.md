@@ -168,4 +168,6 @@ bower install cbjiang/hm-ajs-core
 5. 数据的保存
 
 	各自系统根据控件提供的jsonArray来保存数据，其中hm-upload-file必须要保存的字段为dir、fileName、saveName、systemName，如果是hm-upload-image，则还需要保存isCover字段，图片的顺序为jsonArray中jsonObject的顺序。
+	
+	此外，在保存好数据后，需要调用文件服务的接口，将文件从临时文件目录转存至正式文件目录，具体见文件服务的接口文档
 
