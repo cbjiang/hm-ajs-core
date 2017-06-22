@@ -8,8 +8,9 @@ HMApp.filter('uriDecode',function(){
 });
 HMApp.service('fileUploadService', fileUploadService);
 fileUploadService.$inject = ['$http','$q','Upload','FILESERVICE'];
-function fileUploadService ($http,$q,Upload,FILESERVICE) {
+function fileUploadService ($http,$q,Upload,FILESERVICE,FILESYSTEMNAME) {
     var fileHost=FILESERVICE;
+    var fileSystemName=FILESYSTEMNAME==null?"tempSystem":FILESYSTEMNAME;
 
     var service= {
         uploadFile:uploadFile,
@@ -18,9 +19,9 @@ function fileUploadService ($http,$q,Upload,FILESERVICE) {
 
     return service;
 
-    function uploadFile(fileObj,cb1,cb2,cb3){
+    function uploadFile(dirName,fileObj,cb1,cb2,cb3){
         Upload.upload({
-            url: fileHost+'testSystem/test/upload',
+            url: fileHost+fileSystemName+'/'+dirName+'/upload',
             method: 'POST',
             data: {
                 file: fileObj, // a jqLite type="file" element, upload() will extract all the files from the input and put them into the FormData object before sending.
@@ -62,12 +63,13 @@ function fileUploadService ($http,$q,Upload,FILESERVICE) {
         return deferred.promise;
     }
 }
-HMApp.directive( "hmUploadFile", function( $compile,$http,$window,fileUploadService,FILESERVICE ) {
+HMApp.directive( "hmUploadFile", function( $compile,$http,$window,fileUploadService,FILESERVICE,FILEDIRNAME ) {
     return {
         link:function( scope, element, attrs ){
-            var fileHost=FILESERVICE;
             var changeIndex=null;
             var changeFile=null;
+            var fileHost=FILESERVICE;
+            var fileDirName=(attrs['dir']==null||attrs['dir']=="")?((FILEDIRNAME==null||FILEDIRNAME=="")?"tempFileDir":FILEDIRNAME):attrs['dir'];
             var fileListName=attrs['list'];
             var fileListSize=parseInt(attrs['size']);
             var typeList=FileUploadUtil().getTypeList(attrs['accept']);
@@ -191,6 +193,7 @@ HMApp.directive( "hmUploadFile", function( $compile,$http,$window,fileUploadServ
                     scope[fileListName].push(fileInfo);
                 }
                 fileUploadService.uploadFile(
+                    fileDirName,
                     fileObj,
                     function(response){
                         if(response.data!=null){
@@ -230,12 +233,13 @@ HMApp.directive( "hmUploadFile", function( $compile,$http,$window,fileUploadServ
     }
 });
 
-HMApp.directive( "hmUploadImage", function( $compile,$http,$window,fileUploadService,FILESERVICE ) {
+HMApp.directive( "hmUploadImage", function( $compile,$http,$window,fileUploadService,FILESERVICE,FILEDIRNAME ) {
     return {
         link:function( scope, element, attrs ){
-            var fileHost=FILESERVICE;
             var changeIndex=null;
             var changeFile=null;
+            var fileHost=FILESERVICE;
+            var fileDirName=(attrs['dir']==null||attrs['dir']=="")?((FILEDIRNAME==null||FILEDIRNAME=="")?"tempImgDir":FILEDIRNAME):attrs['dir'];
             var fileListName=attrs['list'];
             var fileListSize=parseInt(attrs['size']);
             var typeList=FileUploadUtil().getTypeList('image');
@@ -371,6 +375,7 @@ HMApp.directive( "hmUploadImage", function( $compile,$http,$window,fileUploadSer
                     scope[fileListName].push(fileInfo);
                 }
                 fileUploadService.uploadFile(
+                    fileDirName,
                     fileObj,
                     function(response){
                         if(response.data!=null){
@@ -383,6 +388,7 @@ HMApp.directive( "hmUploadImage", function( $compile,$http,$window,fileUploadSer
                                     fileInfo.fileurl=fileList[i].fileurl;
                                     fileInfo.saveName=fileList[i].saveName;
                                     fileInfo.systemName=fileList[i].systemName;
+                                    fileInfo.isCover=0;
                                 }
                             }
                             if(_changeFile!=null){
