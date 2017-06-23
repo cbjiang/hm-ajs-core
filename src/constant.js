@@ -9,10 +9,12 @@ if(typeof LoginApp=="object"){
 
 if(typeof HMApp=="object"){
 	HMApp.constant('SYSNAME', "hm-ajs-core");
+	HMApp.constant('SYSCODE', "xxxxxxxxxxxx");
+	HMApp.constant('VERSION', "0.0.0-SNAPSHOT");
 	HMApp.constant('GATEWAYURL', "http://192.168.8.116:8888/");
 	HMApp.constant('LOGINURL', "demo/login.html");
 
-	HMApp.constant('FILESERVICE',"http://localhost:8080/rest/v1/file/");
+	HMApp.constant('FILESERVICE',"http://192.168.8.21:8081/sims_file/rest/v1/file/");
 	HMApp.constant('FILESYSTEMNAME',"tempSystem");
 	HMApp.constant('FILEDIRNAME',"tempDir");
 }
