@@ -14,7 +14,7 @@ HMApp.constant('STATECONFIG', [
     "name":"demo",
     "url":"/demo",
     "templateUrl":"view/demo.html",
-    "data":{"pageTitle":"收款流水-游船"},
+    "data":{"pageTitle":"示例页面"},
     "controller":"demoController",
     "ocLazyLoad":{
       "name":"HMApp",

@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9f9f73e-550b-4dc6-a82c-385a7d49af25" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/constant.js" afterPath="$PROJECT_DIR$/src/constant.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/compnents/fileupload/fileupload.js" afterPath="$PROJECT_DIR$/src/compnents/fileupload/fileupload.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/js/app.js" afterPath="$PROJECT_DIR$/demo/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/view/demo.html" afterPath="$PROJECT_DIR$/demo/view/demo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/view/left.html" afterPath="$PROJECT_DIR$/demo/view/left.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="hm-ajs-core.iws" />
@@ -27,16 +28,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/demo/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="23" column="2" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="hmapp.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hmapp.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -57,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="demo.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="demo.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/demo/view/demo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.625">
-              <caret line="59" column="38" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.57757646">
+              <caret line="94" column="62" selection-start-line="94" selection-start-column="62" selection-end-line="94" selection-end-column="62" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h4#0;n#div#0;n#!!top" expanded="true" />
@@ -101,11 +92,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fileupload.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fileupload.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/compnents/fileupload/fileupload.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.19184123">
-              <caret line="70" column="37" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="74" column="71" selection-start-line="74" selection-start-column="71" selection-end-line="74" selection-end-column="71" />
               <folding>
                 <marker date="1498181411000" expanded="true" signature="3106:3122" placeholder="..." />
                 <marker date="1498181411000" expanded="true" signature="3337:3361" placeholder="..." />
@@ -116,6 +107,26 @@
                 <marker date="1498181411000" expanded="true" signature="13004:13028" placeholder="..." />
                 <marker date="1498181411000" expanded="true" signature="13121:13229" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/demo/js/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="left.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/demo/view/left.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.25">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -143,16 +154,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hmapp.service.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/hmapp.service.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="70" column="5" selection-start-line="7" selection-start-column="4" selection-end-line="70" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -175,9 +176,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/demo/login.html" />
-        <option value="$PROJECT_DIR$/demo/js/app.js" />
         <option value="$PROJECT_DIR$/src/login/loginapp.js" />
-        <option value="$PROJECT_DIR$/demo/view/left.html" />
         <option value="$PROJECT_DIR$/demo/view/header.html" />
         <option value="$PROJECT_DIR$/libs/jquery/jquery-accordion-menu.js" />
         <option value="$PROJECT_DIR$/src/hmapp.directives.js" />
@@ -187,9 +186,11 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/demo/js/demo.controller.js" />
         <option value="$PROJECT_DIR$/css/fileupload.css" />
-        <option value="$PROJECT_DIR$/demo/view/demo.html" />
         <option value="$PROJECT_DIR$/src/constant.js" />
         <option value="$PROJECT_DIR$/src/compnents/fileupload/fileupload.js" />
+        <option value="$PROJECT_DIR$/demo/js/app.js" />
+        <option value="$PROJECT_DIR$/demo/view/left.html" />
+        <option value="$PROJECT_DIR$/demo/view/demo.html" />
       </list>
     </option>
   </component>
@@ -292,6 +293,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hm-ajs-core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hm-ajs-core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="demo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -653,7 +672,7 @@
       <option name="number" value="Default" />
       <updated>1497854916491</updated>
       <workItem from="1497854917714" duration="66908000" />
-      <workItem from="1498127522686" duration="1999000" />
+      <workItem from="1498127522686" duration="2510000" />
     </task>
     <task id="LOCAL-00001" summary="0.0.1">
       <created>1497883159744</created>
@@ -679,11 +698,17 @@
       <option name="project" value="LOCAL" />
       <updated>1498129561748</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="0.9.5">
+      <created>1498181428504</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1498181428504</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68907000" />
+    <option name="totallyTimeSpent" value="69418000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="40" y="23" width="1640" height="1027" extended-state="6" />
@@ -735,7 +760,8 @@
     <MESSAGE value="0.0.2" />
     <MESSAGE value="0.9.3" />
     <MESSAGE value="0.9.4" />
-    <option name="LAST_COMMIT_MESSAGE" value="0.9.4" />
+    <MESSAGE value="0.9.5" />
+    <option name="LAST_COMMIT_MESSAGE" value="0.9.5" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -871,25 +897,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/login/loginapp.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="65" column="35" selection-start-line="65" selection-start-column="35" selection-end-line="65" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/view/left.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.75">
-          <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -995,10 +1006,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/constant.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.4444447">
+          <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/compnents/fileupload/fileupload.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="74" column="71" selection-start-line="74" selection-start-column="71" selection-end-line="74" selection-end-column="71" />
+          <folding>
+            <marker date="1498181411000" expanded="true" signature="3106:3122" placeholder="..." />
+            <marker date="1498181411000" expanded="true" signature="3337:3361" placeholder="..." />
+            <marker date="1498181411000" expanded="true" signature="3564:3603" placeholder="..." />
+            <marker date="1498181411000" expanded="true" signature="3564:3615" placeholder="..." />
+            <marker date="1498181411000" expanded="true" signature="3564:3672" placeholder="..." />
+            <marker date="1498181411000" expanded="true" signature="12773:12789" placeholder="..." />
+            <marker date="1498181411000" expanded="true" signature="13004:13028" placeholder="..." />
+            <marker date="1498181411000" expanded="true" signature="13121:13229" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/view/left.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.25">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/demo/view/demo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.625">
-          <caret line="59" column="38" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.57757646">
+          <caret line="94" column="62" selection-start-line="94" selection-start-column="62" selection-end-line="94" selection-end-column="62" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h4#0;n#div#0;n#!!top" expanded="true" />
@@ -1013,31 +1065,6 @@
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#9;n#form#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#9;n#form#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#9;n#form#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/constant.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.4444447">
-          <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/compnents/fileupload/fileupload.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19184123">
-          <caret line="70" column="37" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="37" />
-          <folding>
-            <marker date="1498181411000" expanded="true" signature="3106:3122" placeholder="..." />
-            <marker date="1498181411000" expanded="true" signature="3337:3361" placeholder="..." />
-            <marker date="1498181411000" expanded="true" signature="3564:3603" placeholder="..." />
-            <marker date="1498181411000" expanded="true" signature="3564:3615" placeholder="..." />
-            <marker date="1498181411000" expanded="true" signature="3564:3672" placeholder="..." />
-            <marker date="1498181411000" expanded="true" signature="12773:12789" placeholder="..." />
-            <marker date="1498181411000" expanded="true" signature="13004:13028" placeholder="..." />
-            <marker date="1498181411000" expanded="true" signature="13121:13229" placeholder="..." />
           </folding>
         </state>
       </provider>

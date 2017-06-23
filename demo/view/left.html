@@ -8,6 +8,29 @@
                         <li><a href="#" ui-sref="demo" ui-sref-opts="{reload:'demo'}">首页</a></li>
                     </ul>
                 </li>
+
+                <!--<li ng-class="{'active':$index==0}" ng-repeat="menuInfoL1 in menuInfos">-->
+                    <!--<a ng-if="menuInfoL1.href!=null && menuInfoL1.href!=''" ng-class="{'header':$index==0}" ui-sref="{{menuInfoL1.href}}" ui-sref-opts="{reload:'{{menuInfoL1.href}}'}">-->
+                        <!--<span class="{{menuInfoL1.icon}}" aria-hidden="true"></span>-->
+                        <!--{{menuInfoL1.title}}-->
+                    <!--</a>-->
+                    <!--<a ng-if="menuInfoL1.href==null || menuInfoL1.href==''" ng-class="{'header':$index==0}" href="javascript:void(0);">-->
+                        <!--<span class="{{menuInfoL1.icon}}" aria-hidden="true"></span>-->
+                        <!--{{menuInfoL1.title}}-->
+                    <!--</a>-->
+                    <!--<ul class="submenu" ng-if="menuInfoL1.children.length>0">-->
+                        <!--<li ng-repeat="menuInfoL2 in menuInfoL1.children">-->
+                            <!--<a ng-if="menuInfoL2.href!=null && menuInfoL2.href!=''" ui-sref="{{menuInfoL2.href}}" ui-sref-opts="{reload:'{{menuInfoL2.href}}'}">-->
+                                <!--<span class="{{menuInfoL2.icon}}" aria-hidden="true"></span>-->
+                                <!--{{menuInfoL2.title}}-->
+                            <!--</a>-->
+                            <!--<a ng-if="menuInfoL2.href==null || menuInfoL2.href==''" href="javascript:void(0);">-->
+                                <!--<span class="{{menuInfoL2.icon}}" aria-hidden="true"></span>-->
+                                <!--{{menuInfoL2.title}}-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</li>-->
             </ul>
         </div>
     </div>
