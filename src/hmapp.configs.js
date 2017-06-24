@@ -29,7 +29,10 @@
     HMApp.config(['$stateProvider', '$urlRouterProvider','INDEXSTATE','STATECONFIG','COMMONSTATE', function($stateProvider, $urlRouterProvider,INDEXSTATE,STATECONFIG,COMMONSTATE) {
         if(STATECONFIG!=null && STATECONFIG.length>0){
 
-            $urlRouterProvider.otherwise(INDEXSTATE);
+            if(INDEXSTATE!=""){
+                $urlRouterProvider.otherwise(INDEXSTATE);
+            }
+
 
             angular.forEach(STATECONFIG, function(stateInfo) {
                 $stateProvider.state(stateInfo.name, {
@@ -40,7 +43,7 @@
                     controller: stateInfo.controller,
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load(stateInfo.ocLazyLoad);
+                            return $ocLazyLoad.load($.extend({serie: true},stateInfo.ocLazyLoad));
                         }]
                     }
                 });
@@ -55,7 +58,7 @@
                     controller: stateInfo.controller,
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load(stateInfo.ocLazyLoad);
+                            return $ocLazyLoad.load($.extend({serie: true},stateInfo.ocLazyLoad));
                         }]
                     }
                 });

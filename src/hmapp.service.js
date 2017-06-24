@@ -13,6 +13,7 @@
         var service= {
             getSidebarInfo:getBar,
             getUserInfo:getUserInfo,
+            changeMyPassword:changeMyPassword,
         };
 
         return service;
@@ -68,36 +69,20 @@
             })
             return deferred.promise;
         }
+
+        function changeMyPassword(password){
+            var deferred = $q.defer();
+            $http({
+                method:'GET',
+                url:GATEWAYURL+'api/account/change_password',
+                params:{},
+                data:password
+            }).success(function(data,status,headers,config){
+                deferred.resolve(data);
+            }).error(function(data,status,headers,config){
+                deferred.reject(data);
+            })
+            return deferred.promise;
+        }
     }
 })();
-
-
-//(function() {
-//    'use strict';
-//
-//    HMApp.service('sidebarService', sidebarService);
-//
-//    sidebarService.$inject = ['$http'];
-//
-//    function sidebarService ($http) {
-//        var service= {
-//            getSidebarInfo:getSidebarInfo,
-//        };
-//
-//        return service;
-//
-//        function getSidebarInfo(callback){
-//            $http({
-//                method:'GET',
-//                url:'app/configs/json/sidebar.json',
-//                params:{},
-//                data:{}
-//            }).success(function(data,status,headers,config){
-//                callback(data,status,headers,config);
-//            }).error(function(data,status,headers,config){
-//                callback(data,status,headers,config);
-//            })
-//        }
-//
-//    }
-//})();

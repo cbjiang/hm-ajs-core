@@ -1,29 +1,38 @@
 'use strict';
 
-
-HMApp.constant('SYSCODE', "vcNiLigPepOzBHtV");
-HMApp.constant('VERSION', "0.0.1-SNAPSHOT");
-
 HMApp.constant('globalLazyLoad', [
-
+    'js/test.service.js'
 ]);
-HMApp.constant('INDEXSTATE', "/demo");
 
 HMApp.constant('STATECONFIG', [
-  {
-    "name":"demo",
-    "url":"/demo",
-    "templateUrl":"view/demo.html",
-    "data":{"pageTitle":"示例页面"},
-    "controller":"demoController",
-    "ocLazyLoad":{
-      "name":"HMApp",
-      insertBefore: '#ng_load_plugins_before',
-      "files":[
-          "js/demo.controller.js",
-      ]
-    }
-  },
+    {
+        "name":"fileUpload",
+        "url":"/fileUpload",
+        "templateUrl":"view/fileUpload.html",
+        "data":{"pageTitle":"控件-上传附件"},
+        "controller":"fileUploadController",
+        "ocLazyLoad":{
+          "name":"HMApp",
+          insertBefore: '#ng_load_plugins_before',
+          "files":[
+              "js/fileUpload.controller.js",
+          ]
+        }
+    },
+    {
+        "name":"changePassword",
+        "url":"/changePassword",
+        "templateUrl":"view/changePassword.html",
+        "data":{"pageTitle":"控件-上传附件"},
+        "controller":"changeMyPasswordController",
+        "ocLazyLoad":{
+            "name":"HMApp",
+            insertBefore: '#ng_load_plugins_before',
+            "files":[
+                "js/changePassword.controller.js",
+            ]
+        }
+    },
 ]);
 
 HMApp.controller('headerController', ['$scope', '$rootScope','$sessionStorage','hmappService', function($scope, $rootScope,$sessionStorage,hmappService) {
@@ -43,39 +52,55 @@ HMApp.controller('headerController', ['$scope', '$rootScope','$sessionStorage','
     //}
 }]);
 
-HMApp.controller('leftController', ['$scope', '$rootScope','$window', function($scope, $rootScope,$window) {
-  $scope.$on('$viewContentLoaded', function() {
+HMApp.controller('leftController', ['$scope', '$rootScope','$window','$state','INDEXSTATE', function($scope, $rootScope,$window,$state,INDEXSTATE) {
 
-  });
+    $scope.$on('$viewContentLoaded', function() {
+
+    });
     $scope.reloadRoute = function () {
         $window.location.reload();
     };
 
-  initMenu();
-  function initMenu(){
-    if($("#jquery-accordion-menu").length>0){
-      $("#jquery-accordion-menu").jqueryAccordionMenu();
-      $("#demo-list li").click(function(){
-        $("#demo-list li.active").removeClass("active")
-        $(this).parents('li').each(function () {
-          $(this).addClass('active');
-        });
-        $(this).addClass("active");
-      });
+    initMenu(function(){
+        if(INDEXSTATE=="" && $state.current.name==""){
+            $($("#jquery-accordion-menu").find('a[href!="javascript:void(0);"]')[0]).click();
+        }
+    });
 
-      changeMainHeight();
-      $("#jquery-accordion-menu").resize(function(){
-        changeMainHeight();
-      })
-    }else{
-      setTimeout(function(){initMenu()},100);
+
+    function initMenu(callback){
+        console.log('$("#jquery-accordion-menu").length='+$("#jquery-accordion-menu").find('li').length)
+        if($("#jquery-accordion-menu").find('li').length>0){
+            $("#jquery-accordion-menu").jqueryAccordionMenu();
+            $("#demo-list li").click(function(){
+                $("#demo-list li.active").removeClass("active")
+                $(this).parents('li').each(function () {
+                    $(this).addClass('active');
+                });
+                $(this).addClass("active");
+            });
+
+            changeMainHeight();
+            $("#jquery-accordion-menu").resize(function(){
+                changeMainHeight();
+            })
+            if(typeof callback=='function'){
+                callback();
+            }
+        }else{
+            setTimeout(function(){
+                initMenu()
+                if(typeof callback=='function'){
+                    callback();
+                }
+            },1000);
+        }
     }
-  }
 
-  function changeMainHeight(){
-    var defaultHeight=700;
-    $('#hm-app-main').css('min-height',(($("#jquery-accordion-menu").height()+20)>defaultHeight?$("#jquery-accordion-menu").height()+20:defaultHeight)+'px');
-  }
+    function changeMainHeight(){
+        var defaultHeight=700;
+        $('#hm-app-main').css('min-height',(($("#jquery-accordion-menu").height()+20)>defaultHeight?$("#jquery-accordion-menu").height()+20:defaultHeight)+'px');
+    }
 
 }]);
 

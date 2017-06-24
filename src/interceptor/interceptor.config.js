@@ -8,6 +8,7 @@
     //http拦截器
     HMApp.config(['$httpProvider',function($httpProvider) {
         $httpProvider.interceptors.push('authInterceptor');
+        $httpProvider.interceptors.push('authExpiredInterceptor');
     }]);
 
 })();

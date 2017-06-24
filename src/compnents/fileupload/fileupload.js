@@ -486,7 +486,4 @@ function FileUploadUtil(){
         getType:getType,
         fileSizeToBytes:fileSizeToBytes,
     }
-
-
-
 }

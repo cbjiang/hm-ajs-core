@@ -73,11 +73,11 @@ HMApp.controller('AppController', ['$scope', '$rootScope', function($scope, $roo
     });
 }]);
 
-HMApp.run(["$rootScope", "settings", "$state","$ocLazyLoad", function($rootScope, settings, $state,$ocLazyLoad) {
-    //$ocLazyLoad.load('HMApp');
+HMApp.run(function($rootScope, settings, $state,$ocLazyLoad,$location,$localStorage,$sessionStorage,SYSNAME,LOGINURL,globalLazyLoad) {
+    var token = $localStorage.authenticationToken || $sessionStorage.authenticationToken;
+    if (!token) {
+        window.location=$location.protocol()+'://'+$location.host()+':'+$location.port()+'/'+SYSNAME+'/'+LOGINURL;
+    }
+    $ocLazyLoad.load('HMApp');
     $rootScope.$state = $state; // state to be accessed from view
-}]);
-
-function sleep(d){
-    for(var t = Date.now();Date.now() - t <= d;);
-}
+});
