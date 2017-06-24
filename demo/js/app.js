@@ -9,7 +9,7 @@ HMApp.constant('STATECONFIG', [
         "name":"fileUpload",
         "url":"/fileUpload",
         "templateUrl":"view/fileUpload.html",
-        "data":{"pageTitle":"控件-上传附件"},
+        "data":{"pageTitle":"上传附件"},
         "controller":"fileUploadController",
         "ocLazyLoad":{
           "name":"HMApp",
@@ -23,7 +23,7 @@ HMApp.constant('STATECONFIG', [
         "name":"changePassword",
         "url":"/changePassword",
         "templateUrl":"view/changePassword.html",
-        "data":{"pageTitle":"控件-上传附件"},
+        "data":{"pageTitle":"修改密码"},
         "controller":"changeMyPasswordController",
         "ocLazyLoad":{
             "name":"HMApp",
@@ -52,15 +52,23 @@ HMApp.controller('headerController', ['$scope', '$rootScope','$sessionStorage','
     //}
 }]);
 
-HMApp.controller('leftController', ['$scope', '$rootScope','$window','$state','INDEXSTATE', function($scope, $rootScope,$window,$state,INDEXSTATE) {
+HMApp.controller('leftController', ['$scope', '$rootScope','$window','$state','hmappService','INDEXSTATE', function($scope, $rootScope,$window,$state,hmappService,INDEXSTATE) {
 
     $scope.$on('$viewContentLoaded', function() {
 
     });
-    $scope.reloadRoute = function () {
-        $window.location.reload();
-    };
-
+    //加载菜单信息
+    //hmappService.getSidebarInfo(function(data,status,headers,config){
+    //    $scope.menuInfos=data;
+    //    console.log('菜单信息');
+    //    console.log(data);
+    //    initMenu(function(){
+    //        if(INDEXSTATE=="" && $state.current.name==""){
+    //            $($("#jquery-accordion-menu").find('a[href!="javascript:void(0);"]')[0]).click();
+    //        }
+    //    });
+    //
+    //})
     initMenu(function(){
         if(INDEXSTATE=="" && $state.current.name==""){
             $($("#jquery-accordion-menu").find('a[href!="javascript:void(0);"]')[0]).click();
