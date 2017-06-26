@@ -99,7 +99,7 @@ HMApp.directive('dropdownMenuHover', function () {
 });
 
 
-HMApp.directive( "ngPageUtil", function( $compile ) {
+HMApp.directive( "ngPageUtil", ['$compile',function( $compile ) {
 
     var _watchers=[]
 
@@ -185,9 +185,9 @@ HMApp.directive( "ngPageUtil", function( $compile ) {
 
     }
 
-});
+}]);
 
-HMApp.directive( "ngGoBack", function( $window ) {
+HMApp.directive( "ngGoBack", ['$window',function( $window ) {
     return {
         link:function( scope, element, attrs ){
             element.on('click',function(e){
@@ -196,4 +196,4 @@ HMApp.directive( "ngGoBack", function( $window ) {
             })
         }
     }
-});
+}]);

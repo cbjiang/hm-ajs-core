@@ -63,7 +63,8 @@ function fileUploadService ($http,$q,Upload,FILESERVICE,FILESYSTEMNAME) {
         return deferred.promise;
     }
 }
-HMApp.directive( "hmUploadFile", function( $compile,$http,$window,fileUploadService,FILESERVICE,FILEDIRNAME ) {
+HMApp.directive( "hmUploadFile", ['$compile','$http','$window','fileUploadService','FILESERVICE','FILEDIRNAME',
+    function( $compile,$http,$window,fileUploadService,FILESERVICE,FILEDIRNAME ) {
     return {
         link:function( scope, element, attrs ){
             var changeIndex=null;
@@ -231,9 +232,10 @@ HMApp.directive( "hmUploadFile", function( $compile,$http,$window,fileUploadServ
             }
         }
     }
-});
+}]);
 
-HMApp.directive( "hmUploadImage", function( $compile,$http,$window,fileUploadService,FILESERVICE,FILEDIRNAME ) {
+HMApp.directive( "hmUploadImage", ['$compile','$http','$window','fileUploadService','FILESERVICE','FILEDIRNAME',
+    function( $compile,$http,$window,fileUploadService,FILESERVICE,FILEDIRNAME ) {
     return {
         link:function( scope, element, attrs ){
             var changeIndex=null;
@@ -414,7 +416,7 @@ HMApp.directive( "hmUploadImage", function( $compile,$http,$window,fileUploadSer
             }
         }
     }
-});
+}]);
 
 function FileUploadUtil(){
     var IMG_TYPE=['.png','.jpg','.jpeg','.bmp'];

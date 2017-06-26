@@ -1,22 +1,19 @@
 /**
  * Created by cbjiang on 2017/2/26.
  */
-if(typeof LoginApp=="object"){
-	LoginApp.constant('SYSNAME', "hm-ajs-core");
-	LoginApp.constant('GATEWAYURL', "http://192.168.8.116:8888/");
-	LoginApp.constant('INDEXURL', "demo/index.html");
+
+var hmappSystemConfig={
+	SYSNAME:"hm-ajs-core",
+	SYSCODE:"xxxxxxxxxxxx",
+	VERSION:"0.0.0-SNAPSHOT",
+	GATEWAYURL:"http://192.168.8.116:8888/",
+	LOGINURL:"demo/login.html",
+	INDEXURL:"demo/index.html",
+	INDEXSTATE:"",
+	FILESERVICE:"http://192.168.8.21:8081/sims_file/rest/v1/file/",
+	FILESYSTEMNAME:"tempSystem",
+	FILEDIRNAME:"tempDir",
 }
 
-if(typeof HMApp=="object"){
-	HMApp.constant('SYSNAME', "hm-ajs-core");
-	HMApp.constant('SYSCODE', "xxxxxxxxxxxx");
-	HMApp.constant('VERSION', "0.0.0-SNAPSHOT");
-	HMApp.constant('GATEWAYURL', "http://192.168.8.116:8888/");
-	HMApp.constant('LOGINURL', "demo/login.html");
-	HMApp.constant('INDEXSTATE', "");
 
-	HMApp.constant('FILESERVICE',"http://192.168.8.21:8081/sims_file/rest/v1/file/");
-	HMApp.constant('FILESYSTEMNAME',"tempSystem");
-	HMApp.constant('FILEDIRNAME',"tempDir");
-}
 

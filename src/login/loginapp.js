@@ -8,6 +8,12 @@ var LoginApp = angular.module("LoginApp", [
     "ngStorage"
 ]);
 
+if(hmappSystemConfig!=null){
+    LoginApp.constant('SYSNAME', hmappSystemConfig.SYSNAME);
+    LoginApp.constant('GATEWAYURL', hmappSystemConfig.GATEWAYURL);
+    LoginApp.constant('INDEXURL', hmappSystemConfig.INDEXURL);
+}
+
 LoginApp.directive( "ngDoLogin", [ '$location','AuthServer', function( $location,AuthServer ) {
     return {
         link: function( scope, element, attrs ) {
@@ -49,7 +55,8 @@ LoginApp.directive( "ngKeyDownLogin", [ '$location','AuthServer', function( $loc
     }
 }]);
 
-LoginApp.factory('AuthServer', function($http,$location, $localStorage, $sessionStorage, GATEWAYURL,SYSNAME,INDEXURL){
+LoginApp.factory('AuthServer', ['$http','$location', '$localStorage', '$sessionStorage', 'GATEWAYURL','SYSNAME','INDEXURL',
+    function($http,$location, $localStorage, $sessionStorage, GATEWAYURL,SYSNAME,INDEXURL){
     var service = {
         login: login
     };
@@ -79,4 +86,4 @@ LoginApp.factory('AuthServer', function($http,$location, $localStorage, $session
         })
     }
 
-});
+}]);

@@ -11,6 +11,19 @@ var HMApp = angular.module("HMApp", [
     "ngFileUpload"
 ]);
 
+if(hmappSystemConfig!=null){
+    HMApp.constant('SYSNAME', hmappSystemConfig.SYSNAME);
+    HMApp.constant('SYSCODE', hmappSystemConfig.SYSCODE);
+    HMApp.constant('VERSION', hmappSystemConfig.VERSION);
+    HMApp.constant('GATEWAYURL', hmappSystemConfig.GATEWAYURL);
+    HMApp.constant('LOGINURL', hmappSystemConfig.LOGINURL);
+    HMApp.constant('INDEXSTATE', hmappSystemConfig.INDEXSTATE);
+
+    HMApp.constant('FILESERVICE',hmappSystemConfig.FILESERVICE);
+    HMApp.constant('FILESYSTEMNAME',hmappSystemConfig.FILESYSTEMNAME);
+    HMApp.constant('FILEDIRNAME',hmappSystemConfig.FILEDIRNAME);
+}
+
 HMApp.constant('COMMONSTATE', [
     {
         "name":"403",
@@ -73,11 +86,12 @@ HMApp.controller('AppController', ['$scope', '$rootScope', function($scope, $roo
     });
 }]);
 
-HMApp.run(function($rootScope, settings, $state,$ocLazyLoad,$location,$localStorage,$sessionStorage,SYSNAME,LOGINURL,globalLazyLoad) {
+HMApp.run(['$rootScope', 'settings', '$state','$ocLazyLoad','$location','$localStorage','$sessionStorage','SYSNAME','LOGINURL','globalLazyLoad',
+    function($rootScope, settings, $state,$ocLazyLoad,$location,$localStorage,$sessionStorage,SYSNAME,LOGINURL,globalLazyLoad) {
     var token = $localStorage.authenticationToken || $sessionStorage.authenticationToken;
     if (!token) {
         window.location=$location.protocol()+'://'+$location.host()+':'+$location.port()+'/'+SYSNAME+'/'+LOGINURL;
     }
     $ocLazyLoad.load('HMApp');
     $rootScope.$state = $state; // state to be accessed from view
-});
+}]);
