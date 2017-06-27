@@ -117,7 +117,7 @@ HMApp.directive( "hmUploadFile", ['$compile','$http','$window','fileUploadServic
                     for(var i=0;i<fileList.length;i++){
                         var fileObj=fileList[i];
                         if(typeList!=null && typeList!=""){
-                            if(typeList.split(',').indexOf(FileUploadUtil().getType(fileObj.type))==-1){
+                            if(typeList.split(',').indexOf(FileUploadUtil().getType(fileObj.name))==-1){
                                 toastr.error('请上传'+typeList.replace(/,/g,' ')+'类型的附件!', '添加附件-失败');
                                 return;
                             }
