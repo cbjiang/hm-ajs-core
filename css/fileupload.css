@@ -20,6 +20,7 @@
     color: #367aa8;
     font-size: 11px;
     font-family: Arial-Black;
+    cursor:default;
 }
 
 .file-upload-info .file-upload-menu{
@@ -45,6 +46,10 @@
 }
 .file-upload-info .file-upload-menu:hover{
     -webkit-transition:none;
+}
+
+.file-upload-info.detail .file-upload-menu{
+    display: none;
 }
 
 .file-upload-info .file-upload-menu:before{

@@ -235,6 +235,27 @@ HMApp.directive( "hmUploadFile", ['$compile','$http','$window','fileUploadServic
     }
 }]);
 
+HMApp.directive( "hmUploadFileDetail", ['$compile','$http','$window','fileUploadService','FILESERVICE','FILEDIRNAME',
+    function( $compile,$http,$window,fileUploadService,FILESERVICE,FILEDIRNAME ) {
+        return {
+            link:function( scope, element, attrs ){
+                var fileHost=FILESERVICE;
+                var fileDirName=(attrs['dir']==null||attrs['dir']=="")?((FILEDIRNAME==null||FILEDIRNAME=="")?"tempFileDir":FILEDIRNAME):attrs['dir'];
+                var fileListName=attrs['list'];
+                if(fileListName!=null && fileListName!=''){
+                    var tmp='<div class="file-upload-bar"><div ng-repeat="file in {fileList}" class="file-upload-info detail"><div ng-if="file.saveName!=null"><div ng-if="file.fileType==\'png\' || file.fileType==\'jpg\' || file.fileType==\'jpeg\' || file.fileType==\'bmp\'" class="file-type-img" style="background: url(\'{{file.fileurl==null?\'{fileHost}\'+file.saveName:file.fileurl}}\') #000 center no-repeat;"><span class="ng-binding">&nbsp;</span><div class="file-upload-menu file"></div></div><div ng-if="file.fileType!=\'png\' && file.fileType!=\'jpg\' && file.fileType!=\'jpeg\' && file.fileType!=\'bmp\'" class="file-type-file"><span class="ng-binding">{{file.fileType | uppercase}}</span><div class="file-upload-menu file"></div><div class="file-name">{{file.fileName | uriDecode}}</div></div></div></div></div>';
+                    tmp=tmp.replace(/\{fileList}/g,fileListName).replace('{fileHost}',fileHost);
+                    if(scope[fileListName]!=null && scope[fileListName].length>0){
+
+                    }else{
+                        scope[fileListName]=[];
+                    }
+                    element.append($compile(tmp)(scope));
+                }
+            }
+        }
+    }]);
+
 HMApp.directive( "hmUploadImage", ['$compile','$http','$window','fileUploadService','FILESERVICE','FILEDIRNAME',
     function( $compile,$http,$window,fileUploadService,FILESERVICE,FILEDIRNAME ) {
     return {
@@ -418,6 +439,27 @@ HMApp.directive( "hmUploadImage", ['$compile','$http','$window','fileUploadServi
         }
     }
 }]);
+
+HMApp.directive( "hmUploadImageDetail", ['$compile','$http','$window','fileUploadService','FILESERVICE','FILEDIRNAME',
+    function( $compile,$http,$window,fileUploadService,FILESERVICE,FILEDIRNAME ) {
+        return {
+            link:function( scope, element, attrs ){
+                var fileHost=FILESERVICE;
+                var fileDirName=(attrs['dir']==null||attrs['dir']=="")?((FILEDIRNAME==null||FILEDIRNAME=="")?"tempFileDir":FILEDIRNAME):attrs['dir'];
+                var fileListName=attrs['list'];
+                if(fileListName!=null && fileListName!=''){
+                    var tmp='<div class="file-upload-bar"><div ng-repeat="file in {fileList}" class="file-upload-info detail"><div ng-if="file.saveName!=null"><div class="file-type-img" style="background: url(\'{{file.fileurl==null?\'{fileHost}\'+file.saveName:file.fileurl}}\') #000 center no-repeat;"><span class="ng-binding">&nbsp;</span><div class="file-upload-menu"></div><div ng-if="file.isCover==1" class="cover-tab"></div></div></div></div></div>';
+                    tmp=tmp.replace(/\{fileList}/g,fileListName).replace('{fileHost}',fileHost);
+                    if(scope[fileListName]!=null && scope[fileListName].length>0){
+
+                    }else{
+                        scope[fileListName]=[];
+                    }
+                    element.append($compile(tmp)(scope));
+                }
+            }
+        }
+    }]);
 
 function FileUploadUtil(){
     var IMG_TYPE=['.png','.jpg','.jpeg','.bmp'];

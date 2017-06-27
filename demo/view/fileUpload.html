@@ -149,6 +149,95 @@
                 </div>
             </div>
         </div>
-
+        <div class="form-group">
+            <label class="col-md-3 control-label">附件详情:</label>
+            <div class="col-md-9">
+                <div hm-upload-file-detail data-list="fileDetailInfos">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">附件详情json:</label>
+            <div class="col-md-9" style="word-break:break-all;">
+                {{fileDetailInfos | json}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">附件详情样式demo:</label>
+            <div class="col-md-9">
+                <div>
+                    <div class="file-upload-bar">
+                        <div class="file-upload-info detail">
+                            <div class="file-type-file">
+                                <span class="ng-binding">.PDF</span>
+                                <div class="file-upload-menu file">
+                                    <!--<div class="menu-btn cover"></div>-->
+                                    <div class="menu-btn edit"></div>
+                                    <div class="menu-btn download"></div>
+                                    <div class="menu-btn del"></div>
+                                </div>
+                                <div class="file-name">文件名.pdf</div>
+                            </div>
+                        </div>
+                        <div class="file-upload-info detail">
+                            <div class="file-type-img" style="background: url('./img/demo.jpg') #000 center no-repeat;">
+                                <span class="ng-binding">&nbsp;</span>
+                                <div class="file-upload-menu file">
+                                    <!--<div class="menu-btn cover"></div>-->
+                                    <div class="menu-btn edit"></div>
+                                    <div class="menu-btn download"></div>
+                                    <div class="menu-btn del"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">图片详情:</label>
+            <div class="col-md-9">
+                <div hm-upload-image-detail data-list="imageDetailInfos">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">图片详情json:</label>
+            <div class="col-md-9" style="word-break:break-all;">
+                {{imageDetailInfos | json}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">图片详情样式demo:</label>
+            <div class="col-md-9">
+                <div>
+                    <div class="file-upload-bar">
+                        <div class="file-upload-info detail">
+                            <div class="file-type-img" style="background: url('./img/demo.jpg') #000 center no-repeat;">
+                                <span class="ng-binding">&nbsp;</span>
+                                <div class="file-upload-menu">
+                                    <div class="menu-btn cover"></div>
+                                    <div class="menu-btn edit"></div>
+                                    <div class="menu-btn download"></div>
+                                    <div class="menu-btn del"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="file-upload-info detail">
+                            <div class="file-type-img" style="background: url('./img/demo.jpg') #000 center no-repeat;">
+                                <span class="ng-binding">&nbsp;</span>
+                                <div class="file-upload-menu">
+                                    <div class="menu-btn cover active"></div>
+                                    <div class="menu-btn edit"></div>
+                                    <div class="menu-btn download"></div>
+                                    <div class="menu-btn del"></div>
+                                </div>
+                                <div class="cover-tab"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
 </div>
