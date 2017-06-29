@@ -6,13 +6,13 @@
     'use strict';
 
     //延迟加载
-    HMApp.config(['$ocLazyLoadProvider','globalLazyLoad',function($ocLazyLoadProvider,globalLazyLoad) {
+    angular.module("hm.appcore").config(['$ocLazyLoadProvider','globalLazyLoad',function($ocLazyLoadProvider,globalLazyLoad) {
         $ocLazyLoadProvider.config({
             debug: true,
             events: true,
             modules: [
                 {
-                    name: 'HMApp',
+                    name: 'hm.appcore',
                     insertBefore: '#ng_load_plugins_before',
                     files: globalLazyLoad.concat([
 
@@ -22,17 +22,16 @@
         });
     }]);
 
-    HMApp.config(['$controllerProvider',function($controllerProvider) {
+    angular.module("hm.appcore").config(['$controllerProvider',function($controllerProvider) {
         $controllerProvider.allowGlobals();
     }]);
 
-    HMApp.config(['$stateProvider', '$urlRouterProvider','INDEXSTATE','STATECONFIG','COMMONSTATE', function($stateProvider, $urlRouterProvider,INDEXSTATE,STATECONFIG,COMMONSTATE) {
+    angular.module("hm.appcore").config(['$stateProvider', '$urlRouterProvider','INDEXSTATE','STATECONFIG','COMMONSTATE', function($stateProvider, $urlRouterProvider,INDEXSTATE,STATECONFIG,COMMONSTATE) {
         if(STATECONFIG!=null && STATECONFIG.length>0){
 
             if(INDEXSTATE!=""){
                 $urlRouterProvider.otherwise(INDEXSTATE);
             }
-
 
             angular.forEach(STATECONFIG, function(stateInfo) {
                 $stateProvider.state(stateInfo.name, {
@@ -64,8 +63,17 @@
                 });
             });
         }
-
     }]);
+
+    angular.module("hm.appcore").provider('test', function() {
+        console.log('instance test');
+        var f = function(name) {
+            alert("Hello, " + name);
+        };
+        this.$get = function() { //一定要有！
+            return f;
+        };
+    });
 
 })();
 

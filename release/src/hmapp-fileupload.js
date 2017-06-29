@@ -1,13 +1,25 @@
 /**
  * Created by cbjiang on 2017/6/19.
  */
-HMApp.filter('uriDecode',function(){
+angular.module('hm.fileupload',[
+    "ngFileUpload"
+]).filter('uriDecode',function(){
     return function(input){
         return decodeURI(input);
     }
 });
-HMApp.service('fileUploadService', fileUploadService);
+
+if(hmappSystemConfig!=null){
+    angular.module('hm.fileupload')
+        .constant('FILESERVICE',hmappSystemConfig.FILESERVICE)
+        .constant('FILESYSTEMNAME',hmappSystemConfig.FILESYSTEMNAME)
+        .constant('FILEDIRNAME',hmappSystemConfig.FILEDIRNAME);
+}
+
+angular.module('hm.fileupload').service('fileUploadService', fileUploadService);
+
 fileUploadService.$inject = ['$http','$q','Upload','FILESERVICE'];
+
 function fileUploadService ($http,$q,Upload,FILESERVICE,FILESYSTEMNAME) {
     var fileHost=FILESERVICE;
     var fileSystemName=FILESYSTEMNAME==null?"tempSystem":FILESYSTEMNAME;
@@ -63,7 +75,8 @@ function fileUploadService ($http,$q,Upload,FILESERVICE,FILESYSTEMNAME) {
         return deferred.promise;
     }
 }
-HMApp.directive( "hmUploadFile", ['$compile','$http','$window','fileUploadService','FILESERVICE','FILEDIRNAME',
+
+angular.module('hm.fileupload').directive( "hmUploadFile", ['$compile','$http','$window','fileUploadService','FILESERVICE','FILEDIRNAME',
     function( $compile,$http,$window,fileUploadService,FILESERVICE,FILEDIRNAME ) {
     return {
         link:function( scope, element, attrs ){
@@ -235,7 +248,7 @@ HMApp.directive( "hmUploadFile", ['$compile','$http','$window','fileUploadServic
     }
 }]);
 
-HMApp.directive( "hmUploadFileDetail", ['$compile','$http','$window','fileUploadService','FILESERVICE','FILEDIRNAME',
+angular.module('hm.fileupload').directive( "hmUploadFileDetail", ['$compile','$http','$window','fileUploadService','FILESERVICE','FILEDIRNAME',
     function( $compile,$http,$window,fileUploadService,FILESERVICE,FILEDIRNAME ) {
         return {
             link:function( scope, element, attrs ){
@@ -256,7 +269,7 @@ HMApp.directive( "hmUploadFileDetail", ['$compile','$http','$window','fileUpload
         }
     }]);
 
-HMApp.directive( "hmUploadImage", ['$compile','$http','$window','fileUploadService','FILESERVICE','FILEDIRNAME',
+angular.module('hm.fileupload').directive( "hmUploadImage", ['$compile','$http','$window','fileUploadService','FILESERVICE','FILEDIRNAME',
     function( $compile,$http,$window,fileUploadService,FILESERVICE,FILEDIRNAME ) {
     return {
         link:function( scope, element, attrs ){
@@ -440,7 +453,7 @@ HMApp.directive( "hmUploadImage", ['$compile','$http','$window','fileUploadServi
     }
 }]);
 
-HMApp.directive( "hmUploadImageDetail", ['$compile','$http','$window','fileUploadService','FILESERVICE','FILEDIRNAME',
+angular.module('hm.fileupload').directive( "hmUploadImageDetail", ['$compile','$http','$window','fileUploadService','FILESERVICE','FILEDIRNAME',
     function( $compile,$http,$window,fileUploadService,FILESERVICE,FILEDIRNAME ) {
         return {
             link:function( scope, element, attrs ){

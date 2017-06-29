@@ -6,7 +6,7 @@
     'use strict';
 
     //http拦截器
-    HMApp.config(['$httpProvider',function($httpProvider) {
+    angular.module("hm.appcore").config(['$httpProvider',function($httpProvider) {
         $httpProvider.interceptors.push('authInterceptor');
         $httpProvider.interceptors.push('authExpiredInterceptor');
     }]);

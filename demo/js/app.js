@@ -1,10 +1,10 @@
 'use strict';
 
-HMApp.constant('globalLazyLoad', [
+angular.module("hm.appcore").constant('globalLazyLoad', [
     'js/test.service.js'
 ]);
 
-HMApp.constant('STATECONFIG', [
+angular.module("hm.appcore").constant('STATECONFIG', [
     {
         "name":"fileUpload",
         "url":"/fileUpload",
@@ -33,6 +33,11 @@ HMApp.constant('STATECONFIG', [
             ]
         }
     },
+]);
+
+var HMApp=angular.module("HMApp",[
+    "hm.appcore",
+    "hm.fileupload",
 ]);
 
 HMApp.controller('headerController', ['$scope', '$rootScope','$sessionStorage','hmappService', function($scope, $rootScope,$sessionStorage,hmappService) {

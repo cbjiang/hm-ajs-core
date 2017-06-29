@@ -5,7 +5,7 @@
 (function() {
     'use strict';
 
-    HMApp.service('hmappService', hmappService);
+    angular.module("hm.appcore").service('hmappService', hmappService);
 
     hmappService.$inject = ['$http','$q','$sessionStorage','$localStorage','SYSCODE','GATEWAYURL'];
 

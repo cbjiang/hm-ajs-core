@@ -2,29 +2,24 @@
  Metronic AngularJS App Main Script
  ***/
 
-var HMApp = angular.module("HMApp", [
+angular.module("hm.appcore", [
     "ui.router",
     "ui.bootstrap",
     "oc.lazyLoad",
     "ngSanitize",
     "ngStorage",
-    "ngFileUpload"
 ]);
 
 if(hmappSystemConfig!=null){
-    HMApp.constant('SYSNAME', hmappSystemConfig.SYSNAME);
-    HMApp.constant('SYSCODE', hmappSystemConfig.SYSCODE);
-    HMApp.constant('VERSION', hmappSystemConfig.VERSION);
-    HMApp.constant('GATEWAYURL', hmappSystemConfig.GATEWAYURL);
-    HMApp.constant('LOGINURL', hmappSystemConfig.LOGINURL);
-    HMApp.constant('INDEXSTATE', hmappSystemConfig.INDEXSTATE);
-
-    HMApp.constant('FILESERVICE',hmappSystemConfig.FILESERVICE);
-    HMApp.constant('FILESYSTEMNAME',hmappSystemConfig.FILESYSTEMNAME);
-    HMApp.constant('FILEDIRNAME',hmappSystemConfig.FILEDIRNAME);
+    angular.module("hm.appcore").constant('SYSNAME', hmappSystemConfig.SYSNAME);
+    angular.module("hm.appcore").constant('SYSCODE', hmappSystemConfig.SYSCODE);
+    angular.module("hm.appcore").constant('VERSION', hmappSystemConfig.VERSION);
+    angular.module("hm.appcore").constant('GATEWAYURL', hmappSystemConfig.GATEWAYURL);
+    angular.module("hm.appcore").constant('LOGINURL', hmappSystemConfig.LOGINURL);
+    angular.module("hm.appcore").constant('INDEXSTATE', hmappSystemConfig.INDEXSTATE);
 }
 
-HMApp.constant('COMMONSTATE', [
+angular.module("hm.appcore").constant('COMMONSTATE', [
     {
         "name":"403",
         "url":"/403.html",
@@ -32,7 +27,7 @@ HMApp.constant('COMMONSTATE', [
         "data":{"pageTitle":"403 - 禁止访问: 访问被拒绝。"},
         "controller":"",
         "ocLazyLoad":{
-            "name":"HMApp",
+            "name":"hm.appcore",
             "files":[
             ]
         }
@@ -44,7 +39,7 @@ HMApp.constant('COMMONSTATE', [
         "data":{"pageTitle":"404 - 找不到文件或目录。"},
         "controller":"",
         "ocLazyLoad":{
-            "name":"HMApp",
+            "name":"hm.appcore",
             "files":[
             ]
         }
@@ -56,14 +51,14 @@ HMApp.constant('COMMONSTATE', [
         "data":{"pageTitle":"500 - 内部服务器错误。"},
         "controller":"",
         "ocLazyLoad":{
-            "name":"HMApp",
+            "name":"hm.appcore",
             "files":[
             ]
         }
     },
 ]);
 
-HMApp.factory('settings', ['$rootScope', function($rootScope) {
+angular.module("hm.appcore").factory('settings', ['$rootScope', function($rootScope) {
     // supported languages
     var settings = {
         layout: {
@@ -80,18 +75,18 @@ HMApp.factory('settings', ['$rootScope', function($rootScope) {
     return settings;
 }]);
 
-HMApp.controller('AppController', ['$scope', '$rootScope', function($scope, $rootScope) {
+angular.module("hm.appcore").controller('AppController', ['$scope', '$rootScope', function($scope, $rootScope) {
     $scope.$on('$viewContentLoaded', function() {
 
     });
 }]);
 
-HMApp.run(['$rootScope', 'settings', '$state','$ocLazyLoad','$location','$localStorage','$sessionStorage','SYSNAME','LOGINURL','globalLazyLoad',
-    function($rootScope, settings, $state,$ocLazyLoad,$location,$localStorage,$sessionStorage,SYSNAME,LOGINURL,globalLazyLoad) {
+angular.module("hm.appcore").run(['$rootScope', 'settings', '$state','$ocLazyLoad','$location','$localStorage','$sessionStorage','SYSNAME','LOGINURL',
+    function($rootScope, settings, $state,$ocLazyLoad,$location,$localStorage,$sessionStorage,SYSNAME,LOGINURL) {
     var token = $localStorage.authenticationToken || $sessionStorage.authenticationToken;
     if (!token) {
         window.location=$location.protocol()+'://'+$location.host()+':'+$location.port()+'/'+SYSNAME+'/'+LOGINURL;
     }
-    $ocLazyLoad.load('HMApp');
+    $ocLazyLoad.load('hm.appcore');
     $rootScope.$state = $state; // state to be accessed from view
 }]);

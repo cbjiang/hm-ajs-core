@@ -8,7 +8,7 @@ var HMApp = angular.module("HMApp", [
     "oc.lazyLoad",
     "ngSanitize",
     "ngStorage",
-    "ngFileUpload"
+    "hm.fileupload"
 ]);
 
 if(hmappSystemConfig!=null){
@@ -19,9 +19,9 @@ if(hmappSystemConfig!=null){
     HMApp.constant('LOGINURL', hmappSystemConfig.LOGINURL);
     HMApp.constant('INDEXSTATE', hmappSystemConfig.INDEXSTATE);
 
-    HMApp.constant('FILESERVICE',hmappSystemConfig.FILESERVICE);
-    HMApp.constant('FILESYSTEMNAME',hmappSystemConfig.FILESYSTEMNAME);
-    HMApp.constant('FILEDIRNAME',hmappSystemConfig.FILEDIRNAME);
+    //HMApp.constant('FILESERVICE',hmappSystemConfig.FILESERVICE);
+    //HMApp.constant('FILESYSTEMNAME',hmappSystemConfig.FILESYSTEMNAME);
+    //HMApp.constant('FILEDIRNAME',hmappSystemConfig.FILEDIRNAME);
 }
 
 HMApp.constant('COMMONSTATE', [

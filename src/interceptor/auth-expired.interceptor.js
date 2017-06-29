@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    HMApp.factory('authExpiredInterceptor', authExpiredInterceptor);
+    angular.module("hm.appcore").factory('authExpiredInterceptor', authExpiredInterceptor);
 
     authExpiredInterceptor.$inject = ['$rootScope', '$q', '$injector', '$localStorage', '$sessionStorage'];
 

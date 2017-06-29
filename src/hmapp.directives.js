@@ -1,5 +1,5 @@
 
-HMApp.directive( "ngDoLogout", [ '$location','$localStorage','$sessionStorage', function( $location,$localStorage,$sessionStorage ) {
+angular.module("hm.appcore").directive( "ngDoLogout", [ '$location','$localStorage','$sessionStorage', function( $location,$localStorage,$sessionStorage ) {
     return {
         link: function( scope, element, attrs ) {
             element.bind( "click", function() {
@@ -16,7 +16,7 @@ HMApp.directive( "ngDoLogout", [ '$location','$localStorage','$sessionStorage', 
     }
 }]);
 
-HMApp.directive('ngSpinnerBar', ['$rootScope', '$location', '$localStorage', '$sessionStorage', '$state', 'SYSNAME', 'LOGINURL',
+angular.module("hm.appcore").directive('ngSpinnerBar', ['$rootScope', '$location', '$localStorage', '$sessionStorage', '$state', 'SYSNAME', 'LOGINURL',
     function($rootScope,$location,$localStorage,$sessionStorage,$state,SYSNAME,LOGINURL) {
         return {
             link: function(scope, element, attrs) {
@@ -75,7 +75,7 @@ function matchMenu(callback){
 
 
 // Handle global LINK click
-HMApp.directive('a', function() {
+angular.module("hm.appcore").directive('a', function() {
     return {
         restrict: 'E',
         link: function(scope, elem, attrs) {
@@ -90,7 +90,7 @@ HMApp.directive('a', function() {
 
 
 // Handle Dropdown Hover Plugin Integration
-HMApp.directive('dropdownMenuHover', function () {
+angular.module("hm.appcore").directive('dropdownMenuHover', function () {
   return {
     link: function (scope, elem) {
       elem.dropdownHover();
@@ -99,7 +99,7 @@ HMApp.directive('dropdownMenuHover', function () {
 });
 
 
-HMApp.directive( "ngPageUtil", ['$compile',function( $compile ) {
+angular.module("hm.appcore").directive( "ngPageUtil", ['$compile',function( $compile ) {
 
     var _watchers=[]
 
@@ -187,7 +187,7 @@ HMApp.directive( "ngPageUtil", ['$compile',function( $compile ) {
 
 }]);
 
-HMApp.directive( "ngGoBack", ['$window',function( $window ) {
+angular.module("hm.appcore").directive( "ngGoBack", ['$window',function( $window ) {
     return {
         link:function( scope, element, attrs ){
             element.on('click',function(e){

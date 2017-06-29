@@ -5,7 +5,7 @@
 (function() {
     'use strict';
 
-    HMApp.factory('authInterceptor', authInterceptor);
+    angular.module("hm.appcore").factory('authInterceptor', authInterceptor);
 
     authInterceptor.$inject = ['$rootScope', '$q', '$location', '$localStorage', '$sessionStorage','SYSNAME','LOGINURL'];
 
