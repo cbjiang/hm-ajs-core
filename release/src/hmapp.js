@@ -2,29 +2,24 @@
  Metronic AngularJS App Main Script
  ***/
 
-var HMApp = angular.module("HMApp", [
+angular.module("hm.appcore", [
     "ui.router",
     "ui.bootstrap",
     "oc.lazyLoad",
     "ngSanitize",
     "ngStorage",
-    "hm.fileupload"
 ]);
 
 if(hmappSystemConfig!=null){
-    HMApp.constant('SYSNAME', hmappSystemConfig.SYSNAME);
-    HMApp.constant('SYSCODE', hmappSystemConfig.SYSCODE);
-    HMApp.constant('VERSION', hmappSystemConfig.VERSION);
-    HMApp.constant('GATEWAYURL', hmappSystemConfig.GATEWAYURL);
-    HMApp.constant('LOGINURL', hmappSystemConfig.LOGINURL);
-    HMApp.constant('INDEXSTATE', hmappSystemConfig.INDEXSTATE);
-
-    //HMApp.constant('FILESERVICE',hmappSystemConfig.FILESERVICE);
-    //HMApp.constant('FILESYSTEMNAME',hmappSystemConfig.FILESYSTEMNAME);
-    //HMApp.constant('FILEDIRNAME',hmappSystemConfig.FILEDIRNAME);
+    angular.module("hm.appcore").constant('SYSNAME', hmappSystemConfig.SYSNAME);
+    angular.module("hm.appcore").constant('SYSCODE', hmappSystemConfig.SYSCODE);
+    angular.module("hm.appcore").constant('VERSION', hmappSystemConfig.VERSION);
+    angular.module("hm.appcore").constant('GATEWAYURL', hmappSystemConfig.GATEWAYURL);
+    angular.module("hm.appcore").constant('LOGINURL', hmappSystemConfig.LOGINURL);
+    angular.module("hm.appcore").constant('INDEXSTATE', hmappSystemConfig.INDEXSTATE);
 }
 
-HMApp.constant('COMMONSTATE', [
+angular.module("hm.appcore").constant('COMMONSTATE', [
     {
         "name":"403",
         "url":"/403.html",
@@ -32,7 +27,7 @@ HMApp.constant('COMMONSTATE', [
         "data":{"pageTitle":"403 - 禁止访问: 访问被拒绝。"},
         "controller":"",
         "ocLazyLoad":{
-            "name":"HMApp",
+            "name":"hm.appcore",
             "files":[
             ]
         }
@@ -44,7 +39,7 @@ HMApp.constant('COMMONSTATE', [
         "data":{"pageTitle":"404 - 找不到文件或目录。"},
         "controller":"",
         "ocLazyLoad":{
-            "name":"HMApp",
+            "name":"hm.appcore",
             "files":[
             ]
         }
@@ -56,14 +51,14 @@ HMApp.constant('COMMONSTATE', [
         "data":{"pageTitle":"500 - 内部服务器错误。"},
         "controller":"",
         "ocLazyLoad":{
-            "name":"HMApp",
+            "name":"hm.appcore",
             "files":[
             ]
         }
     },
 ]);
 
-HMApp.factory('settings', ['$rootScope', function($rootScope) {
+angular.module("hm.appcore").factory('settings', ['$rootScope', function($rootScope) {
     // supported languages
     var settings = {
         layout: {
@@ -80,19 +75,19 @@ HMApp.factory('settings', ['$rootScope', function($rootScope) {
     return settings;
 }]);
 
-HMApp.controller('AppController', ['$scope', '$rootScope', function($scope, $rootScope) {
+angular.module("hm.appcore").controller('AppController', ['$scope', '$rootScope', function($scope, $rootScope) {
     $scope.$on('$viewContentLoaded', function() {
 
     });
 }]);
 
-HMApp.run(['$rootScope', 'settings', '$state','$ocLazyLoad','$location','$localStorage','$sessionStorage','SYSNAME','LOGINURL','globalLazyLoad',
-    function($rootScope, settings, $state,$ocLazyLoad,$location,$localStorage,$sessionStorage,SYSNAME,LOGINURL,globalLazyLoad) {
+angular.module("hm.appcore").run(['$rootScope', 'settings', '$state','$ocLazyLoad','$location','$localStorage','$sessionStorage','SYSNAME','LOGINURL',
+    function($rootScope, settings, $state,$ocLazyLoad,$location,$localStorage,$sessionStorage,SYSNAME,LOGINURL) {
     var token = $localStorage.authenticationToken || $sessionStorage.authenticationToken;
     if (!token) {
         window.location=$location.protocol()+'://'+$location.host()+':'+$location.port()+'/'+SYSNAME+'/'+LOGINURL;
     }
-    $ocLazyLoad.load('HMApp');
+    $ocLazyLoad.load('hm.appcore');
     $rootScope.$state = $state; // state to be accessed from view
 }]);
 /**
@@ -103,13 +98,13 @@ HMApp.run(['$rootScope', 'settings', '$state','$ocLazyLoad','$location','$localS
     'use strict';
 
     //延迟加载
-    HMApp.config(['$ocLazyLoadProvider','globalLazyLoad',function($ocLazyLoadProvider,globalLazyLoad) {
+    angular.module("hm.appcore").config(['$ocLazyLoadProvider','globalLazyLoad',function($ocLazyLoadProvider,globalLazyLoad) {
         $ocLazyLoadProvider.config({
             debug: true,
             events: true,
             modules: [
                 {
-                    name: 'HMApp',
+                    name: 'hm.appcore',
                     insertBefore: '#ng_load_plugins_before',
                     files: globalLazyLoad.concat([
 
@@ -119,17 +114,16 @@ HMApp.run(['$rootScope', 'settings', '$state','$ocLazyLoad','$location','$localS
         });
     }]);
 
-    HMApp.config(['$controllerProvider',function($controllerProvider) {
+    angular.module("hm.appcore").config(['$controllerProvider',function($controllerProvider) {
         $controllerProvider.allowGlobals();
     }]);
 
-    HMApp.config(['$stateProvider', '$urlRouterProvider','INDEXSTATE','STATECONFIG','COMMONSTATE', function($stateProvider, $urlRouterProvider,INDEXSTATE,STATECONFIG,COMMONSTATE) {
+    angular.module("hm.appcore").config(['$stateProvider', '$urlRouterProvider','INDEXSTATE','STATECONFIG','COMMONSTATE', function($stateProvider, $urlRouterProvider,INDEXSTATE,STATECONFIG,COMMONSTATE) {
         if(STATECONFIG!=null && STATECONFIG.length>0){
 
             if(INDEXSTATE!=""){
                 $urlRouterProvider.otherwise(INDEXSTATE);
             }
-
 
             angular.forEach(STATECONFIG, function(stateInfo) {
                 $stateProvider.state(stateInfo.name, {
@@ -161,15 +155,24 @@ HMApp.run(['$rootScope', 'settings', '$state','$ocLazyLoad','$location','$localS
                 });
             });
         }
-
     }]);
+
+    angular.module("hm.appcore").provider('test', function() {
+        console.log('instance test');
+        var f = function(name) {
+            alert("Hello, " + name);
+        };
+        this.$get = function() { //一定要有！
+            return f;
+        };
+    });
 
 })();
 
 
 
 
-HMApp.directive( "ngDoLogout", [ '$location','$localStorage','$sessionStorage', function( $location,$localStorage,$sessionStorage ) {
+angular.module("hm.appcore").directive( "ngDoLogout", [ '$location','$localStorage','$sessionStorage', function( $location,$localStorage,$sessionStorage ) {
     return {
         link: function( scope, element, attrs ) {
             element.bind( "click", function() {
@@ -186,7 +189,7 @@ HMApp.directive( "ngDoLogout", [ '$location','$localStorage','$sessionStorage', 
     }
 }]);
 
-HMApp.directive('ngSpinnerBar', ['$rootScope', '$location', '$localStorage', '$sessionStorage', '$state', 'SYSNAME', 'LOGINURL',
+angular.module("hm.appcore").directive('ngSpinnerBar', ['$rootScope', '$location', '$localStorage', '$sessionStorage', '$state', 'SYSNAME', 'LOGINURL',
     function($rootScope,$location,$localStorage,$sessionStorage,$state,SYSNAME,LOGINURL) {
         return {
             link: function(scope, element, attrs) {
@@ -245,7 +248,7 @@ function matchMenu(callback){
 
 
 // Handle global LINK click
-HMApp.directive('a', function() {
+angular.module("hm.appcore").directive('a', function() {
     return {
         restrict: 'E',
         link: function(scope, elem, attrs) {
@@ -260,7 +263,7 @@ HMApp.directive('a', function() {
 
 
 // Handle Dropdown Hover Plugin Integration
-HMApp.directive('dropdownMenuHover', function () {
+angular.module("hm.appcore").directive('dropdownMenuHover', function () {
   return {
     link: function (scope, elem) {
       elem.dropdownHover();
@@ -269,7 +272,7 @@ HMApp.directive('dropdownMenuHover', function () {
 });
 
 
-HMApp.directive( "ngPageUtil", ['$compile',function( $compile ) {
+angular.module("hm.appcore").directive( "ngPageUtil", ['$compile',function( $compile ) {
 
     var _watchers=[]
 
@@ -357,7 +360,7 @@ HMApp.directive( "ngPageUtil", ['$compile',function( $compile ) {
 
 }]);
 
-HMApp.directive( "ngGoBack", ['$window',function( $window ) {
+angular.module("hm.appcore").directive( "ngGoBack", ['$window',function( $window ) {
     return {
         link:function( scope, element, attrs ){
             element.on('click',function(e){
@@ -374,7 +377,7 @@ HMApp.directive( "ngGoBack", ['$window',function( $window ) {
 (function() {
     'use strict';
 
-    HMApp.service('hmappService', hmappService);
+    angular.module("hm.appcore").service('hmappService', hmappService);
 
     hmappService.$inject = ['$http','$q','$sessionStorage','$localStorage','SYSCODE','GATEWAYURL'];
 
@@ -514,7 +517,7 @@ var Layout = function () {
     'use strict';
 
     //http拦截器
-    HMApp.config(['$httpProvider',function($httpProvider) {
+    angular.module("hm.appcore").config(['$httpProvider',function($httpProvider) {
         $httpProvider.interceptors.push('authInterceptor');
         $httpProvider.interceptors.push('authExpiredInterceptor');
     }]);
@@ -528,7 +531,7 @@ var Layout = function () {
 (function() {
     'use strict';
 
-    HMApp.factory('authInterceptor', authInterceptor);
+    angular.module("hm.appcore").factory('authInterceptor', authInterceptor);
 
     authInterceptor.$inject = ['$rootScope', '$q', '$location', '$localStorage', '$sessionStorage','SYSNAME','LOGINURL'];
 
@@ -556,7 +559,7 @@ var Layout = function () {
 (function() {
     'use strict';
 
-    HMApp.factory('authExpiredInterceptor', authExpiredInterceptor);
+    angular.module("hm.appcore").factory('authExpiredInterceptor', authExpiredInterceptor);
 
     authExpiredInterceptor.$inject = ['$rootScope', '$q', '$injector', '$localStorage', '$sessionStorage'];
 

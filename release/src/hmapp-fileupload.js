@@ -7,6 +7,10 @@ angular.module('hm.fileupload',[
     return function(input){
         return decodeURI(input);
     }
+}).filter('getFileType',function(){
+    return function(input){
+        return FileUploadUtil().getType(input).replace('.','')==""?' ':FileUploadUtil().getType(input).replace('.','').toUpperCase();
+    }
 });
 
 if(hmappSystemConfig!=null){
@@ -93,7 +97,7 @@ angular.module('hm.fileupload').directive( "hmUploadFile", ['$compile','$http','
             var downloadFuncName="fileupload_download_"+fileListName;
             var delFuncName="fileupload_delete_"+fileListName;
             if(fileListName!=null && fileListName!=''){
-                var tmp='<div class="file-upload-bar"><div ng-repeat="file in {fileList}" class="file-upload-info"><div ng-if="file.saveName==null" class="file-upload-ing"><div class="file-progress"><div style="margin-top: 30px"><span>{{file.progress}}</span></div><div class="progress progress-striped active "><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress}}"></div></div></div></div><div ng-if="file.saveName!=null"><div ng-if="file.fileType==\'png\' || file.fileType==\'jpg\' || file.fileType==\'jpeg\' || file.fileType==\'bmp\'" class="file-type-img" style="background: url(\'{{file.fileurl==null?\'{fileHost}\'+file.saveName:file.fileurl}}\') #000 center no-repeat;"><span class="ng-binding">&nbsp;</span><div class="file-upload-menu file"><div class="menu-btn edit" ng-click="{editFuncName}(file)"></div><div class="menu-btn download" ng-click="{downloadFuncName}(file)"></div><div class="menu-btn del" ng-click="{delFuncName}(file)"></div></div></div><div ng-if="file.fileType!=\'png\' && file.fileType!=\'jpg\' && file.fileType!=\'jpeg\' && file.fileType!=\'bmp\'" class="file-type-file"><span class="ng-binding">{{file.fileType | uppercase}}</span><div class="file-upload-menu file"><div class="menu-btn edit" ng-click="{editFuncName}(file)"></div><div class="menu-btn download" ng-click="{downloadFuncName}(file)"></div><div class="menu-btn del" ng-click="{delFuncName}(file)"></div></div><div class="file-name">{{file.fileName | uriDecode}}</div></div></div></div><div class="file-upload-add"></div></div>';
+                var tmp='<div class="file-upload-bar"><div ng-repeat="file in {fileList}" class="file-upload-info"><div ng-if="file.saveName==null" class="file-upload-ing"><div class="file-progress"><div style="margin-top: 30px"><span>{{file.progress}}</span></div><div class="progress progress-striped active "><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress}}"></div></div></div></div><div ng-if="file.saveName!=null"><div ng-if="(file.fileName | getFileType)==\'png\' || (file.fileName | getFileType)==\'jpg\' || (file.fileName | getFileType)==\'jpeg\' || (file.fileName | getFileType)==\'bmp\'" class="file-type-img" style="background: url(\'{{file.fileurl==null?\'{fileHost}\'+file.saveName:file.fileurl}}\') #000 center no-repeat;"><span class="ng-binding">&nbsp;</span><div class="file-upload-menu file"><div class="menu-btn edit" ng-click="{editFuncName}(file)"></div><div class="menu-btn download" ng-click="{downloadFuncName}(file)"></div><div class="menu-btn del" ng-click="{delFuncName}(file)"></div></div></div><div ng-if="(file.fileName | getFileType)!=\'png\' && (file.fileName | getFileType)!=\'jpg\' && (file.fileName | getFileType)!=\'jpeg\' && (file.fileName | getFileType)!=\'bmp\'" class="file-type-file"><span ng-if="(file.fileName | getFileType)!=\' \'" class="ng-binding">{{file.fileName | getFileType}}</span><span ng-if="(file.fileName | getFileType)==\' \'" class="ng-binding">&nbsp;</span><div class="file-upload-menu file"><div class="menu-btn edit" ng-click="{editFuncName}(file)"></div><div class="menu-btn download" ng-click="{downloadFuncName}(file)"></div><div class="menu-btn del" ng-click="{delFuncName}(file)"></div></div><div class="file-name">{{file.fileName | uriDecode}}</div></div></div></div><div class="file-upload-add"></div></div>';
                 tmp=tmp.replace(/\{fileList}/g,fileListName).replace('{fileHost}',fileHost)
                     .replace(/\{editFuncName}/g,editFuncName).replace(/\{downloadFuncName}/g,downloadFuncName).replace(/\{delFuncName}/g,delFuncName);
 
@@ -256,7 +260,7 @@ angular.module('hm.fileupload').directive( "hmUploadFileDetail", ['$compile','$h
                 var fileDirName=(attrs['dir']==null||attrs['dir']=="")?((FILEDIRNAME==null||FILEDIRNAME=="")?"tempFileDir":FILEDIRNAME):attrs['dir'];
                 var fileListName=attrs['list'];
                 if(fileListName!=null && fileListName!=''){
-                    var tmp='<div class="file-upload-bar"><div ng-repeat="file in {fileList}" class="file-upload-info detail"><div ng-if="file.saveName!=null"><div ng-if="file.fileType==\'png\' || file.fileType==\'jpg\' || file.fileType==\'jpeg\' || file.fileType==\'bmp\'" class="file-type-img" style="background: url(\'{{file.fileurl==null?\'{fileHost}\'+file.saveName:file.fileurl}}\') #000 center no-repeat;"><span class="ng-binding">&nbsp;</span><div class="file-upload-menu file"></div></div><div ng-if="file.fileType!=\'png\' && file.fileType!=\'jpg\' && file.fileType!=\'jpeg\' && file.fileType!=\'bmp\'" class="file-type-file"><span class="ng-binding">{{file.fileType | uppercase}}</span><div class="file-upload-menu file"></div><div class="file-name">{{file.fileName | uriDecode}}</div></div></div></div></div>';
+                    var tmp='<div class="file-upload-bar"><div ng-repeat="file in {fileList}" class="file-upload-info detail"><div ng-if="file.saveName!=null"><div ng-if="(file.fileName | getFileType)==\'png\' || (file.fileName | getFileType)==\'jpg\' || (file.fileName | getFileType)==\'jpeg\' || (file.fileName | getFileType)==\'bmp\'" class="file-type-img" style="background: url(\'{{file.fileurl==null?\'{fileHost}\'+file.saveName:file.fileurl}}\') #000 center no-repeat;"><span class="ng-binding">&nbsp;</span><div class="file-upload-menu file"></div></div><div ng-if="(file.fileName | getFileType)!=\'png\' && (file.fileName | getFileType)!=\'jpg\' && (file.fileName | getFileType)!=\'jpeg\' && (file.fileName | getFileType)!=\'bmp\'" class="file-type-file"><span ng-if="(file.fileName | getFileType)!=\' \'" class="ng-binding">{{file.fileName | getFileType}}</span><span ng-if="(file.fileName | getFileType)==\' \'" class="ng-binding">&nbsp;</span><div class="file-upload-menu file"></div><div class="file-name">{{file.fileName | uriDecode}}</div></div></div></div></div>';
                     tmp=tmp.replace(/\{fileList}/g,fileListName).replace('{fileHost}',fileHost);
                     if(scope[fileListName]!=null && scope[fileListName].length>0){
 
@@ -265,6 +269,9 @@ angular.module('hm.fileupload').directive( "hmUploadFileDetail", ['$compile','$h
                     }
                     element.append($compile(tmp)(scope));
                 }
+                setTimeout(function(){
+
+                },2000);
             }
         }
     }]);
@@ -520,7 +527,11 @@ function FileUploadUtil(){
     }
 
     function getType(str){
-        return '.'+str.substring(str.lastIndexOf('.') + 1);
+        if(str!=null && str.lastIndexOf('.')>=0){
+            return '.'+str.substring(str.lastIndexOf('.') + 1);
+        }else{
+            return '';
+        }
     }
 
     function fileSizeToBytes(str){
