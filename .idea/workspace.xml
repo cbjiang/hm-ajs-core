@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d9f9f73e-550b-4dc6-a82c-385a7d49af25" name="Default" comment="0.9.16">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/js/changePassword.controller.js" afterPath="$PROJECT_DIR$/demo/js/changePassword.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/view/changePassword.html" afterPath="$PROJECT_DIR$/demo/view/changePassword.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/constant.js" afterPath="$PROJECT_DIR$/src/constant.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/view/fileUpload.html" afterPath="$PROJECT_DIR$/demo/view/fileUpload.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/fileupload.css" afterPath="$PROJECT_DIR$/css/fileupload.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/compnents/fileupload/fileupload.js" afterPath="$PROJECT_DIR$/src/compnents/fileupload/fileupload.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/release/src/hmapp.js" afterPath="$PROJECT_DIR$/release/src/hmapp.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/release/src/hmapp.min.js" afterPath="$PROJECT_DIR$/release/src/hmapp.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hmapp.service.js" afterPath="$PROJECT_DIR$/src/hmapp.service.js" />
+    <list default="true" id="d9f9f73e-550b-4dc6-a82c-385a7d49af25" name="Default" comment="0.9.17">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="hm-ajs-core.iws" />
@@ -65,11 +57,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fileUpload.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fileUpload.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/demo/view/fileUpload.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.645098">
-              <caret line="211" column="73" selection-start-line="211" selection-start-column="36" selection-end-line="211" selection-end-column="73" />
+            <state vertical-scroll-proportion="11.291667">
+              <caret line="126" column="70" selection-start-line="126" selection-start-column="70" selection-end-line="126" selection-end-column="70" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="20" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -167,7 +172,6 @@
         <option value="$PROJECT_DIR$/demo/index.html" />
         <option value="$PROJECT_DIR$/VERSION" />
         <option value="$PROJECT_DIR$/demo/js/fileUpload.controller.js" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/demo/view/changePassword.html" />
         <option value="$PROJECT_DIR$/src/hmapp.service.js" />
         <option value="$PROJECT_DIR$/demo/js/changePassword.controller.js" />
@@ -175,6 +179,7 @@
         <option value="$PROJECT_DIR$/demo/view/fileUpload.html" />
         <option value="$PROJECT_DIR$/css/fileupload.css" />
         <option value="$PROJECT_DIR$/src/compnents/fileupload/fileupload.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -732,7 +737,7 @@
       <workItem from="1497854917714" duration="66908000" />
       <workItem from="1498127522686" duration="24537000" />
       <workItem from="1498467988141" duration="21000" />
-      <workItem from="1498472251958" duration="43497000" />
+      <workItem from="1498472251958" duration="43874000" />
     </task>
     <task id="LOCAL-00001" summary="0.0.1">
       <created>1497883159744</created>
@@ -848,11 +853,17 @@
       <option name="project" value="LOCAL" />
       <updated>1498725066428</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="0.9.17">
+      <created>1498922107815</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1498922107815</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134963000" />
+    <option name="totallyTimeSpent" value="135340000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="41" y="23" width="1639" height="1027" extended-state="6" />
@@ -916,7 +927,8 @@
     <MESSAGE value="0.9.14" />
     <MESSAGE value="0.9.15" />
     <MESSAGE value="0.9.16" />
-    <option name="LAST_COMMIT_MESSAGE" value="0.9.16" />
+    <MESSAGE value="0.9.17" />
+    <option name="LAST_COMMIT_MESSAGE" value="0.9.17" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1239,17 +1251,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.0714285">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/hmapp.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12578617">
@@ -1343,8 +1344,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/demo/view/fileUpload.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.645098">
-          <caret line="211" column="73" selection-start-line="211" selection-start-column="36" selection-end-line="211" selection-end-column="73" />
+        <state vertical-scroll-proportion="11.291667">
+          <caret line="126" column="70" selection-start-line="126" selection-start-column="70" selection-end-line="126" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="20" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
           <folding />
         </state>
       </provider>
