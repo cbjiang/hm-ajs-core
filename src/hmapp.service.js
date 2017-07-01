@@ -70,13 +70,16 @@
             return deferred.promise;
         }
 
-        function changeMyPassword(password){
+        function changeMyPassword(password,oldPassowrd){
             var deferred = $q.defer();
             $http({
-                method:'GET',
-                url:GATEWAYURL+'api/account/change_password',
+                method:'POST',
+                url:GATEWAYURL+'api/account/change_my_password',
                 params:{},
-                data:password
+                data:{
+                    password:password,
+                    oldPassword:oldPassowrd
+                }
             }).success(function(data,status,headers,config){
                 deferred.resolve(data);
             }).error(function(data,status,headers,config){

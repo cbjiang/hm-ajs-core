@@ -445,7 +445,7 @@ angular.module("hm.appcore").directive( "ngGoBack", ['$window',function( $window
         function changeMyPassword(password){
             var deferred = $q.defer();
             $http({
-                method:'GET',
+                method:'POST',
                 url:GATEWAYURL+'api/account/change_password',
                 params:{},
                 data:password
