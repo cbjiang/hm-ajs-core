@@ -40,6 +40,16 @@ gulp.task('hmapp-min', function() {
     .pipe(gulp.dest('release/src'));  //输出
 });
 
+gulp.task('loginapp-min', function() {
+    gulp.src([
+        'src/login/loginapp.js',
+    ]).pipe(concat('loginapp.js'))
+        .pipe(gulp.dest('release/src'))    //输出main.js到文件夹
+        .pipe(rename({suffix: '.min'}))   //rename压缩后的文件名
+        .pipe(uglify())    //压缩
+        .pipe(gulp.dest('release/src'));  //输出
+});
+
 gulp.task('hmapp-fileupload-min', function() {
     gulp.src([
         'src/compnents/fileupload/fileupload.js',
@@ -55,5 +65,5 @@ gulp.task('clean', function(cb) {
 });
 
 gulp.task('default', function() {
-    gulp.start('clean','hmapp-min','hmapp-fileupload-min','copy-libs','copy-css','copy-img');
+    gulp.start('clean','hmapp-min','loginapp-min','hmapp-fileupload-min','copy-libs','copy-css','copy-img');
 });
