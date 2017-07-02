@@ -8,6 +8,21 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     del = require('del');
 
+gulp.task('copy-libs',  function() {
+    return gulp.src('libs/**/*')
+        .pipe(gulp.dest('release/libs'))
+});
+
+gulp.task('copy-css',  function() {
+    return gulp.src('css/**/*')
+        .pipe(gulp.dest('release/css'))
+});
+
+gulp.task('copy-img',  function() {
+    return gulp.src('img/**/*')
+        .pipe(gulp.dest('release/img'))
+});
+
 gulp.task('hmapp-min', function() {
     gulp.src([
         'src/hmapp.js',
@@ -36,9 +51,9 @@ gulp.task('hmapp-fileupload-min', function() {
 });
 
 gulp.task('clean', function(cb) {
-    del(['release/src'], cb);
+    del(['release/src','release/libs','release/css','release/img'], cb);
 });
 
 gulp.task('default', function() {
-    gulp.start('clean','hmapp-min','hmapp-fileupload-min');
+    gulp.start('clean','hmapp-min','hmapp-fileupload-min','copy-libs','copy-css','copy-img');
 });

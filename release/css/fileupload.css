@@ -1,0 +1,180 @@
+.file-upload-add{
+    cursor:pointer;
+    float: left;
+    width: 80px;
+    height: 80px;
+    background-image: url('../img/fileupload-file-btn-add.png');
+}
+.file-upload-add.image{
+    background-image: url('../img/fileupload-img-btn-add.png');
+}
+
+.file-upload-info{
+    margin-right: 10px;
+    float: left;
+    width: 80px;
+    height: 100px;
+}
+.file-upload-info span{
+    line-height: 80px;
+    color: #367aa8;
+    font-size: 11px;
+    font-family: Arial-Black;
+    cursor:default;
+}
+
+.file-upload-info .file-upload-menu{
+    -webkit-transition:all 0.2s;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    height: 40px;
+    width: auto;
+    margin-top: -127px;
+    margin-left: -40px;
+    box-shadow: 0 0 3px #367aa8;
+    border: 1px solid #367aa8;
+    background-color: white;
+    border-radius: 2px;
+}
+.file-upload-info .file-upload-menu.file{
+    margin-left: -20px;
+}
+.file-upload-info.detail .file-upload-menu{
+    margin-left: 19px;
+}
+.file-upload-info:hover .file-upload-menu{
+    -webkit-transition:all 0.2s;
+    opacity: 1;
+    visibility: visible;
+}
+.file-upload-info .file-upload-menu:hover{
+    -webkit-transition:none;
+}
+
+.file-upload-info .file-upload-menu:before{
+    position: absolute;
+    right: auto;
+    margin-left: -8px;
+    margin-top: 38px;
+    display: inline-block !important;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #367aa8;
+    border-left: 8px solid transparent;
+    content: '';
+}
+.file-upload-info .file-upload-menu:after {
+    position: absolute;
+    right: auto;
+    margin-left: -85px;
+    margin-top: 38px;
+    display: inline-block !important;
+    border-right: 7px solid transparent;
+    border-top: 7px solid #fff;
+    border-left: 7px solid transparent;
+    content: '';
+}
+.file-upload-info .file-upload-menu.file:after{
+    margin-left: -65px;
+}
+.file-upload-info.detail .file-upload-menu:after{
+    margin-left: -26px;
+}
+.file-upload-menu .menu-btn{
+    cursor:pointer;
+    float: left;
+    margin: 5.5px 6.5px;
+    width: 26px;
+    height: 26px;
+}
+.file-upload-menu .menu-btn.cover{
+    background-image: url('../img/fileupload-btn-cover.png');
+}
+.file-upload-menu .menu-btn.cover.active{
+    background-image: url('../img/fileupload-btn-cover-s.png');
+}
+.file-upload-menu .menu-btn:hover.cover{
+    background-image: url('../img/fileupload-btn-cover-s.png');
+}
+.file-upload-menu .menu-btn.edit{
+    background-image: url('../img/fileupload-btn-edit.png');
+}
+.file-upload-menu .menu-btn:hover.edit{
+    background-image: url('../img/fileupload-btn-edit-s.png');
+}
+.file-upload-menu .menu-btn.del{
+    background-image: url('../img/fileupload-btn-del.png');
+}
+.file-upload-menu .menu-btn:hover.del{
+    background-image: url('../img/fileupload-btn-del-s.png');
+}
+.file-upload-menu .menu-btn.download{
+    background-image: url('../img/fileupload-btn-download.png');
+}
+.file-upload-menu .menu-btn:hover.download{
+    background-image: url('../img/fileupload-btn-download-s.png');
+}
+
+
+.file-upload-info .file-type-file{
+    width:100%;
+    height: 80px;
+    background: url('../img/fileupload-file-bg.png') center no-repeat;
+    background-size: 100%;
+    text-align: center;
+}
+.file-upload-info .file-type-file .file-name{
+    width:80px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file-upload-info .file-type-img{
+    width:100%;
+    height: 80px;
+    background-size: 100% !important;
+    text-align: center;
+}
+.file-upload-info .file-type-img .cover-tab{
+    position: absolute;
+    margin-left: 49px;
+    margin-top: -30px;
+    width: 26px;
+    height: 26px;
+    background-image: url('../img/fileupload-img-mark.png');
+}
+
+
+.file-upload-bar{
+    min-height: 110px;
+    padding: 5px;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+
+.file-upload-ing{
+    float: left;
+    width: 80px;
+    height: 100px;
+}
+.file-upload-ing .file-progress{
+    width: 100%;
+    height: 80px;
+    border: 1px #666 dashed;
+    text-align: center;
+}
+.file-upload-ing .file-progress .progress{
+    margin: 5px auto auto auto;
+    width: 90%;
+    height: 10px;
+}
+.file-upload-ing .file-progress span{
+    color: #367aa8;
+    font-size: 11px;
+    line-height: 11px;
+    font-family: Arial-Black;
+}
+
