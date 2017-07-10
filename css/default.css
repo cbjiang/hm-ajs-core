@@ -1,0 +1,13 @@
+.main-view{
+    display: none;
+}
+.main-view.active{
+    display: block;
+}
+
+.child-view{
+    display: none;
+}
+.child-view.active{
+    display: block;
+}

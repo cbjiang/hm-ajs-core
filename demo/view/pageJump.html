@@ -1,0 +1,80 @@
+
+
+<div class="main-view active">
+    <div class="content">
+        <!--头部-->
+        <div class="head">
+            <div class="inner">
+                <span>游船</span>
+                <button ng-click="showChild1()" type="button">子页面1</button>
+            </div>
+        </div>
+        <div class="article">
+            <!-- 选择输入框列表-->
+            <div class="select_nav"  >
+                <div class="time">
+                    <img src="img/icon-time.png" alt="">
+                    <input  id="boatLogDate"  type="text" placeholder="">
+                </div>
+                <select class="form-control ship_type" ng-model="searchParams.shipId" ng-change="search()">
+                    <option value="">所有船型</option>
+                    <option ng-repeat="shipstyle in shipstyles" value="{{shipstyle.id}}">{{shipstyle.name}}</option>
+                </select>
+                <select class="form-control wharf" ng-model="searchParams.pointChargesId" ng-change="search()">
+                    <option value="">所有码头</option>
+                    <option ng-repeat="item in pointCharges" value="{{item.id}}">{{item.name}}</option>
+                </select>
+                <select class="form-control pay_way" ng-model="searchParams.typeId" ng-change="search()">
+                    <option value="">收款方式</option>
+                    <option ng-repeat="payway in payways" value="{{payway.id}}">{{payway.name}}</option>
+                </select>
+                <div class="search">
+                    <input id="boatSearch" type="text" placeholder="订单号"  ng-keyup="OrderIDSearch($event)">
+                    <!--<span class="glyphicon glyphicon-search" aria-hidden="true"></span>-->
+                    <img src="images/icon-search.png" alt="search">
+                </div>
+            </div>
+            <!--表格-->
+            <div class="table-responsive table_nav">
+                <table id="boatLogTable" class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <!--<th>序号</th>-->
+                        <th>船型</th>
+                        <th>实际收入</th>
+                        <th>交易时间</th>
+                        <th>订单号</th>
+                        <th>交易流水号</th>
+                        <th>收款方式</th>
+                        <th>操作人</th>
+                        <th>所属码头</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="palm">
+                        <!--<td>-->
+                        <!--<p class="num">{{$index+1}}</p>-->
+                        <!--</td>-->
+                        <td>123</td>
+                        <td>123</td>
+                        <td>123</td>
+                        <td style="mso-number-format:'\@';">123</td>
+                        <td style="mso-number-format:'\@';">123</td>
+                        <td>123</td>
+                        <td>123</td>
+                        <td>123</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!--分页-->
+                <div ng-page-util class="Page navigation" ng-show="boatLogs.length>0">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="child-view">
+    <ui-view >
+
+    </ui-view>
+</div>

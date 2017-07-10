@@ -370,6 +370,206 @@ angular.module("hm.appcore").directive( "ngGoBack", ['$window',function( $window
         }
     }
 }]);
+
+var outClass,inClass;
+angular.module("hm.appcore").factory("hmState",['$state',function($state){
+
+    var i=0;
+
+    function getClass(animation){
+        switch(animation) {
+
+            case 1:
+                outClass = 'hm-page-moveToLeftFade';
+                inClass = 'hm-page-moveFromRightFade';
+                break;
+            case 2:
+                outClass = 'hm-page-moveToTopFade';
+                inClass = 'hm-page-moveFromBottomFade';
+                break;
+            case 3:
+                outClass = 'hm-page-moveToBottomFade';
+                inClass = 'hm-page-moveFromTopFade';
+                break;
+            case 4:
+                outClass = 'hm-page-scaleDown';
+                inClass = 'hm-page-scaleUpDown hm-page-delay300';
+                break;
+            case 5:
+                outClass = 'hm-page-scaleDownUp';
+                inClass = 'hm-page-scaleUp hm-page-delay300';
+                break;
+            case 6:
+                outClass = 'hm-page-moveToLeft hm-page-ontop';
+                inClass = 'hm-page-scaleUp';
+                break;
+            case 7:
+                outClass = 'hm-page-scaleDownCenter';
+                inClass = 'hm-page-scaleUpCenter hm-page-delay400';
+                break;
+            case 8:
+                outClass = 'hm-page-rotateBottomSideFirst';
+                inClass = 'hm-page-moveFromBottom hm-page-delay200 hm-page-ontop';
+                break;
+            case 9:
+                outClass = 'hm-page-flipOutRight';
+                inClass = 'hm-page-flipInLeft hm-page-delay500';
+                break;
+            case 10:
+                outClass = 'hm-page-flipOutLeft';
+                inClass = 'hm-page-flipInRight hm-page-delay500';
+                break;
+            case 11:
+                outClass = 'hm-page-flipOutTop';
+                inClass = 'hm-page-flipInBottom hm-page-delay500';
+                break;
+            case 12:
+                outClass = 'hm-page-flipOutBottom';
+                inClass = 'hm-page-flipInTop hm-page-delay500';
+                break;
+            case 13:
+                outClass = 'hm-page-rotateFall hm-page-ontop';
+                inClass = 'hm-page-scaleUp';
+                break;
+            case 14:
+                outClass = 'hm-page-rotateOutNewspaper';
+                inClass = 'hm-page-rotateInNewspaper hm-page-delay500';
+                break;
+            case 15:
+                outClass = 'hm-page-rotatePushLeft';
+                inClass = 'hm-page-rotatePullRight hm-page-delay180';
+                break;
+            case 16:
+                outClass = 'hm-page-rotatePushRight';
+                inClass = 'hm-page-rotatePullLeft hm-page-delay180';
+                break;
+            case 17:
+                outClass = 'hm-page-rotatePushTop';
+                inClass = 'hm-page-rotatePullBottom hm-page-delay180';
+                break;
+            case 18:
+                outClass = 'hm-page-rotatePushBottom';
+                inClass = 'hm-page-rotatePullTop hm-page-delay180';
+                break;
+            case 19:
+                outClass = 'hm-page-moveToRightFade';
+                inClass = 'hm-page-rotateUnfoldLeft';
+                break;
+            case 20:
+                outClass = 'hm-page-moveToLeftFade';
+                inClass = 'hm-page-rotateUnfoldRight';
+                break;
+            case 21:
+                outClass = 'hm-page-moveToBottomFade';
+                inClass = 'hm-page-rotateUnfoldTop';
+                break;
+            case 22:
+                outClass = 'hm-page-moveToTopFade';
+                inClass = 'hm-page-rotateUnfoldBottom';
+                break;
+            case 23:
+                outClass = 'hm-page-rotateRoomLeftOut hm-page-ontop';
+                inClass = 'hm-page-rotateRoomLeftIn';
+                break;
+            case 24:
+                outClass = 'hm-page-rotateRoomRightOut hm-page-ontop';
+                inClass = 'hm-page-rotateRoomRightIn';
+                break;
+            case 25:
+                outClass = 'hm-page-rotateRoomTopOut hm-page-ontop';
+                inClass = 'hm-page-rotateRoomTopIn';
+                break;
+            case 26:
+                outClass = 'hm-page-rotateRoomBottomOut hm-page-ontop';
+                inClass = 'hm-page-rotateRoomBottomIn';
+                break;
+            case 27:
+                outClass = 'hm-page-rotateCubeLeftOut hm-page-ontop';
+                inClass = 'hm-page-rotateCubeLeftIn';
+                break;
+            case 28:
+                outClass = 'hm-page-rotateCubeRightOut hm-page-ontop';
+                inClass = 'hm-page-rotateCubeRightIn';
+                break;
+            case 29:
+                outClass = 'hm-page-rotateCubeTopOut hm-page-ontop';
+                inClass = 'hm-page-rotateCubeTopIn';
+                break;
+            case 30:
+                outClass = 'hm-page-rotateCubeBottomOut hm-page-ontop';
+                inClass = 'hm-page-rotateCubeBottomIn';
+                break;
+            case 31:
+                outClass = 'hm-page-rotateCarouselLeftOut hm-page-ontop';
+                inClass = 'hm-page-rotateCarouselLeftIn';
+                break;
+            case 32:
+                outClass = 'hm-page-rotateCarouselRightOut hm-page-ontop';
+                inClass = 'hm-page-rotateCarouselRightIn';
+                break;
+            case 33:
+                outClass = 'hm-page-rotateCarouselTopOut hm-page-ontop';
+                inClass = 'hm-page-rotateCarouselTopIn';
+                break;
+            case 34:
+                outClass = 'hm-page-rotateCarouselBottomOut hm-page-ontop';
+                inClass = 'hm-page-rotateCarouselBottomIn';
+                break;
+            case 35:
+                outClass = 'hm-page-rotateSidesOut';
+                inClass = 'hm-page-rotateSidesIn hm-page-delay200';
+                break;
+            case 36:
+                outClass = 'hm-page-rotateSlideOut';
+                inClass = 'hm-page-rotateSlideIn';
+                break;
+        }
+    }
+
+    function go(url,params,callback){
+        if(i==36){
+            i=0
+        }
+        getClass(++i);
+        $('.main-view').toggleClass().addClass('main-view hm-page').addClass(outClass);
+        $state.go(url,params);
+        $('.child-view').toggleClass().addClass('child-view hm-page').addClass(inClass).addClass('hm-page-current');
+        console.log('go');
+        setTimeout(function(){
+            $('.main-view').removeClass('hm-page-current');
+            if(typeof callback == 'function'){
+                callback();
+            }
+        },600)
+
+    }
+
+    return{
+        go:go,
+    }
+
+}]);
+
+angular.module("hm.appcore").directive("hmStateGoBack",['$window',function( $window ) {
+    return {
+        link:function( scope, element, attrs ){
+            element.on('click',function(e){
+                $('.child-view').toggleClass().addClass('child-view hm-page').addClass(outClass);
+                $('.main-view').toggleClass().addClass('main-view hm-page').addClass(inClass).addClass('hm-page-current');
+                setTimeout(function(){
+                    $('.child-view').removeClass('hm-page-current');
+                    if(typeof callback == 'function'){
+                        callback();
+                    }
+                },600)
+                $window.history.back();
+                e.stopPropagation();
+            })
+        }
+    }
+}]);
+
+
 /**
  * Created by cbjiang on 2017/2/22.
  */

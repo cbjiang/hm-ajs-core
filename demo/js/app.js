@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module("hm.appcore").constant('globalLazyLoad', [
-    'js/test.service.js'
+    'js/service/test.service.js'
 ]);
 
 angular.module("hm.appcore").constant('STATECONFIG', [
@@ -15,7 +15,7 @@ angular.module("hm.appcore").constant('STATECONFIG', [
           "name":"HMApp",
           insertBefore: '#ng_load_plugins_before',
           "files":[
-              "js/fileUpload.controller.js",
+              "js/controller/fileUpload.controller.js",
           ]
         }
     },
@@ -29,7 +29,35 @@ angular.module("hm.appcore").constant('STATECONFIG', [
             "name":"HMApp",
             insertBefore: '#ng_load_plugins_before',
             "files":[
-                "js/changePassword.controller.js",
+                "js/controller/changePassword.controller.js",
+            ]
+        }
+    },
+    {
+        "name":"pageJump",
+        "url":"/pageJump",
+        "templateUrl":"view/pageJump.html",
+        "data":{"pageTitle":"修改密码"},
+        "controller":"pageJumpController",
+        "ocLazyLoad":{
+            "name":"HMApp",
+            insertBefore: '#ng_load_plugins_before',
+            "files":[
+                "js/controller/pageJump.controller.js",
+            ]
+        }
+    },
+    {
+        "name":"pageJump.childPage",
+        "url":"/childPage",
+        "templateUrl":"view/childPage.html",
+        "data":{"pageTitle":"修改密码"},
+        "controller":"childPageController",
+        "ocLazyLoad":{
+            "name":"HMApp",
+            insertBefore: '#ng_load_plugins_before',
+            "files":[
+                "js/controller/childPage.controller.js",
             ]
         }
     },
@@ -68,16 +96,12 @@ HMApp.controller('leftController', ['$scope', '$rootScope','$window','$state','h
     //    console.log('菜单信息');
     //    console.log(data);
     //    initMenu(function(){
-    //        if(INDEXSTATE=="" && $state.current.name==""){
-    //            $($("#jquery-accordion-menu").find('a[href!="javascript:void(0);"]')[0]).click();
-    //        }
+    //        $($("#jquery-accordion-menu").find('a[href!="javascript:void(0);"]')[0]).click();
     //    });
     //
     //})
     initMenu(function(){
-        if(INDEXSTATE=="" && $state.current.name==""){
-            $($("#jquery-accordion-menu").find('a[href!="javascript:void(0);"]')[0]).click();
-        }
+        $($("#jquery-accordion-menu").find('a[href!="javascript:void(0);"]')[0]).click();
     });
 
 

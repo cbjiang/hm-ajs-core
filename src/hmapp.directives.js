@@ -26,6 +26,7 @@ angular.module("hm.appcore").directive('ngSpinnerBar', ['$rootScope', '$location
 
                 // display the spinner bar whenever the route changes(the content part started loading)
                 $rootScope.$on('$stateChangeStart', function() {
+                    console.log('$stateChangeStart');
                     if($location.absUrl()!=LOGINURL){
                         var token = $localStorage.authenticationToken || $sessionStorage.authenticationToken;
                         if (!token) {
@@ -37,6 +38,7 @@ angular.module("hm.appcore").directive('ngSpinnerBar', ['$rootScope', '$location
 
                 // hide the spinner bar on rounte change success(after the content loaded)
                 $rootScope.$on('$stateChangeSuccess', function() {
+                    console.log('$stateChangeSuccess');
                     setTimeout(function(){
                         matchMenu(function(){
                             element.addClass('hide'); // hide spinner bar
@@ -197,3 +199,44 @@ angular.module("hm.appcore").directive( "ngGoBack", ['$window',function( $window
         }
     }
 }]);
+
+angular.module("hm.appcore").factory("hmState",['$state',function($state){
+
+    function go(url,params,callback){
+        $('.main-view').removeClass('active');
+        $state.go(url,params);
+        $('.child-view').addClass('active');
+        if(typeof callback == 'function'){
+            callback();
+        }
+    }
+
+    function back(callback){
+        $('.child-view').removeClass('active');
+        $('.main-view').addClass('active');
+        $window.history.back();
+        if(typeof callback == 'function'){
+            callback();
+        }
+    }
+
+    return{
+        go:go,
+        back:back,
+    }
+
+}]);
+
+angular.module("hm.appcore").directive("hmStateGoBack",['$window',function( $window ) {
+    return {
+        link:function( scope, element, attrs ){
+            element.on('click',function(e){
+                $('.child-view').removeClass('active');
+                $('.main-view').addClass('active');
+                $window.history.back();
+                e.stopPropagation();
+            })
+        }
+    }
+}]);
+

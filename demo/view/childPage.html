@@ -1,0 +1,124 @@
+<div class="content">
+    <!--头部-->
+    <div class="head">
+        <span class="title">游船</span>
+        <div class="return"  hm-state-go-back>
+            <span class="sp1">游船订单详情</span>
+            <span class="sp2">×</span>
+        </div>
+    </div>
+    <div class="article">
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td>随机数</td>
+                <td>{{random}}</td>
+            </tr>
+            <tr>
+                <td>押金</td>
+                <td>{{boatLog.deposit | number:2}}元</td>
+            </tr>
+            <tr>
+                <td>总价</td>
+                <td>{{boatLog.totalFee | number:2}}元</td>
+            </tr>
+            <tr>
+                <td>租赁时长</td>
+                <td>{{boatLog.leaseTimeLength}}小时</td>
+            </tr>
+            <tr>
+                <td>游船船型</td>
+                <td>{{boatLog.shipName}}</td>
+            </tr>
+            <tr>
+                <td>收款方式</td>
+                <td>{{boatLog.typeName}}</td>
+            </tr>
+            <tr>
+                <td>交易时间</td>
+                <td>{{boatLog.tradeTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            </tr>
+            <tr>
+                <td>订单号</td>
+                <td>{{boatLog.outTradeNo}}</td>
+            </tr>
+            <tr  ng-if="boatLog.refundMoney!=null&&boatLog.refundMoney!=0">
+                <td>已退还金额</td>
+                <td>{{boatLog.refundMoney | number:2}}元</td>
+            </tr>
+            <tr>
+                <td>补收金额</td>
+                <td>{{boatLog.paymentTotalFee | number:2}}元</td>
+            </tr>
+            <tr>
+                <td>补收方式</td>
+                <td>{{boatLog.paymentPayTypeName}}</td>
+            </tr>
+            <tr>
+                <td>实际收入</td>
+                <td>{{((boatLog.totalFee==null?0:boatLog.totalFee)-(boatLog.refundMoney==null?0:boatLog.refundMoney)-(-(boatLog.paymentTotalFee==null?0:boatLog.paymentTotalFee)))| number:2}}元</td>
+            </tr>
+            <tr>
+                <td>操作人</td>
+                <td>{{boatLog.updateUser}}</td>
+            </tr>
+            <tr>
+                <td>收费点</td>
+                <td>{{boatLog.pointChargesName}}</td>
+            </tr>
+            <tr>
+                <td>押金</td>
+                <td>{{boatLog.deposit | number:2}}元</td>
+            </tr>
+            <tr>
+                <td>总价</td>
+                <td>{{boatLog.totalFee | number:2}}元</td>
+            </tr>
+            <tr>
+                <td>租赁时长</td>
+                <td>{{boatLog.leaseTimeLength}}小时</td>
+            </tr>
+            <tr>
+                <td>游船船型</td>
+                <td>{{boatLog.shipName}}</td>
+            </tr>
+            <tr>
+                <td>收款方式</td>
+                <td>{{boatLog.typeName}}</td>
+            </tr>
+            <tr>
+                <td>交易时间</td>
+                <td>{{boatLog.tradeTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            </tr>
+            <tr>
+                <td>订单号</td>
+                <td>{{boatLog.outTradeNo}}</td>
+            </tr>
+            <tr  ng-if="boatLog.refundMoney!=null&&boatLog.refundMoney!=0">
+                <td>已退还金额</td>
+                <td>{{boatLog.refundMoney | number:2}}元</td>
+            </tr>
+            <tr>
+                <td>补收金额</td>
+                <td>{{boatLog.paymentTotalFee | number:2}}元</td>
+            </tr>
+            <tr>
+                <td>补收方式</td>
+                <td>{{boatLog.paymentPayTypeName}}</td>
+            </tr>
+            <tr>
+                <td>实际收入</td>
+                <td>{{((boatLog.totalFee==null?0:boatLog.totalFee)-(boatLog.refundMoney==null?0:boatLog.refundMoney)-(-(boatLog.paymentTotalFee==null?0:boatLog.paymentTotalFee)))| number:2}}元</td>
+            </tr>
+            <tr>
+                <td>操作人</td>
+                <td>{{boatLog.updateUser}}</td>
+            </tr>
+            <tr>
+                <td>收费点</td>
+                <td>{{boatLog.pointChargesName}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

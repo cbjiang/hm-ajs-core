@@ -310,6 +310,7 @@ body {
   height: 100%;
   z-index: 100;
   float: left;
+  background-color: #dbdee3;
 }
 .page-container .page-slide-menu:before,
 .page-container .page-slide-menu:after {
@@ -505,4 +506,669 @@ body {
     transform: translateY(0px);
     background: #9b59b6;
   }
+}
+div.content {
+  width: 100%;
+  height: 100%;
+  background-color: #fafcf9;
+}
+div.content div.head {
+  width: 100%;
+  height: 78px;
+}
+div.content div.head div.inner {
+  width: 95%;
+  height: 78px;
+  margin: 0 auto;
+}
+div.content div.head div.inner span {
+  color: #4c6d52;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 78px;
+}
+div.content div.head div.inner button {
+  width: 70px;
+  height: 30px;
+  float: right;
+  border: 1px solid #fff;
+  background-color: #4c6d52;
+  color: white;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+div.content div.head div.inner button:hover {
+  background-color: #3d5b41;
+}
+div.content div.article {
+  width: 95%;
+  margin: 0 auto;
+}
+div.content div.article div.select_nav {
+  width: 100%;
+  height: 83px;
+  margin: 0 auto;
+  padding-top: 15px;
+  border-radius: 6px;
+  box-shadow: 0 0 5px #bbd2be;
+  background-color: #fff;
+}
+div.content div.article div.select_nav div.time {
+  width: 320px;
+  height: 33px;
+  float: left;
+  margin-top: 13px;
+  margin-left: 20px;
+  background-color: white;
+  border: 1px solid #6e9c75;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+div.content div.article div.select_nav div.time input {
+  width: 100%;
+  height: 100%;
+  padding-left: 40px;
+  border: none;
+}
+div.content div.article div.select_nav div.time img {
+  position: absolute;
+  top: 2px;
+  left: 3px;
+}
+div.content div.article div.select_nav div.time b {
+  color: #648067;
+}
+div.content div.article div.select_nav select {
+  width: 130px;
+  height: 33px;
+  margin-left: 10px;
+  border: 1px solid #6e9c75;
+  margin-top: 13px;
+  float: left;
+}
+div.content div.article div.select_nav div.search {
+  width: 230px;
+  height: 33px;
+  float: left;
+  margin-top: 13px;
+  margin-left: 35px;
+  background-color: white;
+  border: 1px solid #6e9c75;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+div.content div.article div.select_nav div.search input {
+  width: 200px;
+  height: 100%;
+  padding-left: 5px;
+  border: none;
+}
+div.content div.article div.select_nav div.search span {
+  color: dimgrey;
+  font-size: 18px;
+  position: relative;
+  top: 5px;
+  right: 0;
+}
+div.content div.article div.table_nav {
+  width: 100%;
+  min-height: 500px;
+  position: relative;
+  margin: 20px auto;
+  box-shadow: 0 0 5px #bbd2be;
+}
+div.content div.article div.table_nav table.table.table-bordered {
+  border: none;
+}
+div.content div.article div.table_nav table.table.table-bordered thead > tr {
+  height: 40px;
+}
+div.content div.article div.table_nav table.table.table-bordered .sumTr {
+  height: 60px;
+}
+div.content div.article div.table_nav table.table.table-bordered .total-head {
+  height: 60px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 5px red;
+}
+div.content div.article div.table_nav table.table.table-bordered .total-head th {
+  height: 60px;
+  line-height: 60px;
+  background-color: #fff;
+  margin-bottom: 5px;
+  font-weight: 700;
+  box-shadow: 0 0 5px red;
+  font-size: 14px;
+  color: #323232;
+}
+div.content div.article div.table_nav table.table.table-bordered .total-head th .inconmeColor {
+  font-size: 20px;
+  color: #4c6d51;
+}
+div.content div.article div.table_nav table.table.table-bordered .total-head th .refundColor {
+  font-size: 20px;
+  color: #e74c3c;
+}
+div.content div.article div.table_nav table.table.table-bordered .total-head th .paymentColor {
+  font-size: 20px;
+  color: #efb37e;
+}
+div.content div.article div.table_nav table.table.table-bordered thead > tr > th {
+  background-color: #c1cfc2;
+  border-color: #c1cfc2;
+  text-align: center;
+}
+div.content div.article div.table_nav table.table.table-bordered tbody > tr {
+  height: 60px;
+  background-color: white;
+}
+div.content div.article div.table_nav table.table.table-bordered tbody > tr .firstTd {
+  position: relative;
+  padding-left: 30px;
+}
+div.content div.article div.table_nav table.table.table-bordered tbody > tr .refund {
+  position: absolute;
+  top: 18px;
+  left: 8px;
+  width: 25px;
+  height: 25px;
+  font-size: 10px;
+  background: url("../img/icon-refund.png") 0 0 no-repeat;
+  background-size: 25px 25px;
+  color: #fff;
+  display: inline-block;
+  border-radius: 5px;
+}
+div.content div.article div.table_nav table.table.table-bordered tbody > tr:nth-of-type(even) {
+  background-color: #fafcf9;
+}
+div.content div.article div.table_nav table.table.table-bordered tbody > tr:nth-of-type(odd) {
+  background-color: #fff;
+}
+div.content div.article div.table_nav table.table.table-bordered tbody > tr:hover {
+  background-color: #f4f4f4;
+}
+div.content div.article div.table_nav table.table.table-bordered tbody > tr > td {
+  border: none;
+  text-align: center;
+  vertical-align: middle;
+}
+div.content div.article div.table_nav table.table.table-bordered tbody > tr > td p.num {
+  width: 23px;
+  height: 23px;
+  text-align: center;
+  line-height: 23px;
+  margin: 3px auto;
+}
+div.content div.article div.table_nav table.table.table-bordered tbody > tr > td button.xiu {
+  width: 80px;
+  height: 25px;
+  color: #6e9c75;
+  background-color: white;
+  border: 1px solid #6e9c75;
+}
+div.content div.article div.table_nav table.table.table-bordered tbody > tr > td button.shan {
+  width: 80px;
+  height: 25px;
+  margin-left: 20px;
+  color: #6e9c75;
+  background-color: white;
+  border: 1px solid #6e9c75;
+}
+div.content div.article div.table_nav table.table.table-bordered tbody > tr > td button:active {
+  color: white;
+  background-color: #6e9c75 ;
+}
+div.content div.article #chcoTable td,
+div.content div.article #tableExcel td {
+  border: 1px solid #e0e0e0;
+}
+div.content div.article div.divinp {
+  width: 100%;
+  height: 40px;
+  margin-top: 20px;
+  line-height: 40px;
+}
+div.content div.article div.divinp span.sp1 {
+  color: red;
+  margin-left: 40px;
+  font-size: 20px;
+  float: left;
+}
+div.content div.article div.divinp span.sp2 {
+  font-size: 14px;
+  float: left;
+}
+div.content div.article div.divinp div.inpnei {
+  float: left;
+  width: 200px;
+  height: 40px;
+  border-radius: 5px;
+  margin-left: 40px;
+  line-height: 40px;
+  border: 1px solid #4e6c52;
+  position: relative;
+}
+div.content div.article div.divinp div.inpnei span.sp3 {
+  color: #4e6c52;
+  position: absolute;
+  right: 7px;
+  top: 12px;
+}
+div.content div.article div.divinp div.inpnei input {
+  width: 198px;
+  height: 38px;
+  border: 0;
+  border-radius: 5px;
+  text-indent: 10px;
+  color: #969696;
+  font-size: 14px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+div.content div.article div.submit {
+  width: 100%;
+  height: 40px;
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+}
+div.content div.article div.submit button.save {
+  width: 200px;
+  height: 40px;
+  border: 0;
+  letter-spacing: 12px;
+  background-color: #6e9c75 ;
+  border-radius: 5px;
+  color: white;
+}
+div.content div.article div.submit button.save:active {
+  background-color: #4c6d52;
+}
+div.content div.article div.submit button.ngdisable {
+  background-color: #c3c2c1;
+}
+div.content div.article div.submit button.cancel {
+  width: 200px;
+  height: 40px;
+  margin-left: 40px;
+  border-radius: 5px;
+  letter-spacing: 12px;
+  background-color: white;
+  border: 1px solid #6e9c75;
+  color: #6e9c75;
+}
+div.content div.article div.submit button.cancel:active {
+  background-color: #e5e5e5;
+}
+div.content div.article .has-error select {
+  border: red solid 1px !important;
+}
+div.content div.article .has-error .inpnei {
+  border: red solid 1px !important;
+}
+div.content div.article .has-info {
+  display: inline-block;
+  color: #f15555;
+  font-size: 14px;
+  line-height: 31px;
+  margin-left: 40px;
+}
+div.content div.article .has-info b {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-bottom: -4px;
+  margin-right: 5px;
+  background: url('../img/tips.png') 0 0 no-repeat;
+  background-size: 18px 18px;
+}
+div.content div.article .btn-disabled {
+  background-color: #e0e0e0;
+}
+div.content div.article .Page.navigation {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+div.content div.article .Page.navigation p {
+  width: 45%;
+  line-height: 74px;
+  display: inline-block;
+  font-size: 1em;
+  text-indent: 20px;
+}
+div.content div.article .Page.navigation ul.pagination {
+  margin-right: 20px;
+}
+div.content div.article .Page.navigation ul.pagination li {
+  width: 34px;
+  border: 1px solid #d8e6d7;
+  display: inline-block;
+  margin-right: 5px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+div.content div.article .Page.navigation ul.pagination li > a {
+  color: #4c6d52;
+}
+div.content div.article .Page.navigation ul.pagination li > a span.glyphicon-triangle-left {
+  left: -3px;
+}
+div.content div.article .pagination > li > a:hover,
+div.content div.article .pagination > li > span:hover,
+div.content div.article .pagination > li > a:focus,
+div.content div.article .pagination > li > span:focus {
+  z-index: 2;
+  color: #23527c;
+  background-color: #BCE1C0;
+  border-color: #d8e6d7;
+  border-radius: 3px;
+  cursor: pointer;
+}
+div.content div.article .pagination > .active > a,
+div.content div.article .pagination > .active > span,
+div.content div.article .pagination > .active > a:hover,
+div.content div.article .pagination > .active > span:hover,
+div.content div.article .pagination > .active > a:focus,
+div.content div.article .pagination > .active > span:focus {
+  z-index: 3;
+  color: #fff;
+  cursor: pointer;
+  background-color: #e8f4e8;
+  border-color: #d8e6d7;
+  border-radius: 3px;
+}
+div.content div.article .pagination > .disabled > span,
+div.content div.article .pagination > .disabled > span:hover,
+div.content div.article .pagination > .disabled > span:focus,
+div.content div.article .pagination > .disabled > a,
+div.content div.article .pagination > .disabled > a:hover,
+div.content div.article .pagination > .disabled > a:focus {
+  width: 34px;
+  color: #777;
+  cursor: not-allowed;
+  background-color: #eee;
+  border-color: #d8e6d7;
+  border-radius: 3px;
+}
+div.content div.article .items-classify,
+div.content div.article .differ-plat-parent {
+  width: 100%;
+  margin: 0 auto;
+}
+div.content div.article .differ-plat-parent {
+  display: flex;
+  justify-content: space-between;
+}
+div.content div.article .differ-plat {
+  width: 48%;
+  margin-bottom: 40px;
+}
+div.content div.article .differ-plat:nth-child(odd) {
+  padding-right: 20px;
+}
+div.content div.article .differ-plat .differ-plat-head {
+  display: flex;
+  justify-content: space-between;
+}
+div.content div.article .differ-plat .differ-plat-head h2 {
+  width: 50%;
+  line-height: 33px;
+  color: #4c6d52;
+  float: left;
+  font-size: 16px;
+  font-weight: 600;
+}
+div.content div.article .differ-plat .differ-plat-head h2:before,
+div.content div.article .differ-plat .differ-plat-head h2:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+div.content div.article .differ-plat .differ-plat-head h2 .icons {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url(../img/icon-charts.png) -2px -4px no-repeat;
+  float: left;
+  margin-top: 5px;
+  margin-right: 10px;
+}
+div.content div.article .differ-plat .differ-plat-head select.ship_type {
+  width: 130px;
+  height: 33px;
+  margin-right: 10px;
+  border: 1px solid #4c6d52;
+  float: right;
+}
+div.content div.article .differ-plat-class {
+  width: 100% !important;
+}
+div.content div.article .monetary-unit {
+  text-align: right;
+  margin-top: 10px;
+}
+div.content div.article .canvasStyle {
+  margin: 0 auto;
+  margin-top: 33px;
+}
+div.content div.article .nav-bar-tabs {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+div.content div.article .nav-bar-tabs:before,
+div.content div.article .nav-bar-tabs:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+div.content div.article .nav-bar-tabs > li {
+  display: inline-block;
+  float: none;
+  margin: 0 -2px;
+  padding: 0;
+  border: 1px solid #0f0f0f;
+  overflow: hidden;
+}
+div.content div.article .nav-bar-tabs > li:first-child {
+  border-right: none;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+div.content div.article .nav-bar-tabs > li:last-child {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-left: none;
+}
+div.content div.article .nav-bar-tabs > li > a {
+  margin: 0;
+  padding: 5px 10px;
+}
+div.content div.article #tabContent {
+  float: left;
+  margin-left: 133px;
+}
+div.content div.article .control-group {
+  float: right;
+}
+div.content div.article .control-group:after,
+div.content div.article .control-group:before {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+div.content div.article .control-group .controls {
+  position: relative;
+}
+div.content div.article .control-group .controls .icon-time {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+}
+div.content div.article .control-group .input-append {
+  display: inline-block;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+div.content div.article .control-group .input-append input {
+  width: 210px;
+  height: 33px;
+  padding: 4px 6px;
+  padding-left: 32px;
+  line-height: 20px;
+  color: #555555;
+  font-size: 14px;
+  border: 1px solid #4c6d52;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: border linear 0.2s, box-shadow linear 0.2s;
+}
+div.content div.article .control-group .input-append .add-on {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 0 4px 4px 0;
+  margin-left: -1px;
+  vertical-align: top;
+  display: inline-block;
+  height: 33px;
+  min-width: 20px;
+  padding: 4px 5px;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  text-shadow: 0 1px 0 #ffffff;
+  background-color: #eeeeee;
+  border: 1px solid #4c6d52;
+}
+div.content div.article .control-group .input-append .add-on .icon-th {
+  color: #4c6d52;
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+  background-position: -240px 0;
+  line-height: 14px;
+  vertical-align: text-top;
+}
+div.content div.load {
+  width: 250px;
+  height: 500px;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+div.content div.load img {
+  width: 250px;
+  height: 250px;
+}
+div.content div.load p.p1 {
+  width: 100%;
+  font-weight: bold;
+  color: #646464;
+  text-align: center;
+  font-size: 20px;
+}
+div.content div.load p.p3 {
+  width: 100%;
+  margin-top: 10px;
+  text-align: center;
+  color: #646464;
+  font-size: 20px;
+}
+span.spaces {
+  margin: 0px 5px;
+}
+.wrapper {
+  position: relative;
+  padding-top: 30px;
+  min-height: 700px;
+  margin: 20px auto !important;
+  box-shadow: 0 0 5px #bbd2be;
+}
+div.content div.head {
+  width: 100%;
+  height: 40px;
+}
+div.content div.head span.title {
+  font-size: 20px;
+  line-height: 40px;
+  margin-left: 30px;
+  float: left;
+  color: #51624f;
+  font-weight: bold;
+}
+div.content div.head div.return {
+  float: left;
+  height: 25px;
+  line-height: 25px;
+  background-color: #62b96b;
+  margin-top: 7.5px;
+  margin-left: 20px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+div.content div.head div.return span.sp1 {
+  color: white;
+  float: left;
+  margin-left: 20px;
+  font-size: 17px;
+  vertical-align: middle;
+}
+div.content div.head div.return span.sp2 {
+  color: #dadada;
+  display: block;
+  width: 30px;
+  height: 25px;
+  text-align: center;
+  line-height: 25px;
+  float: right;
+  padding-right: 10px;
+  font-size: 22px;
+}
+div.content div.head div.return:active,
+div.content div.head div.return:hover {
+  background-color: #45814b;
+}
+div.content div.article {
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 20px;
+  box-shadow: 0 0 5px #c1cfc2;
+}
+div.content div.article table.table.table-bordered {
+  border: 0;
+}
+div.content div.article table.table.table-bordered tbody > tr {
+  height: 40px;
+  border: 0;
+}
+div.content div.article table.table.table-bordered tbody > tr:nth-of-type(even) {
+  background-color: white;
+}
+div.content div.article table.table.table-bordered tbody > tr:nth-of-type(odd) {
+  background-color: #fafcf9;
+}
+div.content div.article table.table.table-bordered tbody > tr > td {
+  font-size: 14px;
+  vertical-align: middle;
+  border: 0;
+}
+div.content div.article table.table.table-bordered tbody > tr > td:first-child {
+  font-weight: bold;
+  width: 95px;
+  text-align: right;
+}
+div.content div.article table.table.table-bordered tbody > tr > td:last-child {
+  text-indent: 60px;
 }

@@ -21,6 +21,7 @@
 
   <link rel="stylesheet" href="css/default.css">
   <!--hmapp compnent-->
+  <link rel="stylesheet" href="../css/default.css">
   <link rel="stylesheet" href="../css/fileupload.css">
 
 </head>
@@ -34,19 +35,19 @@
   <span></span>
 </div>
 
-  <div data-ng-include="'view/header.html'" data-ng-controller="headerController" class="top-nav-wrap"></div>
+  <div data-ng-include="'view/index/header.html'" data-ng-controller="headerController" class="top-nav-wrap"></div>
 
   <div class="page-container">
     <!--左侧导航-->
-    <div data-ng-include="'view/left.html'" data-ng-controller="leftController" class="page-slide-menu"></div>
+    <div data-ng-include="'view/index/left.html'" data-ng-controller="leftController" class="page-slide-menu"></div>
     <!--右侧内容区域-->
     <div id="hm-app-main" class="main">
-      <div ui-view>
+      <div ui-view >
       </div>
     </div>
   </div>
 
-  <div data-ng-include="'view/footer.html'"  class="footer"></div>
+  <div data-ng-include="'view/index/footer.html'"  class="footer"></div>
   
   <script src="../libs/jquery/jquery.min.js"></script>
   <script src="../libs/jquery/jquery.ba-resize.min.js"></script>
