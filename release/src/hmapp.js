@@ -16,7 +16,6 @@ if(hmappSystemConfig!=null){
     angular.module("hm.appcore").constant('VERSION', hmappSystemConfig.VERSION);
     angular.module("hm.appcore").constant('GATEWAYURL', hmappSystemConfig.GATEWAYURL);
     angular.module("hm.appcore").constant('LOGINURL', hmappSystemConfig.LOGINURL);
-    angular.module("hm.appcore").constant('INDEXSTATE', hmappSystemConfig.INDEXSTATE);
 }
 
 angular.module("hm.appcore").constant('COMMONSTATE', [
@@ -118,10 +117,8 @@ angular.module("hm.appcore").run(['$rootScope', 'settings', '$state','$ocLazyLoa
         $controllerProvider.allowGlobals();
     }]);
 
-    angular.module("hm.appcore").config(['$stateProvider', '$urlRouterProvider','INDEXSTATE','STATECONFIG','COMMONSTATE', function($stateProvider, $urlRouterProvider,INDEXSTATE,STATECONFIG,COMMONSTATE) {
+    angular.module("hm.appcore").config(['$stateProvider', '$urlRouterProvider','STATECONFIG','COMMONSTATE', function($stateProvider, $urlRouterProvider,STATECONFIG,COMMONSTATE) {
         if(STATECONFIG!=null && STATECONFIG.length>0){
-
-            $urlRouterProvider.otherwise("/");
 
             angular.forEach(STATECONFIG, function(stateInfo) {
                 $stateProvider.state(stateInfo.name, {
@@ -385,7 +382,7 @@ angular.module("hm.appcore").factory("hmState",['$state',function($state){
     function back(callback){
         $('.child-view').removeClass('active');
         $('.main-view').addClass('active');
-        $window.history.back();
+        window.history.back();
         if(typeof callback == 'function'){
             callback();
         }
