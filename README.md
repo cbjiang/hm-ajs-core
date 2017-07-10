@@ -1,4 +1,4 @@
-# hm-ajs-core 0.9.17
+# hm-ajs-core 0.9.19
 >这是一个用于搭建管理类系统的前端组件。该组件基于angularjs、jquery、bootstrap等控件，实现了接口调用、页面跳转、文件上传、分页查询等功能。
 
 ## 使用方法
