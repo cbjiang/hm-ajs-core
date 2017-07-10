@@ -16,7 +16,6 @@ if(hmappSystemConfig!=null){
     angular.module("hm.appcore").constant('VERSION', hmappSystemConfig.VERSION);
     angular.module("hm.appcore").constant('GATEWAYURL', hmappSystemConfig.GATEWAYURL);
     angular.module("hm.appcore").constant('LOGINURL', hmappSystemConfig.LOGINURL);
-    angular.module("hm.appcore").constant('INDEXSTATE', hmappSystemConfig.INDEXSTATE);
 }
 
 angular.module("hm.appcore").constant('COMMONSTATE', [

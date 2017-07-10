@@ -214,7 +214,7 @@ angular.module("hm.appcore").factory("hmState",['$state',function($state){
     function back(callback){
         $('.child-view').removeClass('active');
         $('.main-view').addClass('active');
-        $window.history.back();
+        window.history.back();
         if(typeof callback == 'function'){
             callback();
         }

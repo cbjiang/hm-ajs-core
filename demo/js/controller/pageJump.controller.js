@@ -7,5 +7,9 @@ angular.module("HMApp").controller("pageJumpController", function($rootScope,$sc
         hmState.go('pageJump.childPage');
     }
 
+    $scope.refresh=function(){
+        alert(1);
+    }
+
 });
 

@@ -26,12 +26,8 @@
         $controllerProvider.allowGlobals();
     }]);
 
-    angular.module("hm.appcore").config(['$stateProvider', '$urlRouterProvider','INDEXSTATE','STATECONFIG','COMMONSTATE', function($stateProvider, $urlRouterProvider,INDEXSTATE,STATECONFIG,COMMONSTATE) {
+    angular.module("hm.appcore").config(['$stateProvider', '$urlRouterProvider','STATECONFIG','COMMONSTATE', function($stateProvider, $urlRouterProvider,STATECONFIG,COMMONSTATE) {
         if(STATECONFIG!=null && STATECONFIG.length>0){
-
-            if(INDEXSTATE!=""){
-                $urlRouterProvider.otherwise(INDEXSTATE);
-            }
 
             angular.forEach(STATECONFIG, function(stateInfo) {
                 $stateProvider.state(stateInfo.name, {
