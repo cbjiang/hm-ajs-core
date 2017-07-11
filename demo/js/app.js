@@ -61,6 +61,20 @@ angular.module("hm.appcore").constant('STATECONFIG', [
             ]
         }
     },
+    {
+        "name":"formPage",
+        "url":"/formPage",
+        "templateUrl":"view/formPage.html",
+        "data":{"pageTitle":"修改密码"},
+        "controller":"formPageController",
+        "ocLazyLoad":{
+            "name":"HMApp",
+            insertBefore: '#ng_load_plugins_before',
+            "files":[
+                "js/controller/formPage.controller.js",
+            ]
+        }
+    },
 ]);
 
 var HMApp=angular.module("HMApp",[
@@ -85,7 +99,7 @@ HMApp.controller('headerController', ['$scope', '$rootScope','$sessionStorage','
     //}
 }]);
 
-HMApp.controller('leftController', ['$scope', '$rootScope','$window','$state','hmappService','INDEXSTATE', function($scope, $rootScope,$window,$state,hmappService,INDEXSTATE) {
+HMApp.controller('leftController', ['$scope', '$rootScope','$window','$state','hmappService', function($scope, $rootScope,$window,$state,hmappService) {
 
     $scope.$on('$viewContentLoaded', function() {
 
