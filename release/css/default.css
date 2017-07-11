@@ -11,3 +11,18 @@
 .child-view.active{
     display: block;
 }
+
+.point-bar .point-item{
+    width: 24px;
+    height: 20px;
+    background: url('../img/stars.svg') no-repeat;
+    background-position: 2px -22px;
+    float:left;
+}
+.point-bar:hover .point-item.hover{
+    background-position: 2px 0px;
+}
+
+.point-bar .point-item.active{
+    background-position: 2px 0px;
+}

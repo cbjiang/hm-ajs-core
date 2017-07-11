@@ -408,6 +408,53 @@ angular.module("hm.appcore").directive("hmStateGoBack",['$window',function( $win
     }
 }]);
 
+angular.module("hm.appcore").directive("hmFormPoints",function() {
+    return {
+        require: '?ngModel',
+        restrict : 'A',
+        scope:{
+            ngModel: '='
+        },
+        link:function( scope, element, attrs, ngModel ){
+            ngModel.$render = function() {
+                element.val(ngModel.$viewValue || '');
+                var point=parseInt(ngModel.$viewValue);
+                contentTr.find('li').slice(0,point).addClass('active');
+            };
+            var total=attrs["total"]==null?5:parseInt(attrs["total"]);
+            var temp='<li class="point-item"></li>';
+            var str='';
+            for(var i=0;i<total;i++){
+                str+=temp;
+            }
+            var contentTr = angular.element('<ul class="point-bar">'+str+'</ul>');
+            contentTr.insertAfter(element);
+            element.addClass('hide');
+
+            contentTr.find('li').hover(function(){
+                $(this).addClass('hover');
+                $(this).prevAll().addClass('hover');
+            },function(){
+                contentTr.find('li').removeClass('hover');
+            })
+
+            contentTr.find('li').on('click',function(){
+                contentTr.find('li').removeClass('active');
+                $(this).addClass('active');
+                $(this).prevAll().addClass('active');
+
+                element.val($(this).prevAll().length+1).trigger('change');
+            })
+
+            contentTr.on('dblclick',function(){
+                contentTr.find('li').removeClass('active');
+
+                element.val(0).trigger('change');
+            })
+        }
+    }
+});
+
 
 /**
  * Created by cbjiang on 2017/2/22.

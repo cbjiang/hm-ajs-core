@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d9f9f73e-550b-4dc6-a82c-385a7d49af25" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/demo/img/icon-search.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/demo/js/controller/formPage.controller.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/demo/view/formPage.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/stars.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/js/app.js" afterPath="$PROJECT_DIR$/demo/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/default.css" afterPath="$PROJECT_DIR$/css/default.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hmapp.directives.js" afterPath="$PROJECT_DIR$/src/hmapp.directives.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/index.html" afterPath="$PROJECT_DIR$/demo/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/view/index/left.html" afterPath="$PROJECT_DIR$/demo/view/index/left.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/js/controller/pageJump.controller.js" afterPath="$PROJECT_DIR$/demo/js/controller/pageJump.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/view/pageJump.html" afterPath="$PROJECT_DIR$/demo/view/pageJump.html" />
+    <list default="true" id="d9f9f73e-550b-4dc6-a82c-385a7d49af25" name="Default" comment="0.9.20">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/release/css/default.css" afterPath="$PROJECT_DIR$/release/css/default.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/release/src/hmapp.js" afterPath="$PROJECT_DIR$/release/src/hmapp.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/release/src/hmapp.min.js" afterPath="$PROJECT_DIR$/release/src/hmapp.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="hm-ajs-core.iws" />
@@ -87,10 +79,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="formPage.controller.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="formPage.controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/demo/js/controller/formPage.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.32608697">
+            <state vertical-scroll-proportion="0.0">
               <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
@@ -119,10 +111,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hmapp.directives.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="hmapp.directives.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/hmapp.directives.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.84949833">
               <caret line="265" column="50" selection-start-line="265" selection-start-column="50" selection-end-line="265" selection-end-column="50" />
               <folding />
             </state>
@@ -944,7 +936,7 @@
       <workItem from="1498127522686" duration="24537000" />
       <workItem from="1498467988141" duration="21000" />
       <workItem from="1498472251958" duration="48489000" />
-      <workItem from="1499309764954" duration="35040000" />
+      <workItem from="1499309764954" duration="35174000" />
     </task>
     <task id="LOCAL-00001" summary="0.0.1">
       <created>1497883159744</created>
@@ -1126,11 +1118,17 @@
       <option name="project" value="LOCAL" />
       <updated>1499686794578</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="0.9.20">
+      <created>1499735028121</created>
+      <option name="number" value="00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1499735028121</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="174995000" />
+    <option name="totallyTimeSpent" value="175129000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="41" y="23" width="1639" height="1027" extended-state="6" />
@@ -1197,7 +1195,8 @@
     <MESSAGE value="0.9.17" />
     <MESSAGE value="0.9.18" />
     <MESSAGE value="0.9.19" />
-    <option name="LAST_COMMIT_MESSAGE" value="0.9.19" />
+    <MESSAGE value="0.9.20" />
+    <option name="LAST_COMMIT_MESSAGE" value="0.9.20" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1592,10 +1591,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hmapp.directives.js">
+    <entry file="file://$PROJECT_DIR$/demo/js/controller/formPage.controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="265" column="50" selection-start-line="265" selection-start-column="50" selection-end-line="265" selection-end-column="50" />
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1610,10 +1609,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/js/controller/formPage.controller.js">
+    <entry file="file://$PROJECT_DIR$/src/hmapp.directives.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32608697">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.84949833">
+          <caret line="265" column="50" selection-start-line="265" selection-start-column="50" selection-end-line="265" selection-end-column="50" />
           <folding />
         </state>
       </provider>
