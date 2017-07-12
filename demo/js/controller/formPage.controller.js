@@ -9,5 +9,7 @@ angular.module("HMApp").controller("formPageController", function($rootScope,$sc
         console.log($(this));
     }
 
+    $scope.textarea='abc'
+
 });
 

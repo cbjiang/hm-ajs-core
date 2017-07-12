@@ -8,6 +8,7 @@
         </div>
     </div>
     <div class="article">
+        <div style="width: 100px;height:100px;float:left"></div>
         <table class="table table-bordered">
             <tbody>
             <tr>
@@ -20,6 +21,12 @@
                 <td>满意度分数:</td>
                 <td>
                     <input type="text" ng-model="point">
+                </td>
+            </tr>
+            <tr>
+                <td>字数提示:</td>
+                <td>
+                    <textarea rows="5" ng-model="textarea" hm-word-num="500" style="width: 500px;max-width: 500px;float:left"></textarea>
                 </td>
             </tr>
             </tbody>
