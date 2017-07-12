@@ -297,25 +297,31 @@ angular.module("hm.appcore").directive("hmWordNum",function() {
         link:function( scope, element, attrs, ngModel ){
             var tip;
             console.log(ngModel);
-            ngModel.$render = function() {
-                element.val(ngModel.$viewValue || '');
+            if(ngModel!=null){
+                ngModel.$render = function() {
+                    element.val(ngModel.$viewValue || '');
+                    tip=$('<span style="position:absolute;top:'+(element.position().top+element.height()-20)+'px;left:'+
+                        (element.position().left+element.width()+20)+'px">'+
+                        (ngModel.$viewValue==null?0:ngModel.$viewValue.length)+'/'+attrs.hmWordNum+'</span>').appendTo('body');
+                };
+            }else{
                 tip=$('<span style="position:absolute;top:'+(element.position().top+element.height()-20)+'px;left:'+
                     (element.position().left+element.width()+20)+'px">'+
-                    (ngModel.$viewValue==null?0:ngModel.$viewValue.length)+'/'+attrs.hmWordNum+'</span>').appendTo('body');
-            };
+                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
+            }
 
             element.on('keyup',function(){
                 tip.remove();
                 tip=$('<span style="position:absolute;top:'+(element.position().top+element.height()-20)+'px;left:'+
                     (element.position().left+element.width()+20)+'px">'+
-                    (ngModel.$viewValue==null?0:ngModel.$viewValue.length)+'/'+attrs.hmWordNum+'</span>').appendTo('body');
+                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
             })
 
             element.on('resize',function(e){
                 tip.remove();
                 tip=$('<span style="position:absolute;top:'+(element.position().top+element.height()-20)+'px;left:'+
                     (element.position().left+element.width()+20)+'px">'+
-                    (ngModel.$viewValue==null?0:ngModel.$viewValue.length)+'/'+attrs.hmWordNum+'</span>').appendTo('body');
+                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
                 e.stopPropagation();
             })
 
@@ -323,9 +329,10 @@ angular.module("hm.appcore").directive("hmWordNum",function() {
                 tip.remove();
                 tip=$('<span style="position:absolute;top:'+(element.position().top+element.height()-20)+'px;left:'+
                     (element.position().left+element.width()+20)+'px">'+
-                    (ngModel.$viewValue==null?0:ngModel.$viewValue.length)+'/'+attrs.hmWordNum+'</span>').appendTo('body');
+                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
                 e.stopPropagation();
             })
+
 
             scope.$on('$destroy', function() {
                 console.log("destroy");
