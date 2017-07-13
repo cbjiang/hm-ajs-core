@@ -43,9 +43,9 @@ function fileUploadService ($http,$q,Upload,FILESERVICE,FILESYSTEMNAME) {
 
     return service;
 
-    function uploadFile(dirName,fileObj,cb1,cb2,cb3){
+    function uploadFile(dirName,fileObj,cb1,cb2,cb3,zipParams){
         Upload.upload({
-            url: fileHost+fileSystemName+'/'+dirName+'/upload',
+            url: fileHost+fileSystemName+'/'+dirName+'/upload'+((zipParams==null||zipParams=="")?zipParams:'/'+zipParams),
             method: 'POST',
             data: {
                 file: fileObj, // a jqLite type="file" element, upload() will extract all the files from the input and put them into the FormData object before sending.
@@ -322,6 +322,8 @@ angular.module('hm.fileupload').directive( "hmUploadImage", ['$compile','$http',
     function( $compile,$http,$window,fileUploadService,FILESERVICE,FILEDIRNAME ) {
     return {
         link:function( scope, element, attrs ){
+            console.log(attrs);
+            var zipParams=attrs['hmUploadImage'];
             var changeIndex=null;
             var changeFile=null;
             var fileHost=FILESERVICE;
@@ -484,6 +486,9 @@ angular.module('hm.fileupload').directive( "hmUploadImage", ['$compile','$http',
                                     fileInfo.fileurl=fileList[i].fileurl;
                                     fileInfo.saveName=fileList[i].saveName;
                                     fileInfo.systemName=fileList[i].systemName;
+                                    if(fileList[i].comSaveNames!=null){
+                                        fileInfo.comSaveNames=fileList[i].comSaveNames
+                                    }
                                     fileInfo.isCover=0;
                                 }
                             }
@@ -505,7 +510,8 @@ angular.module('hm.fileupload').directive( "hmUploadImage", ['$compile','$http',
                         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                         fileInfo.progress=progressPercentage+'%';
                         console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-                    }
+                    },
+                    zipParams
                 )
             }
         }
@@ -516,14 +522,20 @@ angular.module('hm.fileupload').directive( "hmUploadImageDetail", ['$compile','$
     function( $compile,$http,$window,fileUploadService,FILESERVICE,FILEDIRNAME ) {
         return {
             link:function( scope, element, attrs ){
+                var dpiParams=attrs['hmUploadImageDetail'];
+                var dpiStr='';
+                if(dpiParams!=null){
+                    dpiStr=dpiParams.replace('*','_')+'_';
+                }
                 var fileHost=FILESERVICE;
                 var fileDirName=(attrs['dir']==null||attrs['dir']=="")?((FILEDIRNAME==null||FILEDIRNAME=="")?"tempFileDir":FILEDIRNAME):attrs['dir'];
                 var fileListName=attrs['list'];
                 var downloadFuncName="fileupload_download_"+fileListName;
 
                 if(fileListName!=null && fileListName!=''){
-                    var tmp='<div class="file-upload-bar"><div ng-repeat="file in {fileList}" class="file-upload-info detail"><div ng-if="file.saveName!=null"><div class="file-type-img" style="background: url(\'{{file.fileurl==null?\'{fileHost}\'+file.systemName+\'/\'+file.dir+\'/\'+file.saveName+\'/\'+file.fileName:file.fileurl}}\') #000 center no-repeat;"><span class="ng-binding">&nbsp;</span><div class="file-upload-menu"><div class="menu-btn download" ng-click="{downloadFuncName}(file)"></div></div><div ng-if="file.isCover==1" class="cover-tab"></div></div></div></div></div>';
-                    tmp=tmp.replace(/\{fileList}/g,fileListName).replace('{fileHost}',fileHost).replace(/\{downloadFuncName}/g,downloadFuncName);
+                    var tmp='<div class="file-upload-bar"><div ng-repeat="file in {fileList}" class="file-upload-info detail"><div ng-if="file.saveName!=null"><div class="file-type-img" style="background: url(\'{{file.fileurl==null?\'{fileHost}\'+file.systemName+\'/\'+file.dir+\'/{dpiStr}\'+file.saveName+\'/\'+file.fileName:file.fileurl}}\') #000 center no-repeat;"><span class="ng-binding">&nbsp;</span><div class="file-upload-menu"><div class="menu-btn download" ng-click="{downloadFuncName}(file)"></div></div><div ng-if="file.isCover==1" class="cover-tab"></div></div></div></div></div>';
+                    tmp=tmp.replace(/\{fileList}/g,fileListName).replace('{fileHost}',fileHost).replace(/\{downloadFuncName}/g,downloadFuncName)
+                        .replace(/\{dpiStr}/g,dpiStr);
                     if(scope[fileListName]!=null && scope[fileListName].length>0){
 
                     }else{
