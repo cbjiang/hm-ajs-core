@@ -454,7 +454,7 @@ angular.module("hm.appcore").directive("hmFormPoints",function() {
         }
     }
 });
-
+var i=1;
 angular.module("hm.appcore").directive("hmWordNum",function() {
     return {
         require: '?ngModel',
@@ -464,39 +464,40 @@ angular.module("hm.appcore").directive("hmWordNum",function() {
         },
         link:function( scope, element, attrs, ngModel ){
             var tip;
+            var index=i++;
             console.log(ngModel);
             if(ngModel!=null){
                 ngModel.$render = function() {
                     element.val(ngModel.$viewValue || '');
-                    tip=$('<span style="position:absolute;top:'+(element.position().top+element.height()-20)+'px;left:'+
-                        (element.position().left+element.width()+20)+'px">'+
+                    tip=$('<span id="'+index+'"  style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
+                        (element.offset().left+element.width()+20)+'px">'+
                         (ngModel.$viewValue==null?0:ngModel.$viewValue.length)+'/'+attrs.hmWordNum+'</span>').appendTo('body');
                 };
             }else{
-                tip=$('<span style="position:absolute;top:'+(element.position().top+element.height()-20)+'px;left:'+
-                    (element.position().left+element.width()+20)+'px">'+
+                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
+                    (element.offset().left+element.width()+20)+'px">'+
                     element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
             }
 
             element.on('keyup',function(){
                 tip.remove();
-                tip=$('<span style="position:absolute;top:'+(element.position().top+element.height()-20)+'px;left:'+
-                    (element.position().left+element.width()+20)+'px">'+
+                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
+                    (element.offset().left+element.width()+20)+'px">'+
                     element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
             })
 
             element.on('resize',function(e){
                 tip.remove();
-                tip=$('<span style="position:absolute;top:'+(element.position().top+element.height()-20)+'px;left:'+
-                    (element.position().left+element.width()+20)+'px">'+
+                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
+                    (element.offset().left+element.width()+20)+'px">'+
                     element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
                 e.stopPropagation();
             })
 
             element.parents().on('resize',function(e){
                 tip.remove();
-                tip=$('<span style="position:absolute;top:'+(element.position().top+element.height()-20)+'px;left:'+
-                    (element.position().left+element.width()+20)+'px">'+
+                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
+                    (element.offset().left+element.width()+20)+'px">'+
                     element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
                 e.stopPropagation();
             })
