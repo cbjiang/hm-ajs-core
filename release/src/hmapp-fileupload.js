@@ -30,7 +30,7 @@ if(hmappSystemConfig!=null){
 
 angular.module('hm.fileupload').service('fileUploadService', fileUploadService);
 
-fileUploadService.$inject = ['$http','$q','Upload','FILESERVICE'];
+fileUploadService.$inject = ['$http','$q','Upload','FILESERVICE','FILESYSTEMNAME'];
 
 function fileUploadService ($http,$q,Upload,FILESERVICE,FILESYSTEMNAME) {
     var fileHost=FILESERVICE;
@@ -45,7 +45,7 @@ function fileUploadService ($http,$q,Upload,FILESERVICE,FILESYSTEMNAME) {
 
     function uploadFile(dirName,fileObj,cb1,cb2,cb3,zipParams){
         Upload.upload({
-            url: fileHost+fileSystemName+'/'+dirName+'/upload'+((zipParams==null||zipParams=="")?zipParams:'/'+zipParams),
+            url: fileHost+fileSystemName+'/'+dirName+'/upload'+((zipParams==null||zipParams=="")?"":'/'+zipParams),
             method: 'POST',
             data: {
                 file: fileObj, // a jqLite type="file" element, upload() will extract all the files from the input and put them into the FormData object before sending.
