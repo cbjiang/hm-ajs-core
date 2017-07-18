@@ -524,7 +524,7 @@ angular.module('hm.fileupload').directive( "hmUploadImageDetail", ['$compile','$
             link:function( scope, element, attrs ){
                 var dpiParams=attrs['hmUploadImageDetail'];
                 var dpiStr='';
-                if(dpiParams!=null){
+                if(dpiParams!=null && dpiParams!=''){
                     dpiStr=dpiParams.replace('*','_')+'_';
                 }
                 var fileHost=FILESERVICE;
