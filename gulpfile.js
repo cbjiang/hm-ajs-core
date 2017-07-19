@@ -30,9 +30,10 @@ gulp.task('hmapp-min', function() {
         'src/hmapp.directives.js',
         'src/hmapp.service.js',
         'src/Layout.js',
-        'src/interceptor/interceptor.config.js',
-        'src/interceptor/auth.interceptor.js',
-        'src/interceptor/auth-expired.interceptor.js',
+        'src/auth/auth.js',
+        'src/auth/interceptor/interceptor.config.js',
+        'src/auth/interceptor/auth.interceptor.js',
+        'src/auth/interceptor/auth-expired.interceptor.js',
     ]).pipe(concat('hmapp.js'))
     .pipe(gulp.dest('release/src'))    //输出main.js到文件夹
     .pipe(rename({suffix: '.min'}))   //rename压缩后的文件名

@@ -8,6 +8,7 @@ angular.module("hm.appcore", [
     "oc.lazyLoad",
     "ngSanitize",
     "ngStorage",
+    "ngCookies",
 ]);
 
 if(hmappSystemConfig!=null){
@@ -16,6 +17,8 @@ if(hmappSystemConfig!=null){
     angular.module("hm.appcore").constant('VERSION', hmappSystemConfig.VERSION);
     angular.module("hm.appcore").constant('GATEWAYURL', hmappSystemConfig.GATEWAYURL);
     angular.module("hm.appcore").constant('LOGINURL', hmappSystemConfig.LOGINURL);
+    angular.module("hm.appcore").constant('LOGOUTURL', hmappSystemConfig.LOGOUTURL);
+    angular.module("hm.appcore").constant('INDEXURL', hmappSystemConfig.INDEXURL);
 }
 
 angular.module("hm.appcore").constant('COMMONSTATE', [
@@ -57,35 +60,17 @@ angular.module("hm.appcore").constant('COMMONSTATE', [
     },
 ]);
 
-angular.module("hm.appcore").factory('settings', ['$rootScope', function($rootScope) {
-    // supported languages
-    var settings = {
-        layout: {
-            pageSidebarClosed: false, // sidebar menu state
-            pageBodySolid: true, // solid body color state
-            pageAutoScrollOnLoad: 1000 // auto scroll to top on page load
-        },
-        layoutImgPath: 'hm/img/',
-        layoutCssPath: 'hm/css/'
-    };
-
-    $rootScope.settings = settings;
-
-    return settings;
-}]);
-
 angular.module("hm.appcore").controller('AppController', ['$scope', '$rootScope', function($scope, $rootScope) {
     $scope.$on('$viewContentLoaded', function() {
 
     });
+    console.log('AppController');
 }]);
 
-angular.module("hm.appcore").run(['$rootScope', 'settings', '$state','$ocLazyLoad','$location','$localStorage','$sessionStorage','SYSNAME','LOGINURL',
-    function($rootScope, settings, $state,$ocLazyLoad,$location,$localStorage,$sessionStorage,SYSNAME,LOGINURL) {
-    var token = $localStorage.authenticationToken || $sessionStorage.authenticationToken;
-    if (!token) {
-        window.location=$location.protocol()+'://'+$location.host()+':'+$location.port()+'/'+SYSNAME+'/'+LOGINURL;
-    }
+angular.module("hm.appcore").run(['$rootScope', '$state','$ocLazyLoad','$location','auth',function($rootScope, $state,$ocLazyLoad,$location,auth) {
+    console.log('do run');
+    //检查url参数
+    auth.saveToken();
     $ocLazyLoad.load('hm.appcore');
     $rootScope.$state = $state; // state to be accessed from view
 }]);
@@ -149,43 +134,27 @@ angular.module("hm.appcore").run(['$rootScope', 'settings', '$state','$ocLazyLoa
                     }
                 });
             });
+
         }
     }]);
-
-    angular.module("hm.appcore").provider('test', function() {
-        console.log('instance test');
-        var f = function(name) {
-            alert("Hello, " + name);
-        };
-        this.$get = function() { //一定要有！
-            return f;
-        };
-    });
 
 })();
 
 
 
 
-angular.module("hm.appcore").directive( "ngDoLogout", [ '$location','$localStorage','$sessionStorage', function( $location,$localStorage,$sessionStorage ) {
+angular.module("hm.appcore").directive( "ngDoLogout", [ 'auth', function( auth ) {
     return {
         link: function( scope, element, attrs ) {
             element.bind( "click", function() {
-                doLogout();
+                auth.doLogout();
             });
         }
     }
-
-    function doLogout(){
-        delete $localStorage.authenticationToken;
-        delete $sessionStorage.authenticationToken;
-        delete $sessionStorage.userInfo;
-        window.location.reload();
-    }
 }]);
 
-angular.module("hm.appcore").directive('ngSpinnerBar', ['$rootScope', '$location', '$localStorage', '$sessionStorage', '$state', 'SYSNAME', 'LOGINURL',
-    function($rootScope,$location,$localStorage,$sessionStorage,$state,SYSNAME,LOGINURL) {
+angular.module("hm.appcore").directive('ngSpinnerBar', ['$rootScope', '$location', '$localStorage','auth' ,
+    function($rootScope,$location,$localStorage,auth) {
         return {
             link: function(scope, element, attrs) {
 
@@ -195,11 +164,9 @@ angular.module("hm.appcore").directive('ngSpinnerBar', ['$rootScope', '$location
                 // display the spinner bar whenever the route changes(the content part started loading)
                 $rootScope.$on('$stateChangeStart', function() {
                     console.log('$stateChangeStart');
-                    if($location.absUrl()!=LOGINURL){
-                        var token = $localStorage.authenticationToken || $sessionStorage.authenticationToken;
-                        if (!token) {
-                            window.location=$location.protocol()+'://'+$location.host()+':'+$location.port()+'/'+SYSNAME+'/'+LOGINURL;
-                        }
+                    var token = $localStorage.authenticationToken;
+                    if (!token) {
+                        auth.doLogin();
                     }
                     element.removeClass('hide'); // show spinner bar
                 });
@@ -211,11 +178,6 @@ angular.module("hm.appcore").directive('ngSpinnerBar', ['$rootScope', '$location
                         matchMenu(function(){
                             element.addClass('hide'); // hide spinner bar
                             $('body').removeClass('page-on-load'); // remove page loading indicator
-
-                            // auto scorll to page top
-                            //setTimeout(function () {
-                            //    FrameAPI.scrollTop(); // scroll to the top on content load
-                            //}, $rootScope.settings.layout.pageAutoScrollOnLoad);
                         })
                     },1000)
                 });
@@ -454,63 +416,63 @@ angular.module("hm.appcore").directive("hmFormPoints",function() {
         }
     }
 });
-var i=1;
-angular.module("hm.appcore").directive("hmWordNum",function() {
-    return {
-        require: '?ngModel',
-        restrict : 'A',
-        scope:{
-            ngModel: '='
-        },
-        link:function( scope, element, attrs, ngModel ){
-            var tip;
-            var index=i++;
-            console.log(ngModel);
-            if(ngModel!=null){
-                ngModel.$render = function() {
-                    element.val(ngModel.$viewValue || '');
-                    tip=$('<span id="'+index+'"  style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
-                        (element.offset().left+element.width()+20)+'px">'+
-                        (ngModel.$viewValue==null?0:ngModel.$viewValue.length)+'/'+attrs.hmWordNum+'</span>').appendTo('body');
-                };
-            }else{
-                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
-                    (element.offset().left+element.width()+20)+'px">'+
-                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
-            }
-
-            element.on('keyup',function(){
-                tip.remove();
-                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
-                    (element.offset().left+element.width()+20)+'px">'+
-                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
-            })
-
-            element.on('resize',function(e){
-                tip.remove();
-                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
-                    (element.offset().left+element.width()+20)+'px">'+
-                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
-                e.stopPropagation();
-            })
-
-            element.parents().on('resize',function(e){
-                tip.remove();
-                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
-                    (element.offset().left+element.width()+20)+'px">'+
-                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
-                e.stopPropagation();
-            })
-
-
-            scope.$on('$destroy', function() {
-                console.log("destroy");
-                tip.remove();
-            });
-
-        }
-    }
-});
+//var i=1;
+//angular.module("hm.appcore").directive("hmWordNum",function() {
+//    return {
+//        require: '?ngModel',
+//        restrict : 'A',
+//        scope:{
+//            ngModel: '='
+//        },
+//        link:function( scope, element, attrs, ngModel ){
+//            var tip;
+//            var index=i++;
+//            console.log(ngModel);
+//            if(ngModel!=null){
+//                ngModel.$render = function() {
+//                    element.val(ngModel.$viewValue || '');
+//                    tip=$('<span id="'+index+'"  style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
+//                        (element.offset().left+element.width()+20)+'px">'+
+//                        (ngModel.$viewValue==null?0:ngModel.$viewValue.length)+'/'+attrs.hmWordNum+'</span>').appendTo('body');
+//                };
+//            }else{
+//                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
+//                    (element.offset().left+element.width()+20)+'px">'+
+//                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
+//            }
+//
+//            element.on('keyup',function(){
+//                tip.remove();
+//                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
+//                    (element.offset().left+element.width()+20)+'px">'+
+//                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
+//            })
+//
+//            element.on('resize',function(e){
+//                tip.remove();
+//                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
+//                    (element.offset().left+element.width()+20)+'px">'+
+//                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
+//                e.stopPropagation();
+//            })
+//
+//            element.parents().on('resize',function(e){
+//                tip.remove();
+//                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
+//                    (element.offset().left+element.width()+20)+'px">'+
+//                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
+//                e.stopPropagation();
+//            })
+//
+//
+//            scope.$on('$destroy', function() {
+//                console.log("destroy");
+//                tip.remove();
+//            });
+//
+//        }
+//    }
+//});
 
 
 /**
@@ -522,9 +484,9 @@ angular.module("hm.appcore").directive("hmWordNum",function() {
 
     angular.module("hm.appcore").service('hmappService', hmappService);
 
-    hmappService.$inject = ['$http','$q','$sessionStorage','$localStorage','SYSCODE','GATEWAYURL'];
+    hmappService.$inject = ['$http','$q','auth','SYSCODE','GATEWAYURL'];
 
-    function hmappService ($http,$q,$sessionStorage,$localStorage,SYSCODE,GATEWAYURL) {
+    function hmappService ($http,$q,auth,SYSCODE,GATEWAYURL) {
         var service= {
             getSidebarInfo:getBar,
             getUserInfo:getUserInfo,
@@ -558,10 +520,9 @@ angular.module("hm.appcore").directive("hmWordNum",function() {
                     $('.page-spinner-bar').removeClass('hide');
                     $('body').addClass('page-on-load');
                     toastr.error('您没有权限进入该系统!', '登陆失败')
-                    delete $localStorage.authenticationToken;
-                    delete $sessionStorage.authenticationToken;
-                    delete $sessionStorage.userInfo;
-                    setTimeout(function(){window.location.reload();},2000);
+                    setTimeout(function(){
+                        auth.doLogout();
+                    },2000);
                 }
 
                 callback(data.list,status,headers,config);
@@ -656,6 +617,73 @@ var Layout = function () {
 
 }();
 /**
+ * Created by cbjiang on 2017/7/18.
+ */
+
+angular.module("hm.appcore").factory('auth',['$q','$http','$location','$localStorage','GATEWAYURL','LOGINURL','LOGOUTURL','SYSNAME',
+function($q,$http,$location,$localStorage,GATEWAYURL,LOGINURL,LOGOUTURL,SYSNAME){
+
+    return{
+        saveToken:saveToken,
+        doLogout:doLogout,
+        doLogin:doLogin,
+    }
+
+    function saveToken(){
+        console.log('loginWithUrlToken');
+        var token = $location.search().token;
+        console.log('token',token);
+        if(token!=null && token!=''){
+            $localStorage.authenticationToken=token;
+        }
+    }
+
+    function doLogin(){
+        console.log('doLogin');
+        var params='';
+        var host=getHost();
+        if(host!=null && host!=''){
+            params='?url='+host;
+        }
+        $localStorage.$reset();
+        console.log('LOGINURL+params',LOGINURL+params);
+        window.location=LOGINURL+params;
+    }
+
+    function doLogout(){
+        var params='';
+        var host=getHost();
+        if(host!=null && host!=''){
+            params='?url='+host;
+        }
+        $localStorage.$reset()
+        window.location=LOGOUTURL+params;
+    }
+
+    function getHost(){
+        return encodeURIComponent($location.protocol()+'://'+$location.host()+':'+$location.port()+'/'+SYSNAME+'/#');
+    }
+
+    function check(jwt){
+        var deferred = $q.defer();
+        $http({
+            method:'GET',
+            url:GATEWAYURL+'api/authenticate',
+            responseType:'text',
+            headers: {'Authorization':('Bearer '+jwt)},
+            transformResponse:[function (data, headersGetter) {
+                return data;
+            }]
+        }).success(function(response){
+            deferred.resolve(response);
+        }).error(function(response){
+            deferred.reject(response);
+        })
+        return deferred.promise;
+    }
+
+}]);
+/**
  * Created by cbjiang on 2017/2/28.
  */
 
@@ -679,9 +707,9 @@ var Layout = function () {
 
     angular.module("hm.appcore").factory('authInterceptor', authInterceptor);
 
-    authInterceptor.$inject = ['$rootScope', '$q', '$location', '$localStorage', '$sessionStorage','SYSNAME','LOGINURL'];
+    authInterceptor.$inject = ['$location','$localStorage','SYSNAME','LOGINURL','GATEWAYURL'];
 
-    function authInterceptor ($rootScope, $q, $location, $localStorage, $sessionStorage,SYSNAME,LOGINURL) {
+    function authInterceptor ($location,$localStorage,SYSNAME,LOGINURL,GATEWAYURL) {
         var service = {
             request: request
         };
@@ -689,15 +717,41 @@ var Layout = function () {
         return service;
 
         function request (config) {
-            /*jshint camelcase: false */
-            config.headers = config.headers || {};
-            var token = $localStorage.authenticationToken || $sessionStorage.authenticationToken;
-            if (token) {
-                config.headers.Authorization = 'Bearer ' + token;
-            }else{
-                window.location=$location.protocol()+'://'+$location.host()+':'+$location.port()+'/'+SYSNAME+'/'+LOGINURL;
+            var get_without=[
+                GATEWAYURL+'api/authenticate'
+            ]
+
+            var isWithout=false;
+            switch (config.method){
+                case 'GET':isWithout=get_without.indexOf(config.url)>=0?true:false;break;
+            }
+            if(!isWithout){
+                config.headers = config.headers || {};
+                console.log('do auth interceptor');
+                var token = $localStorage.authenticationToken;
+                if (token) {
+                    config.headers.Authorization = 'Bearer ' + token;
+                }else{
+                    doLogin();
+                }
             }
             return config;
+        }
+
+        function doLogin(){
+            console.log('doLogin');
+            var params='';
+            var host=getHost();
+            if(host!=null && host!=''){
+                params='?url='+host;
+            }
+            $localStorage.$reset();
+            console.log('LOGINURL+params',LOGINURL+params);
+            window.location=LOGINURL+params;
+        }
+
+        function getHost(){
+            return encodeURIComponent($location.protocol()+'://'+$location.host()+':'+$location.port()+'/'+SYSNAME+'/#');
         }
     }
 })();
@@ -707,9 +761,9 @@ var Layout = function () {
 
     angular.module("hm.appcore").factory('authExpiredInterceptor', authExpiredInterceptor);
 
-    authExpiredInterceptor.$inject = ['$rootScope', '$q', '$injector', '$localStorage', '$sessionStorage'];
+    authExpiredInterceptor.$inject = ['$q','$location','$localStorage','LOGOUTURL','SYSNAME'];
 
-    function authExpiredInterceptor($rootScope, $q, $injector, $localStorage, $sessionStorage) {
+    function authExpiredInterceptor( $q,$location,$localStorage,LOGOUTURL,SYSNAME) {
         var service = {
             responseError: responseError
         };
@@ -718,12 +772,23 @@ var Layout = function () {
 
         function responseError(response) {
             if (response.status === 401) {
-                delete $localStorage.authenticationToken;
-                delete $sessionStorage.authenticationToken;
-                delete $sessionStorage.userInfo;
-                window.location.reload();
+                doLogout();
             }
             return $q.reject(response);
+        }
+
+        function doLogout(){
+            var params='';
+            var host=getHost();
+            if(host!=null && host!=''){
+                params='?url='+host;
+            }
+            $localStorage.$reset()
+            window.location=LOGOUTURL+params;
+        }
+
+        function getHost(){
+            return encodeURIComponent($location.protocol()+'://'+$location.host()+':'+$location.port()+'/'+SYSNAME+'/#');
         }
     }
 })();

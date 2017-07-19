@@ -75,10 +75,10 @@
     content: '';
 }
 .file-upload-info .file-upload-menu.file:after{
-    margin-left: -65px;
+    margin-left: -66px;
 }
 .file-upload-info.detail .file-upload-menu:after{
-    margin-left: -26px;
+    margin-left: -27px;
 }
 .file-upload-menu .menu-btn{
     cursor:pointer;

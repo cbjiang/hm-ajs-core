@@ -1,23 +1,16 @@
 
-angular.module("hm.appcore").directive( "ngDoLogout", [ '$location','$localStorage','$sessionStorage', function( $location,$localStorage,$sessionStorage ) {
+angular.module("hm.appcore").directive( "ngDoLogout", [ 'auth', function( auth ) {
     return {
         link: function( scope, element, attrs ) {
             element.bind( "click", function() {
-                doLogout();
+                auth.doLogout();
             });
         }
     }
-
-    function doLogout(){
-        delete $localStorage.authenticationToken;
-        delete $sessionStorage.authenticationToken;
-        delete $sessionStorage.userInfo;
-        window.location.reload();
-    }
 }]);
 
-angular.module("hm.appcore").directive('ngSpinnerBar', ['$rootScope', '$location', '$localStorage', '$sessionStorage', '$state', 'SYSNAME', 'LOGINURL',
-    function($rootScope,$location,$localStorage,$sessionStorage,$state,SYSNAME,LOGINURL) {
+angular.module("hm.appcore").directive('ngSpinnerBar', ['$rootScope', '$location', '$localStorage','auth' ,
+    function($rootScope,$location,$localStorage,auth) {
         return {
             link: function(scope, element, attrs) {
 
@@ -27,11 +20,9 @@ angular.module("hm.appcore").directive('ngSpinnerBar', ['$rootScope', '$location
                 // display the spinner bar whenever the route changes(the content part started loading)
                 $rootScope.$on('$stateChangeStart', function() {
                     console.log('$stateChangeStart');
-                    if($location.absUrl()!=LOGINURL){
-                        var token = $localStorage.authenticationToken || $sessionStorage.authenticationToken;
-                        if (!token) {
-                            window.location=$location.protocol()+'://'+$location.host()+':'+$location.port()+'/'+SYSNAME+'/'+LOGINURL;
-                        }
+                    var token = $localStorage.authenticationToken;
+                    if (!token) {
+                        auth.doLogin();
                     }
                     element.removeClass('hide'); // show spinner bar
                 });
@@ -43,11 +34,6 @@ angular.module("hm.appcore").directive('ngSpinnerBar', ['$rootScope', '$location
                         matchMenu(function(){
                             element.addClass('hide'); // hide spinner bar
                             $('body').removeClass('page-on-load'); // remove page loading indicator
-
-                            // auto scorll to page top
-                            //setTimeout(function () {
-                            //    FrameAPI.scrollTop(); // scroll to the top on content load
-                            //}, $rootScope.settings.layout.pageAutoScrollOnLoad);
                         })
                     },1000)
                 });
@@ -286,61 +272,61 @@ angular.module("hm.appcore").directive("hmFormPoints",function() {
         }
     }
 });
-var i=1;
-angular.module("hm.appcore").directive("hmWordNum",function() {
-    return {
-        require: '?ngModel',
-        restrict : 'A',
-        scope:{
-            ngModel: '='
-        },
-        link:function( scope, element, attrs, ngModel ){
-            var tip;
-            var index=i++;
-            console.log(ngModel);
-            if(ngModel!=null){
-                ngModel.$render = function() {
-                    element.val(ngModel.$viewValue || '');
-                    tip=$('<span id="'+index+'"  style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
-                        (element.offset().left+element.width()+20)+'px">'+
-                        (ngModel.$viewValue==null?0:ngModel.$viewValue.length)+'/'+attrs.hmWordNum+'</span>').appendTo('body');
-                };
-            }else{
-                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
-                    (element.offset().left+element.width()+20)+'px">'+
-                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
-            }
-
-            element.on('keyup',function(){
-                tip.remove();
-                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
-                    (element.offset().left+element.width()+20)+'px">'+
-                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
-            })
-
-            element.on('resize',function(e){
-                tip.remove();
-                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
-                    (element.offset().left+element.width()+20)+'px">'+
-                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
-                e.stopPropagation();
-            })
-
-            element.parents().on('resize',function(e){
-                tip.remove();
-                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
-                    (element.offset().left+element.width()+20)+'px">'+
-                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
-                e.stopPropagation();
-            })
-
-
-            scope.$on('$destroy', function() {
-                console.log("destroy");
-                tip.remove();
-            });
-
-        }
-    }
-});
+//var i=1;
+//angular.module("hm.appcore").directive("hmWordNum",function() {
+//    return {
+//        require: '?ngModel',
+//        restrict : 'A',
+//        scope:{
+//            ngModel: '='
+//        },
+//        link:function( scope, element, attrs, ngModel ){
+//            var tip;
+//            var index=i++;
+//            console.log(ngModel);
+//            if(ngModel!=null){
+//                ngModel.$render = function() {
+//                    element.val(ngModel.$viewValue || '');
+//                    tip=$('<span id="'+index+'"  style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
+//                        (element.offset().left+element.width()+20)+'px">'+
+//                        (ngModel.$viewValue==null?0:ngModel.$viewValue.length)+'/'+attrs.hmWordNum+'</span>').appendTo('body');
+//                };
+//            }else{
+//                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
+//                    (element.offset().left+element.width()+20)+'px">'+
+//                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
+//            }
+//
+//            element.on('keyup',function(){
+//                tip.remove();
+//                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
+//                    (element.offset().left+element.width()+20)+'px">'+
+//                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
+//            })
+//
+//            element.on('resize',function(e){
+//                tip.remove();
+//                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
+//                    (element.offset().left+element.width()+20)+'px">'+
+//                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
+//                e.stopPropagation();
+//            })
+//
+//            element.parents().on('resize',function(e){
+//                tip.remove();
+//                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
+//                    (element.offset().left+element.width()+20)+'px">'+
+//                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
+//                e.stopPropagation();
+//            })
+//
+//
+//            scope.$on('$destroy', function() {
+//                console.log("destroy");
+//                tip.remove();
+//            });
+//
+//        }
+//    }
+//});
 

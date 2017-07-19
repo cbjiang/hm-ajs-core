@@ -58,18 +58,9 @@
                     }
                 });
             });
+
         }
     }]);
-
-    angular.module("hm.appcore").provider('test', function() {
-        console.log('instance test');
-        var f = function(name) {
-            alert("Hello, " + name);
-        };
-        this.$get = function() { //一定要有！
-            return f;
-        };
-    });
 
 })();
 

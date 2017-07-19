@@ -7,9 +7,9 @@
 
     angular.module("hm.appcore").service('hmappService', hmappService);
 
-    hmappService.$inject = ['$http','$q','$sessionStorage','$localStorage','SYSCODE','GATEWAYURL'];
+    hmappService.$inject = ['$http','$q','auth','SYSCODE','GATEWAYURL'];
 
-    function hmappService ($http,$q,$sessionStorage,$localStorage,SYSCODE,GATEWAYURL) {
+    function hmappService ($http,$q,auth,SYSCODE,GATEWAYURL) {
         var service= {
             getSidebarInfo:getBar,
             getUserInfo:getUserInfo,
@@ -43,10 +43,9 @@
                     $('.page-spinner-bar').removeClass('hide');
                     $('body').addClass('page-on-load');
                     toastr.error('您没有权限进入该系统!', '登陆失败')
-                    delete $localStorage.authenticationToken;
-                    delete $sessionStorage.authenticationToken;
-                    delete $sessionStorage.userInfo;
-                    setTimeout(function(){window.location.reload();},2000);
+                    setTimeout(function(){
+                        auth.doLogout();
+                    },2000);
                 }
 
                 callback(data.list,status,headers,config);

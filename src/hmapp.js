@@ -8,6 +8,7 @@ angular.module("hm.appcore", [
     "oc.lazyLoad",
     "ngSanitize",
     "ngStorage",
+    "ngCookies",
 ]);
 
 if(hmappSystemConfig!=null){
@@ -16,6 +17,8 @@ if(hmappSystemConfig!=null){
     angular.module("hm.appcore").constant('VERSION', hmappSystemConfig.VERSION);
     angular.module("hm.appcore").constant('GATEWAYURL', hmappSystemConfig.GATEWAYURL);
     angular.module("hm.appcore").constant('LOGINURL', hmappSystemConfig.LOGINURL);
+    angular.module("hm.appcore").constant('LOGOUTURL', hmappSystemConfig.LOGOUTURL);
+    angular.module("hm.appcore").constant('INDEXURL', hmappSystemConfig.INDEXURL);
 }
 
 angular.module("hm.appcore").constant('COMMONSTATE', [
@@ -57,35 +60,17 @@ angular.module("hm.appcore").constant('COMMONSTATE', [
     },
 ]);
 
-angular.module("hm.appcore").factory('settings', ['$rootScope', function($rootScope) {
-    // supported languages
-    var settings = {
-        layout: {
-            pageSidebarClosed: false, // sidebar menu state
-            pageBodySolid: true, // solid body color state
-            pageAutoScrollOnLoad: 1000 // auto scroll to top on page load
-        },
-        layoutImgPath: 'hm/img/',
-        layoutCssPath: 'hm/css/'
-    };
-
-    $rootScope.settings = settings;
-
-    return settings;
-}]);
-
 angular.module("hm.appcore").controller('AppController', ['$scope', '$rootScope', function($scope, $rootScope) {
     $scope.$on('$viewContentLoaded', function() {
 
     });
+    console.log('AppController');
 }]);
 
-angular.module("hm.appcore").run(['$rootScope', 'settings', '$state','$ocLazyLoad','$location','$localStorage','$sessionStorage','SYSNAME','LOGINURL',
-    function($rootScope, settings, $state,$ocLazyLoad,$location,$localStorage,$sessionStorage,SYSNAME,LOGINURL) {
-    var token = $localStorage.authenticationToken || $sessionStorage.authenticationToken;
-    if (!token) {
-        window.location=$location.protocol()+'://'+$location.host()+':'+$location.port()+'/'+SYSNAME+'/'+LOGINURL;
-    }
+angular.module("hm.appcore").run(['$rootScope', '$state','$ocLazyLoad','$location','auth',function($rootScope, $state,$ocLazyLoad,$location,auth) {
+    console.log('do run');
+    //检查url参数
+    auth.saveToken();
     $ocLazyLoad.load('hm.appcore');
     $rootScope.$state = $state; // state to be accessed from view
 }]);

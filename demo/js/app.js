@@ -83,6 +83,7 @@ var HMApp=angular.module("HMApp",[
 ]);
 
 HMApp.controller('headerController', ['$scope', '$rootScope','$sessionStorage','hmappService', function($scope, $rootScope,$sessionStorage,hmappService) {
+    console.log('headerController');
     $scope.$on('$viewContentLoaded', function() {
 
     });
@@ -100,7 +101,7 @@ HMApp.controller('headerController', ['$scope', '$rootScope','$sessionStorage','
 }]);
 
 HMApp.controller('leftController', ['$scope', '$rootScope','$window','$state','hmappService', function($scope, $rootScope,$window,$state,hmappService) {
-
+    console.log('leftController');
     $scope.$on('$viewContentLoaded', function() {
 
     });
