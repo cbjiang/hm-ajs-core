@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9f9f73e-550b-4dc6-a82c-385a7d49af25" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/release/libs/angular/angular-cookies.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/release/libs/angular/angular-cookies.min.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/release/css/default-bak.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/release/css/fileupload.css" afterPath="$PROJECT_DIR$/release/css/fileupload.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/release/src/hmapp.js" afterPath="$PROJECT_DIR$/release/src/hmapp.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/release/src/hmapp.min.js" afterPath="$PROJECT_DIR$/release/src/hmapp.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hmapp.service.js" afterPath="$PROJECT_DIR$/src/hmapp.service.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="hm-ajs-core.iws" />
@@ -71,25 +73,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fileupload.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/compnents/fileupload/fileupload.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="346" column="655" selection-start-line="346" selection-start-column="655" selection-end-line="346" selection-end-column="655" />
-              <folding>
-                <marker date="1500460342000" expanded="true" signature="4266:4282" placeholder="..." />
-                <marker date="1500460342000" expanded="true" signature="4497:4521" placeholder="..." />
-                <marker date="1500460342000" expanded="true" signature="4648:4813" placeholder="..." />
-                <marker date="1500460342000" expanded="true" signature="14220:14385" placeholder="..." />
-                <marker date="1500460342000" expanded="true" signature="18434:18450" placeholder="..." />
-                <marker date="1500460342000" expanded="true" signature="18665:18689" placeholder="..." />
-                <marker date="1500460342000" expanded="true" signature="18782:18955" placeholder="..." />
-                <marker date="1500460342000" expanded="true" signature="29022:29195" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="hmapp.directives.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hmapp.directives.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -100,16 +83,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4704797">
-              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+            <state vertical-scroll-proportion="-6.964286">
+              <caret line="26" column="87" selection-start-line="26" selection-start-column="87" selection-end-line="26" selection-end-column="87" />
               <folding />
             </state>
           </provider>
           <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
             <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hmapp.service.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/hmapp.service.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.27591974">
+              <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
@@ -198,7 +191,6 @@
         <option value="$PROJECT_DIR$/src/interceptor/auth.interceptor.js" />
         <option value="$PROJECT_DIR$/demo/js/app.js" />
         <option value="$PROJECT_DIR$/src/hmapp.configs.js" />
-        <option value="$PROJECT_DIR$/src/hmapp.service.js" />
         <option value="$PROJECT_DIR$/src/auth/interceptor/auth-expired.interceptor.js" />
         <option value="$PROJECT_DIR$/src/auth/interceptor/auth.interceptor.js" />
         <option value="$PROJECT_DIR$/src/hmapp.js" />
@@ -210,6 +202,7 @@
         <option value="$PROJECT_DIR$/demo/index.html" />
         <option value="$PROJECT_DIR$/css/fileupload.css" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/hmapp.service.js" />
       </list>
     </option>
   </component>
@@ -912,7 +905,7 @@
       <workItem from="1499309764954" duration="37185000" />
       <workItem from="1499781437210" duration="1074000" />
       <workItem from="1499845950151" duration="10611000" />
-      <workItem from="1500270743169" duration="28151000" />
+      <workItem from="1500270743169" duration="28367000" />
     </task>
     <task id="LOCAL-00001" summary="0.0.1">
       <created>1497883159744</created>
@@ -1184,11 +1177,17 @@
       <option name="project" value="LOCAL" />
       <updated>1500461443080</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="1.0.0">
+      <created>1500538596384</created>
+      <option name="number" value="00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1500538596384</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="216976000" />
+    <option name="totallyTimeSpent" value="217192000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="173" y="80" width="1639" height="1027" extended-state="0" />
@@ -1555,14 +1554,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/hmapp.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5944056">
-          <caret line="46" column="40" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/auth/interceptor/interceptor.config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2003339">
@@ -1600,14 +1591,14 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="346" column="655" selection-start-line="346" selection-start-column="655" selection-end-line="346" selection-end-column="655" />
           <folding>
-            <marker date="1500460342000" expanded="true" signature="4266:4282" placeholder="..." />
-            <marker date="1500460342000" expanded="true" signature="4497:4521" placeholder="..." />
-            <marker date="1500460342000" expanded="true" signature="4648:4813" placeholder="..." />
-            <marker date="1500460342000" expanded="true" signature="14220:14385" placeholder="..." />
-            <marker date="1500460342000" expanded="true" signature="18434:18450" placeholder="..." />
-            <marker date="1500460342000" expanded="true" signature="18665:18689" placeholder="..." />
-            <marker date="1500460342000" expanded="true" signature="18782:18955" placeholder="..." />
-            <marker date="1500460342000" expanded="true" signature="29022:29195" placeholder="..." />
+            <marker date="1500460342000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1500460342000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1500460342000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1500460342000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1500460342000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1500460342000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1500460342000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1500460342000" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1682,13 +1673,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4704797">
-          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+        <state vertical-scroll-proportion="-6.964286">
+          <caret line="26" column="87" selection-start-line="26" selection-start-column="87" selection-end-line="26" selection-end-column="87" />
           <folding />
         </state>
       </provider>
       <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/hmapp.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27591974">
+          <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>

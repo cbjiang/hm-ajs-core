@@ -7,9 +7,9 @@
 
     angular.module("hm.appcore").service('hmappService', hmappService);
 
-    hmappService.$inject = ['$http','$q','auth','SYSCODE','GATEWAYURL'];
+    hmappService.$inject = ['$http','$q','$sessionStorage','auth','SYSCODE','GATEWAYURL'];
 
-    function hmappService ($http,$q,auth,SYSCODE,GATEWAYURL) {
+    function hmappService ($http,$q,$sessionStorage,auth,SYSCODE,GATEWAYURL) {
         var service= {
             getSidebarInfo:getBar,
             getUserInfo:getUserInfo,
