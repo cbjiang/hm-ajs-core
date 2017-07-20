@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9f9f73e-550b-4dc6-a82c-385a7d49af25" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/release/libs/angular/angular-cookies.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/release/libs/angular/angular-cookies.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/release/css/default-bak.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="hm-ajs-core.iws" />
@@ -101,8 +103,8 @@
       <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="19" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.4704797">
+              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -233,8 +235,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="41" />
-    <option name="y" value="23" />
+    <option name="x" value="173" />
+    <option name="y" value="80" />
     <option name="width" value="1639" />
     <option name="height" value="1027" />
   </component>
@@ -387,6 +389,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="release" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hm-ajs-core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hm-ajs-core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="release" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -884,7 +912,7 @@
       <workItem from="1499309764954" duration="37185000" />
       <workItem from="1499781437210" duration="1074000" />
       <workItem from="1499845950151" duration="10611000" />
-      <workItem from="1500270743169" duration="27418000" />
+      <workItem from="1500270743169" duration="28151000" />
     </task>
     <task id="LOCAL-00001" summary="0.0.1">
       <created>1497883159744</created>
@@ -1150,14 +1178,20 @@
       <option name="project" value="LOCAL" />
       <updated>1500461419962</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="1.0.0">
+      <created>1500461443080</created>
+      <option name="number" value="00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1500461443080</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="216243000" />
+    <option name="totallyTimeSpent" value="216976000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="41" y="23" width="1639" height="1027" extended-state="0" />
+    <frame x="173" y="80" width="1639" height="1027" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1648,8 +1682,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="19" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.4704797">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
           <folding />
         </state>
       </provider>
