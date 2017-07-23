@@ -272,61 +272,59 @@ angular.module("hm.appcore").directive("hmFormPoints",function() {
         }
     }
 });
-//var i=1;
-//angular.module("hm.appcore").directive("hmWordNum",function() {
-//    return {
-//        require: '?ngModel',
-//        restrict : 'A',
-//        scope:{
-//            ngModel: '='
-//        },
-//        link:function( scope, element, attrs, ngModel ){
-//            var tip;
-//            var index=i++;
-//            console.log(ngModel);
-//            if(ngModel!=null){
-//                ngModel.$render = function() {
-//                    element.val(ngModel.$viewValue || '');
-//                    tip=$('<span id="'+index+'"  style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
-//                        (element.offset().left+element.width()+20)+'px">'+
-//                        (ngModel.$viewValue==null?0:ngModel.$viewValue.length)+'/'+attrs.hmWordNum+'</span>').appendTo('body');
-//                };
-//            }else{
-//                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
-//                    (element.offset().left+element.width()+20)+'px">'+
-//                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
-//            }
-//
-//            element.on('keyup',function(){
-//                tip.remove();
-//                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
-//                    (element.offset().left+element.width()+20)+'px">'+
-//                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
-//            })
-//
-//            element.on('resize',function(e){
-//                tip.remove();
-//                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
-//                    (element.offset().left+element.width()+20)+'px">'+
-//                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
-//                e.stopPropagation();
-//            })
-//
-//            element.parents().on('resize',function(e){
-//                tip.remove();
-//                tip=$('<span id="'+index+'" style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
-//                    (element.offset().left+element.width()+20)+'px">'+
-//                    element.val().length+'/'+attrs.hmWordNum+'</span>').appendTo('body');
-//                e.stopPropagation();
-//            })
-//
-//
-//            scope.$on('$destroy', function() {
-//                console.log("destroy");
-//                tip.remove();
-//            });
-//
-//        }
-//    }
-//});
+angular.module("hm.appcore").directive("hmWordNum",function() {
+    return {
+        require: '?ngModel',
+        restrict : 'A',
+        scope:{
+            ngModel: '='
+        },
+        link:function( scope, element, attrs, ngModel ){
+            var tip;
+            console.log(ngModel);
+            if(ngModel!=null){
+                ngModel.$render = function() {
+                    element.val(ngModel.$viewValue || '');
+                    change()
+                };
+            }else{
+                change()
+            }
+
+            element.on('keyup',function(){
+                change();
+            })
+
+            element.on('resize',function(e){
+                change();
+                e.stopPropagation();
+            })
+
+            element.parents().on('resize',function(e){
+
+                e.stopPropagation();
+            })
+
+
+            scope.$on('$destroy', function() {
+                console.log("destroy");
+                tip.remove();
+            });
+
+            function change(){
+                if(tip!=null){
+                    tip.remove();
+                }
+                var color='black';
+                if((element.val().length/attrs.hmWordNum)>=1){
+                    color='red'
+                }
+                tip=$('<span style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
+                    (element.offset().left+element.width()+20)+'px">'+
+                    '<span style="color:'+color+'">'+element.val().length+'</span>/'+attrs.hmWordNum+'</span>').appendTo('body');
+            }
+
+        }
+    }
+});
 
