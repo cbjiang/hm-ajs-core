@@ -2,8 +2,8 @@
  * Created by cbjiang on 2017/7/18.
  */
 
-angular.module("hm.appcore").factory('auth',['$q','$http','$location','$localStorage','GATEWAYURL','LOGINURL','LOGOUTURL','SYSNAME',
-function($q,$http,$location,$localStorage,GATEWAYURL,LOGINURL,LOGOUTURL,SYSNAME){
+angular.module("hm.appcore").factory('auth',['$q','$http','$location','$localStorage','$sessionStorage','GATEWAYURL','LOGINURL','LOGOUTURL','SYSNAME',
+function($q,$http,$location,$localStorage,$sessionStorage,GATEWAYURL,LOGINURL,LOGOUTURL,SYSNAME){
 
     return{
         saveToken:saveToken,
@@ -28,6 +28,7 @@ function($q,$http,$location,$localStorage,GATEWAYURL,LOGINURL,LOGOUTURL,SYSNAME)
             params='?url='+host;
         }
         $localStorage.$reset();
+        $sessionStorage.$reset();
         console.log('LOGINURL+params',LOGINURL+params);
         window.location=LOGINURL+params;
     }
@@ -38,7 +39,8 @@ function($q,$http,$location,$localStorage,GATEWAYURL,LOGINURL,LOGOUTURL,SYSNAME)
         if(host!=null && host!=''){
             params='?url='+host;
         }
-        $localStorage.$reset()
+        $localStorage.$reset();
+        $sessionStorage.$reset();
         window.location=LOGOUTURL+params;
     }
 

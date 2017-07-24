@@ -7,9 +7,9 @@
 
     angular.module("hm.appcore").factory('authInterceptor', authInterceptor);
 
-    authInterceptor.$inject = ['$location','$localStorage','SYSNAME','LOGINURL','GATEWAYURL'];
+    authInterceptor.$inject = ['$location','$localStorage','$sessionStorage','SYSNAME','LOGINURL','GATEWAYURL'];
 
-    function authInterceptor ($location,$localStorage,SYSNAME,LOGINURL,GATEWAYURL) {
+    function authInterceptor ($location,$localStorage,$sessionStorage,SYSNAME,LOGINURL,GATEWAYURL) {
         var service = {
             request: request
         };
@@ -46,6 +46,7 @@
                 params='?url='+host;
             }
             $localStorage.$reset();
+            $sessionStorage.$reset();
             console.log('LOGINURL+params',LOGINURL+params);
             window.location=LOGINURL+params;
         }

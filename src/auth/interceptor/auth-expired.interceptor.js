@@ -3,9 +3,9 @@
 
     angular.module("hm.appcore").factory('authExpiredInterceptor', authExpiredInterceptor);
 
-    authExpiredInterceptor.$inject = ['$q','$location','$localStorage','LOGOUTURL','SYSNAME'];
+    authExpiredInterceptor.$inject = ['$q','$location','$localStorage','$sessionStorage','LOGOUTURL','SYSNAME'];
 
-    function authExpiredInterceptor( $q,$location,$localStorage,LOGOUTURL,SYSNAME) {
+    function authExpiredInterceptor( $q,$location,$localStorage,$sessionStorage,LOGOUTURL,SYSNAME) {
         var service = {
             responseError: responseError
         };
@@ -25,7 +25,8 @@
             if(host!=null && host!=''){
                 params='?url='+host;
             }
-            $localStorage.$reset()
+            $localStorage.$reset();
+            $sessionStorage.$reset();
             window.location=LOGOUTURL+params;
         }
 

@@ -87,17 +87,18 @@ HMApp.controller('headerController', ['$scope', '$rootScope','$sessionStorage','
     $scope.$on('$viewContentLoaded', function() {
 
     });
+    console.log('$sessionStorage',$sessionStorage);
     //加载用户信息
-    //if($sessionStorage.userInfo==null){
-    //    hmappService.getUserInfo().then(function(data){
-    //        $sessionStorage.userInfo=data;
-    //        $scope.userId=$sessionStorage.userInfo.loginId;
-    //        $scope.roleName=$sessionStorage.userInfo.groupName;
-    //    })
-    //}else{
-    //    $scope.userId=$sessionStorage.userInfo.loginId;
-    //    $scope.roleName=$sessionStorage.userInfo.groupName;
-    //}
+    if($sessionStorage.userInfo==null){
+        hmappService.getUserInfo().then(function(data){
+            $sessionStorage.userInfo=data;
+            $scope.userId=$sessionStorage.userInfo.loginId;
+            $scope.roleName=$sessionStorage.userInfo.groupName;
+        })
+    }else{
+        $scope.userId=$sessionStorage.userInfo.loginId;
+        $scope.roleName=$sessionStorage.userInfo.groupName;
+    }
 }]);
 
 HMApp.controller('leftController', ['$scope', '$rootScope','$window','$state','hmappService', function($scope, $rootScope,$window,$state,hmappService) {
