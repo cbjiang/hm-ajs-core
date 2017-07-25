@@ -281,35 +281,36 @@ angular.module("hm.appcore").directive("hmWordNum",function() {
         },
         link:function( scope, element, attrs, ngModel ){
             var tip;
-            console.log(ngModel);
-            if(ngModel!=null){
-                ngModel.$render = function() {
-                    element.val(ngModel.$viewValue || '');
+            if(element.parents().filter(function(){return $(this).css('display')=='none'}).length==0 && element.css('display')!='none'){
+                if(ngModel!=null){
+                    ngModel.$render = function() {
+                        element.val(ngModel.$viewValue || '');
+                        change()
+                    };
+                }else{
                     change()
-                };
-            }else{
-                change()
+                }
+
+                element.on('keyup',function(){
+                    change();
+                })
+
+                element.on('resize',function(e){
+                    change();
+                    e.stopPropagation();
+                })
+
+                element.parents().on('resize',function(e){
+
+                    e.stopPropagation();
+                })
+
+
+                scope.$on('$destroy', function() {
+                    console.log("destroy");
+                    tip.remove();
+                });
             }
-
-            element.on('keyup',function(){
-                change();
-            })
-
-            element.on('resize',function(e){
-                change();
-                e.stopPropagation();
-            })
-
-            element.parents().on('resize',function(e){
-
-                e.stopPropagation();
-            })
-
-
-            scope.$on('$destroy', function() {
-                console.log("destroy");
-                tip.remove();
-            });
 
             function change(){
                 if(tip!=null){
