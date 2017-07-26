@@ -445,7 +445,7 @@ angular.module("hm.appcore").directive("hmWordNum",function() {
                 })
 
                 element.parents().on('resize',function(e){
-
+                    change();
                     e.stopPropagation();
                 })
 
@@ -464,9 +464,15 @@ angular.module("hm.appcore").directive("hmWordNum",function() {
                 if((element.val().length/attrs.hmWordNum)>=1){
                     color='red'
                 }
-                tip=$('<span style="position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
-                    (element.offset().left+element.width()+20)+'px">'+
-                    '<span style="color:'+color+'">'+element.val().length+'</span>/'+attrs.hmWordNum+'</span>').appendTo('body');
+                var display='';
+                if(!(element.parents().filter(function(){return $(this).css('display')=='none'}).length==0 && element.css('display')!='none')){
+                    display='display:none;'
+                }
+                if(element.offset().top!=0 && element.offset().left!=0){
+                    tip=$('<span style="'+display+'position:absolute;top:'+(element.offset().top+element.height()-20)+'px;left:'+
+                        (element.offset().left+element.width()+20)+'px">'+
+                        '<span style="color:'+color+'">'+element.val().length+'</span>/'+attrs.hmWordNum+'</span>').appendTo('body');
+                }
             }
 
         }
