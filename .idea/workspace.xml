@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9f9f73e-550b-4dc6-a82c-385a7d49af25" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/compnents/combotree/combotree.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/compnents/datepicker/datepicker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/hmapp.directives.js" afterPath="$PROJECT_DIR$/src/hmapp.directives.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/release/src/hmapp.js" afterPath="$PROJECT_DIR$/release/src/hmapp.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/release/src/hmapp.min.js" afterPath="$PROJECT_DIR$/release/src/hmapp.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="hm-ajs-core.iws" />
@@ -82,10 +78,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hmapp.directives.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="hmapp.directives.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/hmapp.directives.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8161121">
+            <state vertical-scroll-proportion="-17.25926">
               <caret line="314" column="30" selection-start-line="314" selection-start-column="30" selection-end-line="314" selection-end-column="30" />
               <folding />
             </state>
@@ -132,11 +128,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.285714">
-              <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="19" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -208,10 +204,10 @@
         <option value="$PROJECT_DIR$/src/auth/interceptor/auth.interceptor.js" />
         <option value="$PROJECT_DIR$/src/auth/interceptor/auth-expired.interceptor.js" />
         <option value="$PROJECT_DIR$/src/constant.js" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/compnents/combotree/combotree.js" />
         <option value="$PROJECT_DIR$/src/compnents/datepicker/datepicker.js" />
         <option value="$PROJECT_DIR$/src/hmapp.directives.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -761,13 +757,7 @@
       <workItem from="1499781437210" duration="1074000" />
       <workItem from="1499845950151" duration="10611000" />
       <workItem from="1500270743169" duration="33333000" />
-      <workItem from="1500886657438" duration="13450000" />
-    </task>
-    <task id="LOCAL-00006" summary="0.9.5">
-      <created>1498182009903</created>
-      <option name="number" value="00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1498182009903</updated>
+      <workItem from="1500886657438" duration="13484000" />
     </task>
     <task id="LOCAL-00007" summary="0.9.6">
       <created>1498284826147</created>
@@ -1057,11 +1047,17 @@
       <option name="project" value="LOCAL" />
       <updated>1500950805695</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="1.0.3">
+      <created>1501053248441</created>
+      <option name="number" value="00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1501053248441</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="235608000" />
+    <option name="totallyTimeSpent" value="235642000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="81" y="118" width="1639" height="1027" extended-state="0" />
@@ -1507,17 +1503,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.285714">
-          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/compnents/fileupload/fileupload.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1543,14 +1528,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/compnents/datepicker/datepicker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="54" column="3" selection-start-line="54" selection-start-column="3" selection-end-line="54" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/hmapp.service.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1561,10 +1538,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hmapp.directives.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8161121">
+        <state vertical-scroll-proportion="-17.25926">
           <caret line="314" column="30" selection-start-line="314" selection-start-column="30" selection-end-line="314" selection-end-column="30" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/compnents/datepicker/datepicker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="3" selection-start-line="54" selection-start-column="3" selection-end-line="54" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="19" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
       </provider>
     </entry>
   </component>
