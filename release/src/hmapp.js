@@ -461,7 +461,7 @@ angular.module("hm.appcore").directive("hmWordNum",function() {
                     tip.remove();
                 }
                 var color='black';
-                if((element.val().length/attrs.hmWordNum)>=1){
+                if((element.val().length/attrs.hmWordNum)>1){
                     color='red'
                 }
                 var display='';
