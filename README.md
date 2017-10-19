@@ -95,11 +95,11 @@ bower install cbjiang/hm-ajs-core
 
 	```
 	<-- 上传文件 -->
-	<div hm-upload-file data-list="fileInfos" data-size="3" data-filesize="10 MB" data-accept="image,document" data-dir="abcd">
+	<div hm-upload-file ng-model="fileInfos" data-size="3" data-filesize="10 MB" data-accept="image,document" data-dir="abcd">
 	</div>
 	
 	<-- 上传图片 -->
-	<div hm-upload-image data-list="imageInfos" data-size="3" data-filesize="10 MB" data-dir="abcd">
+	<div hm-upload-image ng-model="imageInfos" data-size="3" data-filesize="10 MB" data-dir="abcd">
 	</div>
 	```
 

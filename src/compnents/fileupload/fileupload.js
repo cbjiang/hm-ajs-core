@@ -94,139 +94,146 @@ function fileUploadService ($http,$q,Upload,FILESERVICE) {
 angular.module('hm.fileupload').directive( "hmUploadFile", ['$compile','$http','$window','fileUploadService','FILESERVICE','FILEDIRNAME','FILESYSTEMNAME',
     function( $compile,$http,$window,fileUploadService,FILESERVICE,FILEDIRNAME,FILESYSTEMNAME ) {
     return {
-        link:function( scope, element, attrs ){
+        scope:{
+            ngModel: '='
+        },
+        require: '?ngModel',
+        link:function( scope, element, attrs, ngModel ){
+            if (!ngModel) {
+                return;
+            }
+
             var changeIndex=null;
             var changeFile=null;
             var fileHost=FILESERVICE;
             var fileSystemName=(attrs['system']==null||attrs['system']=="")?((FILESYSTEMNAME==null||FILESYSTEMNAME=="")?"tempSystem":FILESYSTEMNAME):attrs['system'];
             var fileDirName=(attrs['dir']==null||attrs['dir']=="")?((FILEDIRNAME==null||FILEDIRNAME=="")?"tempFileDir":FILEDIRNAME):attrs['dir'];
-            var fileListName=attrs['list'];
+
             var fileListSize=parseInt(attrs['size']);
             var typeList=FileUploadUtil().getTypeList(attrs['accept']);
             var fileSizeStr=attrs['filesize'];
             var fileSize=FileUploadUtil().fileSizeToBytes(fileSizeStr);
-            var editFuncName="fileupload_edit_"+fileListName;
-            var downloadFuncName="fileupload_download_"+fileListName;
-            var delFuncName="fileupload_delete_"+fileListName;
-            if(fileListName!=null && fileListName!=''){
-                var tmp='<div class="file-upload-bar"><div ng-repeat="file in {fileList}" class="file-upload-info"><div ng-if="file.saveName==null" class="file-upload-ing"><div class="file-progress"><div style="margin-top: 30px"><span>{{file.progress}}</span></div><div class="progress progress-striped active "><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress}}"></div></div></div></div><div ng-if="file.saveName!=null"><div ng-if="(file.fileName | isImage)" class="file-type-img" style="background: url(\'{{file | backgroundUrl }}\') #000 center no-repeat;"><span class="ng-binding">&nbsp;</span><div class="file-upload-menu file"><div class="arrow"></div><div class="menu-btn edit" ng-click="{editFuncName}(file)"></div><div class="menu-btn download" ng-click="{downloadFuncName}(file)"></div><div class="menu-btn del" ng-click="{delFuncName}(file)"></div></div></div><div ng-if="!(file.fileName | isImage)" class="file-type-file"><span ng-if="(file.fileName | getFileType)!=\' \'" class="ng-binding">{{file.fileName | getFileType}}</span><span ng-if="(file.fileName | getFileType)==\' \'" class="ng-binding">&nbsp;</span><div class="file-upload-menu file"><div class="arrow"></div><div class="menu-btn edit" ng-click="{editFuncName}(file)"></div><div class="menu-btn download" ng-click="{downloadFuncName}(file)"></div><div class="menu-btn del" ng-click="{delFuncName}(file)"></div></div><div class="file-name">{{file.fileName | uriDecode}}</div></div></div></div><div class="file-upload-add"></div></div>';
-                tmp=tmp.replace(/\{fileList}/g,fileListName).replace('{fileHost}',fileHost)
-                    .replace(/\{editFuncName}/g,editFuncName).replace(/\{downloadFuncName}/g,downloadFuncName).replace(/\{delFuncName}/g,delFuncName);
+            var editFuncName="fileupload_edit";
+            var downloadFuncName="fileupload_download";
+            var delFuncName="fileupload_delete";
 
-                if(scope[fileListName]!=null && scope[fileListName].length>0){
+            var tmp='<div class="file-upload-bar"><div ng-repeat="file in ngModel" class="file-upload-info"><div ng-if="file.saveName==null" class="file-upload-ing"><div class="file-progress"><div style="margin-top: 30px"><span>{{file.progress}}</span></div><div class="progress progress-striped active "><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress}}"></div></div></div></div><div ng-if="file.saveName!=null"><div ng-if="(file.fileName | isImage)" class="file-type-img" style="background: url(\'{{file | backgroundUrl }}\') #000 center no-repeat;"><span class="ng-binding">&nbsp;</span><div class="file-upload-menu file"><div class="arrow"></div><div class="menu-btn edit" ng-click="{editFuncName}(file)"></div><div class="menu-btn download" ng-click="{downloadFuncName}(file)"></div><div class="menu-btn del" ng-click="{delFuncName}(file)"></div></div></div><div ng-if="!(file.fileName | isImage)" class="file-type-file"><span ng-if="(file.fileName | getFileType)!=\' \'" class="ng-binding">{{file.fileName | getFileType}}</span><span ng-if="(file.fileName | getFileType)==\' \'" class="ng-binding">&nbsp;</span><div class="file-upload-menu file"><div class="arrow"></div><div class="menu-btn edit" ng-click="{editFuncName}(file)"></div><div class="menu-btn download" ng-click="{downloadFuncName}(file)"></div><div class="menu-btn del" ng-click="{delFuncName}(file)"></div></div><div class="file-name">{{file.fileName | uriDecode}}</div></div></div></div><div class="file-upload-add"></div></div>';
+            tmp=tmp.replace('{fileHost}',fileHost)
+                .replace(/\{editFuncName}/g,editFuncName).replace(/\{downloadFuncName}/g,downloadFuncName).replace(/\{delFuncName}/g,delFuncName);
 
-                }else{
-                    scope[fileListName]=[];
-                }
-
-                var input='<input class="hide" type="file" accept="{accept}">';
-                if(typeList!=null){
-                    input=input.replace("{accept}",typeList);
-                }else{
-                    input=input.replace("{accept}","");
-                }
-                var inputObj=$(input).appendTo(element);
-                inputObj.on('click',function(e){
-                    inputObj.val('');
-                    e.stopPropagation();
-                })
-                element.append($compile(tmp)(scope));
-                inputObj.on('change',function(e){
-                    var _changeIndex=changeIndex;
-                    var _changeFile=changeFile;
-                    changeIndex=null;
-                    changeFile=null;
-
-                    if(_changeIndex==null && _changeFile==null && scope[fileListName].length>=fileListSize){
-                        toastr.error('最多上传'+fileListSize+'个附件!', '添加附件-失败');
-                        return;
-                    }
-                    var fileList=e.target.files;
-                    console.log(fileList);
-                    for(var i=0;i<fileList.length;i++){
-                        var fileObj=fileList[i];
-                        if(typeList!=null && typeList!=""){
-                            if(typeList.split(',').indexOf(FileUploadUtil().getType(fileObj.name))==-1){
-                                toastr.error('请上传'+typeList.replace(/,/g,' ')+'类型的附件!', '添加附件-失败');
-                                return;
-                            }
-                        }
-                        if(fileSize!=null && fileSize!=""){
-                            if(fileObj.size>fileSize){
-                                toastr.error('上传的附件大小不能超过'+fileSizeStr+'!', '添加附件-失败');
-                                return;
-                            }
-                        }
-                        doUpload(fileObj,_changeIndex,_changeFile);
-                    }
-
-                })
-                element.find('.file-upload-add').on('click',function(){
-                    inputObj.click();
-                })
-
-                if(typeof scope[delFuncName] == 'undefined'){
-                    scope[delFuncName]=function(file){
-                        for(var i=0;i<scope[fileListName].length;i++){
-                            if(file.saveName==scope[fileListName][i].saveName){
-                                if(file.fileurl!=null){
-                                    fileUploadService.deleteFile(file).then(function(){
-                                        scope[fileListName].splice(i,1);
-                                        console.log('临时文件 删除成功');
-                                    },function(){
-                                        console.log('临时文件 删除失败');
-                                    })
-                                }else{
-                                    scope[fileListName].splice(i,1);
-                                }
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                if(typeof scope[downloadFuncName] == 'undefined'){
-                    scope[downloadFuncName]=function(file){
-                        var url=''
-                        for(var i=0;i<scope[fileListName].length;i++){
-                            if(file.saveName==scope[fileListName][i].saveName){
-                                if(file.fileurl!=null){
-                                    url = file.fileurl;
-                                }else{
-                                    url = fileHost+file.systemName+'/'+file.dir+'/'+file.saveName+'/'+file.fileName;
-                                }
-                                break;
-                            }
-                        }
-                        var elemIF = document.createElement("iframe");
-                        elemIF.src = url;
-                        elemIF.style.display = "none";
-                        document.body.appendChild(elemIF);
-                    }
-                }
-
-                if(typeof scope[editFuncName] == 'undefined'){
-                    scope[editFuncName]=function(file){
-                        for(var i=0;i<scope[fileListName].length;i++){
-                            if(file.saveName==scope[fileListName][i].saveName){
-                                changeIndex=i;
-                                changeFile=file;
-                                inputObj.click();
-                                break;
-                            }
-                        }
-                    }
-                }
-
+            var input='<input class="hide" type="file" accept="{accept}">';
+            if(typeList!=null){
+                input=input.replace("{accept}",typeList);
+            }else{
+                input=input.replace("{accept}","");
             }
+            var inputObj=$(input).appendTo(element);
+            inputObj.on('click',function(e){
+                inputObj.val('');
+                e.stopPropagation();
+            })
+            element.append($compile(tmp)(scope));
+            inputObj.on('change',function(e){
+                if(ngModel.$modelValue!=null && ngModel.$modelValue.length>0){
+
+                }else{
+                    ngModel.$setViewValue([]);
+                }
+
+                var _changeIndex=changeIndex;
+                var _changeFile=changeFile;
+                changeIndex=null;
+                changeFile=null;
+
+                if(_changeIndex==null && _changeFile==null && ngModel.$modelValue.length>=fileListSize){
+                    toastr.error('最多上传'+fileListSize+'个附件!', '添加附件-失败');
+                    return;
+                }
+                var fileList=e.target.files;
+                for(var i=0;i<fileList.length;i++){
+                    var fileObj=fileList[i];
+                    if(typeList!=null && typeList!=""){
+                        if(typeList.split(',').indexOf(FileUploadUtil().getType(fileObj.name))==-1){
+                            toastr.error('请上传'+typeList.replace(/,/g,' ')+'类型的附件!', '添加附件-失败');
+                            return;
+                        }
+                    }
+                    if(fileSize!=null && fileSize!=""){
+                        if(fileObj.size>fileSize){
+                            toastr.error('上传的附件大小不能超过'+fileSizeStr+'!', '添加附件-失败');
+                            return;
+                        }
+                    }
+                    doUpload(fileObj,_changeIndex,_changeFile);
+                }
+
+            })
+            element.find('.file-upload-add').on('click',function(){
+                inputObj.click();
+            })
+
+            if(typeof scope[delFuncName] == 'undefined'){
+                scope[delFuncName]=function(file){
+                    for(var i=0;i<ngModel.$modelValue.length;i++){
+                        if(file.saveName==ngModel.$modelValue[i].saveName){
+                            if(file.fileurl!=null){
+                                fileUploadService.deleteFile(file).then(function(){
+                                    ngModel.$modelValue.splice(i,1);
+                                    console.log('临时文件 删除成功');
+                                },function(){
+                                    console.log('临时文件 删除失败');
+                                })
+                            }else{
+                                ngModel.$modelValue.splice(i,1);
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if(typeof scope[downloadFuncName] == 'undefined'){
+                scope[downloadFuncName]=function(file){
+                    var url=''
+                    for(var i=0;i<ngModel.$modelValue.length;i++){
+                        if(file.saveName==ngModel.$modelValue[i].saveName){
+                            if(file.fileurl!=null){
+                                url = file.fileurl;
+                            }else{
+                                url = fileHost+file.systemName+'/'+file.dir+'/'+file.saveName+'/'+file.fileName;
+                            }
+                            break;
+                        }
+                    }
+                    var elemIF = document.createElement("iframe");
+                    elemIF.src = url;
+                    elemIF.style.display = "none";
+                    document.body.appendChild(elemIF);
+                }
+            }
+
+            if(typeof scope[editFuncName] == 'undefined'){
+                scope[editFuncName]=function(file){
+                    for(var i=0;i<ngModel.$modelValue.length;i++){
+                        if(file.saveName==ngModel.$modelValue[i].saveName){
+                            changeIndex=i;
+                            changeFile=file;
+                            inputObj.click();
+                            break;
+                        }
+                    }
+                }
+            }
+
+
 
             function doUpload(fileObj,_changeIndex,_changeFile){
                 var fileInfo={};
                 fileInfo.fileName=fileObj.name;
                 if(_changeIndex!=null && _changeFile!=null){
-                    scope[fileListName].splice(_changeIndex,1,fileInfo);
+                    ngModel.$modelValue.splice(_changeIndex,1,fileInfo);
                 }else{
-                    scope[fileListName].push(fileInfo);
+                    ngModel.$modelValue.push(fileInfo);
                 }
                 fileUploadService.uploadFile(
                     fileDirName,
@@ -273,40 +280,41 @@ angular.module('hm.fileupload').directive( "hmUploadFile", ['$compile','$http','
 angular.module('hm.fileupload').directive( "hmUploadFileDetail", ['$compile','$http','$window','fileUploadService','FILESERVICE','FILEDIRNAME',
     function( $compile,$http,$window,fileUploadService,FILESERVICE,FILEDIRNAME ) {
         return {
-            link:function( scope, element, attrs ){
-                var fileHost=FILESERVICE;
-                var fileDirName=(attrs['dir']==null||attrs['dir']=="")?((FILEDIRNAME==null||FILEDIRNAME=="")?"tempFileDir":FILEDIRNAME):attrs['dir'];
-                var fileListName=attrs['list'];
-                var downloadFuncName="fileupload_download_"+fileListName;
-
-                if(fileListName!=null && fileListName!=''){
-                    var tmp='<div class="file-upload-bar"><div ng-repeat="file in {fileList}" class="file-upload-info detail"><div ng-if="file.saveName!=null"><div ng-if="(file.fileName | isImage)" class="file-type-img" style="background: url(\'{{file | backgroundUrl }}\') #000 center no-repeat;"><span class="ng-binding">&nbsp;</span><div class="file-upload-menu file"><div class="arrow"></div><div class="menu-btn download" ng-click="{downloadFuncName}(file)"></div></div></div><div ng-if="!(file.fileName | isImage)" class="file-type-file"><span ng-if="(file.fileName | getFileType)!=\' \'" class="ng-binding">{{file.fileName | getFileType}}</span><span ng-if="(file.fileName | getFileType)==\' \'" class="ng-binding">&nbsp;</span><div class="file-upload-menu file"><div class="arrow"></div><div class="menu-btn download" ng-click="{downloadFuncName}(file)"></div></div><div class="file-name">{{file.fileName | uriDecode}}</div></div></div></div></div>';
-                    tmp=tmp.replace(/\{fileList}/g,fileListName).replace('{fileHost}',fileHost).replace(/\{downloadFuncName}/g,downloadFuncName);
-                    if(scope[fileListName]!=null && scope[fileListName].length>0){
-
-                    }else{
-                        scope[fileListName]=[];
-                    }
-                    element.append($compile(tmp)(scope));
+            scope:{
+                ngModel: '='
+            },
+            require: '?ngModel',
+            link:function( scope, element, attrs, ngModel ){
+                if (!ngModel) {
+                    return;
                 }
+
+                var fileHost=FILESERVICE;
+                var downloadFuncName="fileupload_download";
+
+                var tmp='<div class="file-upload-bar"><div ng-repeat="file in ngModel" class="file-upload-info detail"><div ng-if="file.saveName!=null"><div ng-if="(file.fileName | isImage)" class="file-type-img" style="background: url(\'{{file | backgroundUrl }}\') #000 center no-repeat;"><span class="ng-binding">&nbsp;</span><div class="file-upload-menu file"><div class="arrow"></div><div class="menu-btn download" ng-click="{downloadFuncName}(file)"></div></div></div><div ng-if="!(file.fileName | isImage)" class="file-type-file"><span ng-if="(file.fileName | getFileType)!=\' \'" class="ng-binding">{{file.fileName | getFileType}}</span><span ng-if="(file.fileName | getFileType)==\' \'" class="ng-binding">&nbsp;</span><div class="file-upload-menu file"><div class="arrow"></div><div class="menu-btn download" ng-click="{downloadFuncName}(file)"></div></div><div class="file-name">{{file.fileName | uriDecode}}</div></div></div></div></div>';
+                tmp=tmp.replace('{fileHost}',fileHost).replace(/\{downloadFuncName}/g,downloadFuncName);
+                element.append($compile(tmp)(scope));
 
                 if(typeof scope[downloadFuncName] == 'undefined'){
                     scope[downloadFuncName]=function(file){
-                        var url=''
-                        for(var i=0;i<scope[fileListName].length;i++){
-                            if(file.saveName==scope[fileListName][i].saveName){
-                                if(file.fileurl!=null){
-                                    url = file.fileurl;
-                                }else{
-                                    url = fileHost+file.systemName+'/'+file.dir+'/'+file.saveName+'/'+file.fileName;
+                        if(ngModel.$modelValue!=null && ngModel.$modelValue.length>0){
+                            var url=''
+                            for(var i=0;i<ngModel.$modelValue.length;i++){
+                                if(file.saveName==ngModel.$modelValue[i].saveName){
+                                    if(file.fileurl!=null){
+                                        url = file.fileurl;
+                                    }else{
+                                        url = fileHost+file.systemName+'/'+file.dir+'/'+file.saveName+'/'+file.fileName;
+                                    }
+                                    break;
                                 }
-                                break;
                             }
+                            var elemIF = document.createElement("iframe");
+                            elemIF.src = url;
+                            elemIF.style.display = "none";
+                            document.body.appendChild(elemIF);
                         }
-                        var elemIF = document.createElement("iframe");
-                        elemIF.src = url;
-                        elemIF.style.display = "none";
-                        document.body.appendChild(elemIF);
                     }
                 }
             }
@@ -316,8 +324,15 @@ angular.module('hm.fileupload').directive( "hmUploadFileDetail", ['$compile','$h
 angular.module('hm.fileupload').directive( "hmUploadImage", ['$compile','$http','$window','fileUploadService','FILESERVICE','FILEDIRNAME','FILESYSTEMNAME',
     function( $compile,$http,$window,fileUploadService,FILESERVICE,FILEDIRNAME,FILESYSTEMNAME ) {
     return {
-        link:function( scope, element, attrs ){
-            console.log(attrs);
+        scope:{
+            ngModel: '='
+        },
+        require: '?ngModel',
+        link:function( scope, element, attrs, ngModel ){
+            if (!ngModel) {
+                return;
+            }
+
             var zipParams=attrs['hmUploadImage'];
             var dpiStr='';
             if(zipParams!=null && zipParams!=''){
@@ -328,145 +343,144 @@ angular.module('hm.fileupload').directive( "hmUploadImage", ['$compile','$http',
             var fileHost=FILESERVICE;
             var fileSystemName=(attrs['system']==null||attrs['system']=="")?((FILESYSTEMNAME==null||FILESYSTEMNAME=="")?"tempSystem":FILESYSTEMNAME):attrs['system'];
             var fileDirName=(attrs['dir']==null||attrs['dir']=="")?((FILEDIRNAME==null||FILEDIRNAME=="")?"tempImgDir":FILEDIRNAME):attrs['dir'];
-            var fileListName=attrs['list'];
+
             var fileListSize=parseInt(attrs['size']);
             var typeList=FileUploadUtil().getTypeList('image');
             var fileSizeStr=attrs['filesize'];
             var fileSize=FileUploadUtil().fileSizeToBytes(fileSizeStr);
-            var coverFuncName="fileupload_cover_"+fileListName;
-            var editFuncName="fileupload_edit_"+fileListName;
-            var downloadFuncName="fileupload_download_"+fileListName;
-            var delFuncName="fileupload_delete_"+fileListName;
-            if(fileListName!=null && fileListName!=''){
-                var tmp='<div class="file-upload-bar"><div ng-repeat="file in {fileList}" class="file-upload-info"><div ng-if="file.saveName==null" class="file-upload-ing"><div class="file-progress"><div style="margin-top: 30px"><span>{{file.progress}}</span></div><div class="progress progress-striped active "><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress}}"></div></div></div></div><div ng-if="file.saveName!=null"><div class="file-type-img" style="background: url(\'{{file | backgroundUrl }}\') #000 center no-repeat;"><span class="ng-binding">&nbsp;</span><div class="file-upload-menu"><div class="arrow"></div><div class="menu-btn cover" ng-class="{\'active\':file.isCover==1}" ng-click="{coverFuncName}(file)"></div><div class="menu-btn edit" ng-click="{editFuncName}(file)"></div><div class="menu-btn download" ng-click="{downloadFuncName}(file)"></div><div class="menu-btn del" ng-click="{delFuncName}(file)"></div></div><div ng-if="file.isCover==1" class="cover-tab"></div></div></div></div><div class="file-upload-add image"></div></div>';
-                tmp=tmp.replace(/\{fileList}/g,fileListName).replace('{fileHost}',fileHost)
-                    .replace(/\{coverFuncName}/g,coverFuncName).replace(/\{editFuncName}/g,editFuncName).replace(/\{downloadFuncName}/g,downloadFuncName)
-                    .replace(/\{delFuncName}/g,delFuncName).replace(/\{dpiStr}/g,dpiStr);;
+            var coverFuncName="fileupload_cover";
+            var editFuncName="fileupload_edit";
+            var downloadFuncName="fileupload_download";
+            var delFuncName="fileupload_delete";
 
-                if(scope[fileListName]!=null && scope[fileListName].length>0){
+
+            var tmp='<div class="file-upload-bar"><div ng-repeat="file in ngModel" class="file-upload-info"><div ng-if="file.saveName==null" class="file-upload-ing"><div class="file-progress"><div style="margin-top: 30px"><span>{{file.progress}}</span></div><div class="progress progress-striped active "><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress}}"></div></div></div></div><div ng-if="file.saveName!=null"><div class="file-type-img" style="background: url(\'{{file | backgroundUrl }}\') #000 center no-repeat;"><span class="ng-binding">&nbsp;</span><div class="file-upload-menu"><div class="arrow"></div><div class="menu-btn cover" ng-class="{\'active\':file.isCover==1}" ng-click="{coverFuncName}(file)"></div><div class="menu-btn edit" ng-click="{editFuncName}(file)"></div><div class="menu-btn download" ng-click="{downloadFuncName}(file)"></div><div class="menu-btn del" ng-click="{delFuncName}(file)"></div></div><div ng-if="file.isCover==1" class="cover-tab"></div></div></div></div><div class="file-upload-add image"></div></div>';
+            tmp=tmp.replace('{fileHost}',fileHost)
+                .replace(/\{coverFuncName}/g,coverFuncName).replace(/\{editFuncName}/g,editFuncName).replace(/\{downloadFuncName}/g,downloadFuncName)
+                .replace(/\{delFuncName}/g,delFuncName).replace(/\{dpiStr}/g,dpiStr);
+
+            var input='<input class="hide" type="file" accept="{accept}">';
+            if(typeList!=null){
+                input=input.replace("{accept}",typeList);
+            }else{
+                input=input.replace("{accept}","");
+            }
+            var inputObj=$(input).appendTo(element);
+            inputObj.on('click',function(e){
+                inputObj.val('');
+                e.stopPropagation();
+            })
+            element.append($compile(tmp)(scope));
+            inputObj.on('change',function(e){
+                if(ngModel.$modelValue!=null && ngModel.$modelValue.length>0){
 
                 }else{
-                    scope[fileListName]=[];
+                    ngModel.$setViewValue([]);
                 }
 
-                var input='<input class="hide" type="file" accept="{accept}">';
-                if(typeList!=null){
-                    input=input.replace("{accept}",typeList);
-                }else{
-                    input=input.replace("{accept}","");
+                var _changeIndex=changeIndex;
+                var _changeFile=changeFile;
+                changeIndex=null;
+                changeFile=null;
+
+                if(_changeIndex==null && _changeFile==null && ngModel.$modelValue.length>=fileListSize){
+                    toastr.error('最多上传'+fileListSize+'个附件!', '添加附件-失败');
+                    return;
                 }
-                var inputObj=$(input).appendTo(element);
-                inputObj.on('click',function(e){
-                    inputObj.val('');
-                    e.stopPropagation();
-                })
-                element.append($compile(tmp)(scope));
-                inputObj.on('change',function(e){
-                    var _changeIndex=changeIndex;
-                    var _changeFile=changeFile;
-                    changeIndex=null;
-                    changeFile=null;
-
-                    if(_changeIndex==null && _changeFile==null && scope[fileListName].length>=fileListSize){
-                        toastr.error('最多上传'+fileListSize+'个附件!', '添加附件-失败');
-                        return;
-                    }
-                    var fileList=e.target.files;
-                    for(var i=0;i<fileList.length;i++){
-                        var fileObj=fileList[i];
-                        if(typeList!=null && typeList!=""){
-                            if(typeList.split(',').indexOf(FileUploadUtil().getType(fileObj.name))==-1){
-                                toastr.error('请上传'+typeList.replace(/,/g,' ')+'类型的附件!', '添加附件-失败');
-                                return;
-                            }
-                        }
-                        if(fileSize!=null && fileSize!=""){
-                            if(fileObj.size>fileSize){
-                                toastr.error('上传的附件大小不能超过'+fileSizeStr+'!', '添加附件-失败');
-                                return;
-                            }
-                        }
-                        doUpload(fileObj,_changeIndex,_changeFile);
-                    }
-
-                })
-                element.find('.file-upload-add').on('click',function(){
-                    inputObj.click();
-                })
-
-                if(typeof scope[delFuncName] == 'undefined'){
-                    scope[delFuncName]=function(file){
-                        for(var i=0;i<scope[fileListName].length;i++){
-                            if(file.saveName==scope[fileListName][i].saveName){
-                                if(file.fileurl!=null){
-                                    fileUploadService.deleteFile(file).then(function(){
-                                        scope[fileListName].splice(i,1);
-                                        console.log('临时文件 删除成功');
-                                    },function(){
-                                        console.log('临时文件 删除失败');
-                                    })
-                                }else{
-                                    scope[fileListName].splice(i,1);
-                                }
-                                break;
-                            }
+                var fileList=e.target.files;
+                for(var i=0;i<fileList.length;i++){
+                    var fileObj=fileList[i];
+                    if(typeList!=null && typeList!=""){
+                        if(typeList.split(',').indexOf(FileUploadUtil().getType(fileObj.name))==-1){
+                            toastr.error('请上传'+typeList.replace(/,/g,' ')+'类型的附件!', '添加附件-失败');
+                            return;
                         }
                     }
+                    if(fileSize!=null && fileSize!=""){
+                        if(fileObj.size>fileSize){
+                            toastr.error('上传的附件大小不能超过'+fileSizeStr+'!', '添加附件-失败');
+                            return;
+                        }
+                    }
+                    doUpload(fileObj,_changeIndex,_changeFile);
                 }
 
-                if(typeof scope[downloadFuncName] == 'undefined'){
-                    scope[downloadFuncName]=function(file){
-                        var url=''
-                        for(var i=0;i<scope[fileListName].length;i++){
-                            if(file.saveName==scope[fileListName][i].saveName){
-                                if(file.fileurl!=null){
-                                    url = file.fileurl;
-                                }else{
-                                    url = fileHost+file.systemName+'/'+file.dir+'/'+file.saveName+'/'+file.fileName;
-                                }
-                                break;
-                            }
-                        }
-                        var elemIF = document.createElement("iframe");
-                        elemIF.src = url;
-                        elemIF.style.display = "none";
-                        document.body.appendChild(elemIF);
-                    }
-                }
+            })
+            element.find('.file-upload-add').on('click',function(){
+                inputObj.click();
+            })
 
-                if(typeof scope[editFuncName] == 'undefined'){
-                    scope[editFuncName]=function(file){
-                        for(var i=0;i<scope[fileListName].length;i++){
-                            if(file.saveName==scope[fileListName][i].saveName){
-                                changeIndex=i;
-                                changeFile=file;
-                                inputObj.click();
-                                break;
-                            }
-                        }
-                    }
-                }
-                if(typeof scope[coverFuncName] == 'undefined'){
-                    scope[coverFuncName]=function(file){
-                        for(var i=0;i<scope[fileListName].length;i++){
-                            if(file.saveName==scope[fileListName][i].saveName && scope[fileListName][i].isCover!=1){
-                                scope[fileListName][i].isCover=1;
+            if(typeof scope[delFuncName] == 'undefined'){
+                scope[delFuncName]=function(file){
+                    for(var i=0;i<ngModel.$modelValue.length;i++){
+                        if(file.saveName==ngModel.$modelValue[i].saveName){
+                            if(file.fileurl!=null){
+                                fileUploadService.deleteFile(file).then(function(){
+                                    ngModel.$modelValue.splice(i,1);
+                                    console.log('临时文件 删除成功');
+                                },function(){
+                                    console.log('临时文件 删除失败');
+                                })
                             }else{
-                                scope[fileListName][i].isCover=0;
+                                ngModel.$modelValue.splice(i,1);
                             }
+                            break;
                         }
                     }
                 }
+            }
 
+            if(typeof scope[downloadFuncName] == 'undefined'){
+                scope[downloadFuncName]=function(file){
+                    var url=''
+                    for(var i=0;i<ngModel.$modelValue.length;i++){
+                        if(file.saveName==ngModel.$modelValue[i].saveName){
+                            if(file.fileurl!=null){
+                                url = file.fileurl;
+                            }else{
+                                url = fileHost+file.systemName+'/'+file.dir+'/'+file.saveName+'/'+file.fileName;
+                            }
+                            break;
+                        }
+                    }
+                    var elemIF = document.createElement("iframe");
+                    elemIF.src = url;
+                    elemIF.style.display = "none";
+                    document.body.appendChild(elemIF);
+                }
+            }
+
+            if(typeof scope[editFuncName] == 'undefined'){
+                scope[editFuncName]=function(file){
+                    for(var i=0;i<ngModel.$modelValue.length;i++){
+                        if(file.saveName==ngModel.$modelValue[i].saveName){
+                            changeIndex=i;
+                            changeFile=file;
+                            inputObj.click();
+                            break;
+                        }
+                    }
+                }
+            }
+            if(typeof scope[coverFuncName] == 'undefined'){
+                scope[coverFuncName]=function(file){
+                    for(var i=0;i<ngModel.$modelValue.length;i++){
+                        if(file.saveName==ngModel.$modelValue[i].saveName && ngModel.$modelValue[i].isCover!=1){
+                            ngModel.$modelValue[i].isCover=1;
+                        }else{
+                            ngModel.$modelValue[i].isCover=0;
+                        }
+                    }
+                }
             }
 
             function doUpload(fileObj,_changeIndex,_changeFile){
                 var fileInfo={};
                 fileInfo.fileName=fileObj.name;
                 if(_changeIndex!=null && _changeFile!=null){
-                    scope[fileListName].splice(_changeIndex,1,fileInfo);
+                    ngModel.$modelValue.splice(_changeIndex,1,fileInfo);
                 }else{
-                    scope[fileListName].push(fileInfo);
+                    ngModel.$modelValue.push(fileInfo);
                 }
                 fileUploadService.uploadFile(
                     fileDirName,
@@ -518,46 +532,47 @@ angular.module('hm.fileupload').directive( "hmUploadImage", ['$compile','$http',
 angular.module('hm.fileupload').directive( "hmUploadImageDetail", ['$compile','$http','$window','fileUploadService','FILESERVICE','FILEDIRNAME',
     function( $compile,$http,$window,fileUploadService,FILESERVICE,FILEDIRNAME ) {
         return {
-            link:function( scope, element, attrs ){
+            scope:{
+                ngModel: '='
+            },
+            require: '?ngModel',
+            link:function( scope, element, attrs, ngModel ){
+                if (!ngModel) {
+                    return;
+                }
+
                 var dpiParams=attrs['hmUploadImageDetail'];
                 var dpiStr='';
                 if(dpiParams!=null && dpiParams!=''){
                     dpiStr=dpiParams.replace('*','_')+'_';
                 }
                 var fileHost=FILESERVICE;
-                var fileDirName=(attrs['dir']==null||attrs['dir']=="")?((FILEDIRNAME==null||FILEDIRNAME=="")?"tempFileDir":FILEDIRNAME):attrs['dir'];
-                var fileListName=attrs['list'];
-                var downloadFuncName="fileupload_download_"+fileListName;
+                var downloadFuncName="fileupload_download";
 
-                if(fileListName!=null && fileListName!=''){
-                    var tmp='<div class="file-upload-bar"><div ng-repeat="file in {fileList}" class="file-upload-info detail"><div ng-if="file.saveName!=null"><div class="file-type-img" style="background: url(\'{{file | backgroundUrl }}\') #000 center no-repeat;"><span class="ng-binding">&nbsp;</span><div class="file-upload-menu"><div class="arrow"></div><div class="menu-btn download" ng-click="{downloadFuncName}(file)"></div></div><div ng-if="file.isCover==1" class="cover-tab"></div></div></div></div></div>';
-                    tmp=tmp.replace(/\{fileList}/g,fileListName).replace('{fileHost}',fileHost).replace(/\{downloadFuncName}/g,downloadFuncName)
-                        .replace(/\{dpiStr}/g,dpiStr);
-                    if(scope[fileListName]!=null && scope[fileListName].length>0){
-
-                    }else{
-                        scope[fileListName]=[];
-                    }
-                    element.append($compile(tmp)(scope));
-                }
+                var tmp='<div class="file-upload-bar"><div ng-repeat="file in ngModel" class="file-upload-info detail"><div ng-if="file.saveName!=null"><div class="file-type-img" style="background: url(\'{{file | backgroundUrl }}\') #000 center no-repeat;"><span class="ng-binding">&nbsp;</span><div class="file-upload-menu"><div class="arrow"></div><div class="menu-btn download" ng-click="{downloadFuncName}(file)"></div></div><div ng-if="file.isCover==1" class="cover-tab"></div></div></div></div></div>';
+                tmp=tmp.replace('{fileHost}',fileHost).replace(/\{downloadFuncName}/g,downloadFuncName)
+                    .replace(/\{dpiStr}/g,dpiStr);
+                element.append($compile(tmp)(scope));
 
                 if(typeof scope[downloadFuncName] == 'undefined'){
                     scope[downloadFuncName]=function(file){
-                        var url=''
-                        for(var i=0;i<scope[fileListName].length;i++){
-                            if(file.saveName==scope[fileListName][i].saveName){
-                                if(file.fileurl!=null){
-                                    url = file.fileurl;
-                                }else{
-                                    url = fileHost+file.systemName+'/'+file.dir+'/'+file.saveName+'/'+file.fileName;
+                        if(ngModel.$modelValue!=null && ngModel.$modelValue.length>0){
+                            var url=''
+                            for(var i=0;i<ngModel.$modelValue.length;i++){
+                                if(file.saveName==ngModel.$modelValue[i].saveName){
+                                    if(file.fileurl!=null){
+                                        url = file.fileurl;
+                                    }else{
+                                        url = fileHost+file.systemName+'/'+file.dir+'/'+file.saveName+'/'+file.fileName;
+                                    }
+                                    break;
                                 }
-                                break;
                             }
+                            var elemIF = document.createElement("iframe");
+                            elemIF.src = url;
+                            elemIF.style.display = "none";
+                            document.body.appendChild(elemIF);
                         }
-                        var elemIF = document.createElement("iframe");
-                        elemIF.src = url;
-                        elemIF.style.display = "none";
-                        document.body.appendChild(elemIF);
                     }
                 }
             }

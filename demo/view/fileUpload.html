@@ -5,9 +5,23 @@
 
     <form class="form-horizontal">
         <div class="form-group">
+            <label class="col-md-3 control-label">图片组<button ng-click="addItem()">添加</button></label>
+            <div class="col-md-9">
+                <div ng-repeat="item in items" hm-upload-image="730*480:0.9,300*300:0.9,160*100:0.9" ng-model="item.file" data-size="3" data-filesize="10 MB">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">图片组json:</label>
+            <div ng-repeat="item in items" class="col-md-9" style="word-break:break-all;">
+                {{item | json}}
+            </div>
+        </div>
+
+        <div class="form-group">
             <label class="col-md-3 control-label">附件1:</label>
             <div class="col-md-9">
-                <div hm-upload-file data-list="fileInfos1" data-size="3" data-filesize="100 MB" data-accept="package">
+                <div hm-upload-file ng-model="fileInfos1" data-size="3" data-filesize="100 MB" data-accept="package">
                 </div>
             </div>
         </div>
@@ -20,7 +34,7 @@
         <div class="form-group">
             <label class="col-md-3 control-label">附件2:</label>
             <div class="col-md-9">
-                <div hm-upload-file data-list="fileInfos2" data-dir="abcd">
+                <div hm-upload-file ng-model="fileInfos2" data-dir="abcd">
                 </div>
             </div>
         </div>
@@ -82,7 +96,7 @@
         <div class="form-group">
             <label class="col-md-3 control-label">图片1:</label>
             <div class="col-md-9">
-                <div hm-upload-image="730*480:0.9,300*300:0.9,160*100:0.9" data-list="imgInfos1" data-size="3" data-filesize="10 MB">
+                <div hm-upload-image="730*480:0.9,300*300:0.9,160*100:0.9" ng-model="imgInfos1" data-size="3" data-filesize="10 MB">
                 </div>
             </div>
         </div>
@@ -95,7 +109,7 @@
         <div class="form-group">
             <label class="col-md-3 control-label">图片2:</label>
             <div class="col-md-9">
-                <div hm-upload-image data-list="imgInfos2" data-dir="abcde">
+                <div hm-upload-image ng-model="imgInfos2" data-dir="abcde">
                 </div>
             </div>
         </div>
@@ -155,7 +169,7 @@
         <div class="form-group">
             <label class="col-md-3 control-label">附件详情:</label>
             <div class="col-md-9">
-                <div hm-upload-file-detail data-list="fileDetailInfos">
+                <div hm-upload-file-detail ng-model="fileDetailInfos">
                 </div>
             </div>
         </div>
@@ -196,7 +210,7 @@
         <div class="form-group">
             <label class="col-md-3 control-label">图片详情:</label>
             <div class="col-md-9">
-                <div hm-upload-image-detail="730*480" data-list="imageDetailInfos">
+                <div hm-upload-image-detail="730*480" ng-model="imageDetailInfos">
                 </div>
             </div>
         </div>
